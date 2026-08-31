@@ -2,6 +2,6 @@
 
 <br>
 <div align = "center">
-<img width="700" alt="image" src="https://github.com/user-attachments/assets/29be0dda-efb4-4159-96cf-0376704a6132" />
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/fd9bc04e-9de0-4615-b57b-684d2f238154" />
 </div>
 <br>
