@@ -120,6 +120,23 @@ Additional requirements:
 <br>
 
 
+-- Last 7 days
+R.Completed_date >= DATEADD(DAY, -7, GETDATE())
+
+-- Last 30 minutes
+R.Completed_date >= DATEADD(MINUTE, -30, GETDATE())
+
+-- Last 2 hours
+R.Completed_date >= DATEADD(HOUR, -2, GETDATE())
+
+-- Last 3 months
+R.Completed_date >= DATEADD(MONTH, -3, GETDATE())
+
+-- Last 1 year
+R.Completed_date >= DATEADD(YEAR, -1, GETDATE())
+
+<br>
+
 1. Find the total number of rides taken by the user Yash during the last 3 months,
   where the ride was completed using a SUZUKI vehicle and belonged to the Black ride
   category. Also display the pickup and drop locations, total final fare, total estimated
@@ -160,6 +177,7 @@ WHERE
 | ---------: | --------: | -------------: | -------------: | --------------------: |
 |          5 |      7500 |           6800 |           7500 |                   700 |
 
+<br>
 
 2. Find the total number of Black-category rides taken by Yash in the last 3 months
 using a Suzuki vehicle. Display the pickup and drop locations, total rides, total
@@ -207,6 +225,8 @@ GROUP BY
 | ------ | ------ | ---------: | --------: | -------------: | -------------: | --------------------: |
 | Pune   | Mumbai |          5 |      7500 |           6800 |           7500 |                   700 |
 
+
+<br>
 
 # SQL Practice Queries - First Design
 
