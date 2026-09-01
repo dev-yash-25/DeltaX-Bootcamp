@@ -39,6 +39,8 @@
 
 ## Index
 
+[Mental Model]
+
 1. [Course Overview](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#1-course-overview)
 2. [Why Do We Need Web APIs?](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#2-why-do-we-need-web-apis)
 3. [Role of a Web API](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#3-role-of-a-web-api)
@@ -55,7 +57,67 @@
 
 <br>
 
+# Mental Model for Designing REST APIs
 
+When designing an API, ask these questions in order:
+
+### 1. What are my resources?
+
+Example:
+
+```text
+Customer
+Order
+Product
+Movie
+Actor
+```
+
+### 2. What identifies each resource?
+
+```text
+Customer → customerId
+Order    → orderId
+Movie    → movieId
+```
+
+### 3. What operations are required?
+
+```text
+Create
+Read
+Update
+Delete
+Search
+Filter
+```
+
+### 4. Which HTTP method represents the operation?
+
+```text
+Create → POST
+Read   → GET
+Update → PUT/PATCH
+Delete → DELETE
+```
+
+### 5. Where should input go?
+
+```text
+Resource identity → Route
+Filtering/search → Query
+Create/update data → Body
+```
+
+### 6. What status code should be returned?
+
+```text
+Success → 2xx
+Invalid client request → 4xx
+Server failure → 5xx
+```
+
+<br>
 
 ## 1. Course Overview
 
