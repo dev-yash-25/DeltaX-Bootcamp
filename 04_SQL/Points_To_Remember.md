@@ -102,7 +102,6 @@ that automatically updates or deletes dependent child table rows when a parent t
 6. It is not always necessary to use `GROUP BY` for using **Aggregates** like `COUNT`, `SUM` and all..you shall use group by only when condition on 1+ groups needed
    not for single Group
 
-      
       You **need `GROUP BY E.name`** if you want to select `E.name` along with `SUM(salary)`.
       
       ### ❌ Wrong
@@ -117,9 +116,7 @@ that automatically updates or deletes dependent child table rows when a parent t
       * `SUM(E.salary)` → aggregate
       * `E.name` → normal column
       * `E.name` is neither aggregated nor grouped.
-      
-      ---
-      
+
       ### ✅ Correct
       
       ```sql
@@ -130,20 +127,10 @@ that automatically updates or deletes dependent child table rows when a parent t
       GROUP BY E.name;
       ```
       
-      Output:
-      
-      | name  | TotalSalary |
-      | ----- | ----------: |
-      | Yash  |      100000 |
-      | Rahul |      120000 |
-      | Amit  |       90000 |
       
       Here you're saying:
       
       > **"Give me the total salary for each name."**
-      
-      
-      ### But there's an important exception
       
       If you want **one overall salary total**, don't select `name`:
       
@@ -152,12 +139,8 @@ that automatically updates or deletes dependent child table rows when a parent t
           SUM(E.salary) AS TotalSalary
       FROM Employees E;
       ```
-      
-      Output:
-      
-      | TotalSalary |
-      | ----------: |
-      |      310000 |
+
+7. Avoid Over Normalization, Creating Too many tables, Create tables / Normalize only to reduce redundancy and anomalies 
 
 <br>
 
