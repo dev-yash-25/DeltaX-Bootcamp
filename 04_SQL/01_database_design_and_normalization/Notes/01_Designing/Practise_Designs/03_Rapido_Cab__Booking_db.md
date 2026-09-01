@@ -129,24 +129,31 @@ Additional requirements:
 ```sql
 SELECT
     COUNT(*) AS TotalRides,
-    SUM(R.final_fare) AS TotalPrice,
-    SUM(R.estimated_fare) AS TotalEstimate,
-    SUM(R.final_fare - R.estimated_fare) AS TotalRidesCost,
-    AVG(R.final_fare - R.estimated_fare) AS AverageDifference
+    SUM(R.total_fare) AS TotalFare,
+    SUM(R.total_estimated) AS TotalEstimated,
+    (SUM(R.total_fare) - SUM(R.total_estimated)) AS DifferenceOfEstimates
+
 FROM Rides R
+
 INNER JOIN Customers C
-    ON R.customer_id = C.id
-INNER JOIN Users U
-    ON C.user_id = U.id
+    ON R.cust_id = C.id
+
+INNER JOIN DriverVehicleHistory DVH
+    ON DVH.id = R.driver_hist_id
+
+INNER JOIN Vehicles V
+    ON V.id = DVH.vehicle_id
+
 INNER JOIN RideCategories RC
-    ON R.category_id = RC.id
-WHERE U.name = 'Yash'
-  AND R.pickup_location = 'X'
-  AND R.drop_location = 'Y'
-  AND R.requested_at >= DATEADD(MONTH, -3, GETDATE())
-  AND RC.name = 'Black'
-  AND R.final_fare > 1000
-  AND (R.final_fare - R.estimated_fare) > 100;
+    ON RC.id = R.category_id
+
+WHERE
+    C.name = 'Yash'
+    AND V.make = 'SUZUKI'
+    AND DVH.driverId IS NOT NULL
+    AND RC.name = 'black'
+    AND R.completed_date >= DATEADD(MONTH, -3, GETDATE())
+    AND (R.final_fare - R.estimated_fare) >= 100;
 ```
 
 
@@ -161,9 +168,10 @@ SELECT
     R.pickup,
     R.drop,
     COUNT(*) AS TotalRides,
-    SUM(R.final_fare) AS TotalFare,
-    SUM(R.estimated_fare) AS TotalEstimated,
-    SUM(R.final_fare) - SUM(R.estimated_fare) AS DifferenceOfEstimates
+    SUM(R.total_fare) AS TotalFare,
+    SUM(R.total_estimated) AS TotalEstimated,
+    (SUM(R.total_fare) - SUM(R.total_estimated)) AS DifferenceOfEstimates
+
 FROM Rides R
 
 INNER JOIN Customers C
