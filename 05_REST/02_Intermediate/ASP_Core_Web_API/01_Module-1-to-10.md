@@ -105,8 +105,15 @@ Delete → DELETE
 
 ```text
 Resource identity → Route
+- GET /api/users/15
+
 Filtering/search → Query
+- GET /api/tasks?status=pending
+
 Create/update data → Body
+- POST /api/users
+body.. {
+       }
 ```
 
 ### 6. What status code should be returned?
