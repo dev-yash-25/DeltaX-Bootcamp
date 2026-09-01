@@ -1,100 +1,125 @@
 # Rapido Database Design & SQL Practice
 
 **Problem Statment :**
-```
-Ride-Hailing Application
+# Ride-Hailing Application — Database Design Problem Statement
 
-Scenario
+## Scenario
 
-You have been asked to design the database for a ride-hailing application similar to Uber or Ola.
+You have been asked to design the database for a **ride-hailing application** similar to Uber or Ola.
 
-The application will allow customers to book rides, drivers to accept rides, and the platform to manage the complete ride lifecycle.
+The application allows customers to **book rides**, drivers to **accept rides**, and the platform to **manage the complete ride lifecycle**.
 
-Your task is to design a relational database that can support the following requirements.
+Design a **relational database** that can support the following requirements.
 
-Requirements
-1. Customers
+---
 
-Customers can register on the platform and use it to book rides.
+## 1. Customers
 
-A customer has basic information such as their name, phone number, email address, and account status.
+* Customers can register on the platform and use it to book rides.
+* A customer has basic information such as:
 
-A customer can book multiple rides.
+  * Name
+  * Phone number
+  * Email address
+  * Account status
+* A customer can book **multiple rides**.
+* A customer may save multiple frequently used locations, such as:
 
-A customer may also save multiple frequently used locations, such as their home, office, or other places.
+  * Home
+  * Office
+  * Other places
+* A saved location belongs to a **particular customer**.
+* A customer does **not** have to save any locations.
+* Customers should be able to **update or remove** their saved locations **without affecting historical rides**.
 
-A saved location belongs to a particular customer, but a customer does not have to save any locations.
+---
 
-Customers should be able to update or remove their saved locations with	out affecting historical rides.
+## 2. Drivers
 
-2. Drivers
+* Drivers can register on the platform and become eligible to accept rides.
+* A driver has basic information such as:
 
-Drivers can register on the platform and become eligible to accept rides.
+  * Name
+  * Phone number
+  * License information
+  * Account status
+* A driver can drive **different vehicles over the course of their time** on the platform.
+* For example, a driver may initially use one car and later replace it with another.
+* The system must preserve the **history of which vehicles a driver was associated with**.
+* A driver may temporarily have **no vehicle associated** with them.
 
-A driver has basic information such as their name, phone number, license information, and account status.
+---
 
-A driver can drive different vehicles over the course of their time on the platform.
+## 3. Vehicles
 
-For example, a driver may initially use one car and later replace it with another.
+* Every vehicle registered on the platform has basic information such as:
 
-The system must preserve the history of which vehicles a driver was associated with.
+  * Registration number
+  * Make
+  * Model
+  * Type
+  * Status
+* A vehicle can only be associated with **one driver at a given point in time**.
+* However, the same vehicle may be associated with **different drivers at different points in its history**.
+* A vehicle's **registration number must be unique**.
 
-A driver may temporarily have no vehicle associated with them.
+---
 
-3. Vehicles
-
-Every vehicle registered on the platform has basic information such as its registration number, make, model, type, and status.
-
-A vehicle can only be associated with one driver at a given point in time.
-
-However, the same vehicle may be associated with different drivers at different points in its history.
-
-A vehicle's registration number must be unique.
-
-4. Ride Categories
+## 4. Ride Categories
 
 The platform offers different types of rides, for example:
 
-Bike
-Auto
-Mini
-Sedan
-SUV
-Premium
+* Bike
+* Auto
+* Mini
+* Sedan
+* SUV
+* Premium
 
-The available ride categories may change over time.
+Additional requirements:
 
-Each category has its own pricing rules.
+* Available ride categories may **change over time**.
+* Each category has its own **pricing rules**.
+* Different categories may have different:
 
-Different categories may have different base fares and different charges based on distance or duration.
+  * Base fares
+  * Charges based on distance
+  * Charges based on duration
 
-5. Booking a Ride
+---
+
+## 5. Booking a Ride
 
 A customer can request a ride by providing:
 
-Where they want to be picked up
-Where they want to go
-The type of ride they want
+* Pickup location
+* Drop location
+* Type of ride/category
 
-A customer may also schedule a ride for a future time instead of requesting one immediately.
+Additional requirements:
 
-The system should record the ride request even if a driver is never found.
+* A customer may request a ride **immediately**.
+* A customer may also **schedule a ride for a future time**.
+* The system should record the ride request **even if a driver is never found**.
+
+### Ride Lifecycle
 
 A ride can go through different stages during its lifecycle, such as:
 
-Requested
-Searching
-Driver Assigned
-Driver Arriving
-Started
-Completed
-Cancelled
+1. Requested
+2. Searching
+3. Driver Assigned
+4. Driver Arriving
+5. Started
+6. Completed
+7. Cancelled
 
-Not every ride will reach the Completed state.
+Additional requirements:
+* Not every ride will reach the **Completed** state.
+* The system should be able to manage and track the **complete lifecycle of a ride**.
 
 
-independency not based on linking, based on entity
-```
+
 ## Database Design
 <br>
 <div align = "center">
