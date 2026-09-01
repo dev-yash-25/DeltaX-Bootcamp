@@ -111,15 +111,87 @@ Additional requirements:
 ## Database Design
 <br>
 <div align = "center">
+ <p>1</p>
 <img width="650" alt="image" src="https://github.com/user-attachments/assets/f724503a-837a-4362-bc2f-ecd734da3baf" />
     <br>
+ <p>2</p>
 <img width="650" alt="image" src="https://github.com/user-attachments/assets/43d3e4bc-785f-429e-82fc-399b86c00ef0" />
 </div>
 <br>
 
 
+Q1. Find the total number of rides taken by the user Yash during the last 3 months,\ 
+where the ride was completed using a SUZUKI vehicle and belonged to the Black ride\
+category. Also display the pickup and drop locations, total final fare, total estimated\
+fare, and the difference between total final fare and total estimated fare. Only consider\
+rides where the final fare exceeds the estimated fare by at least ₹100.
 
-# SQL Practice Queries
+```sql
+SELECT
+    COUNT(*) AS TotalRides,
+    SUM(R.final_fare) AS TotalPrice,
+    SUM(R.estimated_fare) AS TotalEstimate,
+    SUM(R.final_fare - R.estimated_fare) AS TotalRidesCost,
+    AVG(R.final_fare - R.estimated_fare) AS AverageDifference
+FROM Rides R
+INNER JOIN Customers C
+    ON R.customer_id = C.id
+INNER JOIN Users U
+    ON C.user_id = U.id
+INNER JOIN RideCategories RC
+    ON R.category_id = RC.id
+WHERE U.name = 'Yash'
+  AND R.pickup_location = 'X'
+  AND R.drop_location = 'Y'
+  AND R.requested_at >= DATEADD(MONTH, -3, GETDATE())
+  AND RC.name = 'Black'
+  AND R.final_fare > 1000
+  AND (R.final_fare - R.estimated_fare) > 100;
+```
+
+
+2. Find the total number of Black-category rides taken by Yash in the last 3 months\
+using a Suzuki vehicle. Display the pickup and drop locations, total rides, total\
+final fare, total estimated fare, and the difference between total final fare\
+and total estimated fare. Consider only rides where the final fare exceeds the\
+estimated fare by at least ₹100.
+
+```sql
+SELECT
+    R.pickup,
+    R.drop,
+    COUNT(*) AS TotalRides,
+    SUM(R.final_fare) AS TotalFare,
+    SUM(R.estimated_fare) AS TotalEstimated,
+    SUM(R.final_fare) - SUM(R.estimated_fare) AS DifferenceOfEstimates
+FROM Rides R
+
+INNER JOIN Customers C
+    ON R.cust_id = C.id
+
+INNER JOIN DriverVehicleHistory DVH
+    ON DVH.id = R.driver_hist_id
+
+INNER JOIN Vehicles V
+    ON V.id = DVH.vehicle_id
+
+INNER JOIN RideCategories RC
+    ON RC.id = R.category_id
+
+WHERE
+    C.name = 'Yash'
+    AND V.make = 'SUZUKI'
+    AND DVH.driverId IS NOT NULL
+    AND RC.name = 'black'
+    AND R.completed_date >= DATEADD(MONTH, -3, GETDATE())
+    AND (R.final_fare - R.estimated_fare) >= 100
+
+GROUP BY
+    R.pickup,
+    R.drop;
+```
+
+# SQL Practice Queries - First Design
 
 <br>
 
