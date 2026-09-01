@@ -39,7 +39,7 @@
 
 ## Index
 
-[Mental Model]
+[Mental Model](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#mental-model-for-designing-rest-apis)
 
 1. [Course Overview](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#1-course-overview)
 2. [Why Do We Need Web APIs?](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#2-why-do-we-need-web-apis)
