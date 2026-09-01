@@ -11,20 +11,18 @@ The application allows customers to **book rides**, drivers to **accept rides**,
 
 Design a **relational database** that can support the following requirements.
 
----
+
 
 ## 1. Customers
 
 * Customers can register on the platform and use it to book rides.
 * A customer has basic information such as:
-
   * Name
   * Phone number
   * Email address
   * Account status
 * A customer can book **multiple rides**.
 * A customer may save multiple frequently used locations, such as:
-
   * Home
   * Office
   * Other places
@@ -32,13 +30,12 @@ Design a **relational database** that can support the following requirements.
 * A customer does **not** have to save any locations.
 * Customers should be able to **update or remove** their saved locations **without affecting historical rides**.
 
----
+
 
 ## 2. Drivers
 
 * Drivers can register on the platform and become eligible to accept rides.
 * A driver has basic information such as:
-
   * Name
   * Phone number
   * License information
@@ -48,12 +45,11 @@ Design a **relational database** that can support the following requirements.
 * The system must preserve the **history of which vehicles a driver was associated with**.
 * A driver may temporarily have **no vehicle associated** with them.
 
----
+
 
 ## 3. Vehicles
 
 * Every vehicle registered on the platform has basic information such as:
-
   * Registration number
   * Make
   * Model
@@ -63,41 +59,34 @@ Design a **relational database** that can support the following requirements.
 * However, the same vehicle may be associated with **different drivers at different points in its history**.
 * A vehicle's **registration number must be unique**.
 
----
+
 
 ## 4. Ride Categories
 
 The platform offers different types of rides, for example:
-
 * Bike
 * Auto
 * Mini
 * Sedan
 * SUV
 * Premium
-
 Additional requirements:
-
 * Available ride categories may **change over time**.
 * Each category has its own **pricing rules**.
 * Different categories may have different:
-
   * Base fares
   * Charges based on distance
   * Charges based on duration
 
----
 
 ## 5. Booking a Ride
 
 A customer can request a ride by providing:
-
 * Pickup location
 * Drop location
 * Type of ride/category
 
 Additional requirements:
-
 * A customer may request a ride **immediately**.
 * A customer may also **schedule a ride for a future time**.
 * The system should record the ride request **even if a driver is never found**.
@@ -105,7 +94,6 @@ Additional requirements:
 ### Ride Lifecycle
 
 A ride can go through different stages during its lifecycle, such as:
-
 1. Requested
 2. Searching
 3. Driver Assigned
