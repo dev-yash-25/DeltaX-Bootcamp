@@ -120,11 +120,11 @@ Additional requirements:
 <br>
 
 
-Q1. Find the total number of rides taken by the user Yash during the last 3 months,
-where the ride was completed using a SUZUKI vehicle and belonged to the Black ride
-category. Also display the pickup and drop locations, total final fare, total estimated
-fare, and the difference between total final fare and total estimated fare. Only consider
-rides where the final fare exceeds the estimated fare by at least ₹100.
+1. Find the total number of rides taken by the user Yash during the last 3 months,
+  where the ride was completed using a SUZUKI vehicle and belonged to the Black ride
+  category. Also display the pickup and drop locations, total final fare, total estimated
+  fare, and the difference between total final fare and total estimated fare. Only consider
+  rides where the final fare exceeds the estimated fare by at least ₹100.
 
 ```sql
 SELECT
