@@ -1,7 +1,7 @@
 # Rapido Database Design & SQL Practice
 
 **Problem Statment :**
-# Ride-Hailing Application — Database Design Problem Statement
+
 
 ## Scenario
 
