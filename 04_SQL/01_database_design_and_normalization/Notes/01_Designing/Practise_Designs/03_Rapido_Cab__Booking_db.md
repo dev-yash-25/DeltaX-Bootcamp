@@ -119,7 +119,7 @@ Additional requirements:
 </div>
 <br>
 
-
+```sql
 -- Last 7 days
 R.Completed_date >= DATEADD(DAY, -7, GETDATE())
 
@@ -134,6 +134,7 @@ R.Completed_date >= DATEADD(MONTH, -3, GETDATE())
 
 -- Last 1 year
 R.Completed_date >= DATEADD(YEAR, -1, GETDATE())
+```
 
 <br>
 
