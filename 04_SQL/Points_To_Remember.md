@@ -99,6 +99,10 @@ that automatically updates or deletes dependent child table rows when a parent t
    "consecutive", "previous/next", "before/after", or "compare one row with another row"
    ```
 
+6. It is not always necessary to use `GROUP BY` for using **Aggregates** like `COUNT`, `SUM` and all..you shall use group by only when condition on 1+ groups needed
+   not for single Group
+
+
 <br>
 
 ---
