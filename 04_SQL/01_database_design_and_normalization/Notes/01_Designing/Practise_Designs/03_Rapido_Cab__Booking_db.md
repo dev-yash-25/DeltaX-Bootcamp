@@ -156,6 +156,10 @@ WHERE
     AND (R.final_fare - R.estimated_fare) >= 100;
 ```
 
+| TotalRides | TotalFare | TotalEstimated | TotalRidesCost | DifferenceOfEstimates |
+| ---------: | --------: | -------------: | -------------: | --------------------: |
+|          5 |      7500 |           6800 |           7500 |                   700 |
+
 
 2. Find the total number of Black-category rides taken by Yash in the last 3 months
 using a Suzuki vehicle. Display the pickup and drop locations, total rides, total
@@ -198,6 +202,11 @@ GROUP BY
     R.pickup,
     R.drop;
 ```
+
+| Pickup | Drop   | TotalRides | TotalFare | TotalEstimated | TotalRidesCost | DifferenceOfEstimates |
+| ------ | ------ | ---------: | --------: | -------------: | -------------: | --------------------: |
+| Pune   | Mumbai |          5 |      7500 |           6800 |           7500 |                   700 |
+
 
 # SQL Practice Queries - First Design
 
