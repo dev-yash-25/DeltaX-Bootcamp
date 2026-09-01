@@ -1,13 +1,13 @@
-# Rapido Database Design & SQL Practice
+<img width="474" height="331" alt="image" src="https://github.com/user-attachments/assets/d9cef2db-96dd-4caa-a4e6-30921c26b3a3" /># Rapido Database Design & SQL Practice
 
 ## Database Design
 <br>
 <div align = "center">
 <img width="650" alt="image" src="https://github.com/user-attachments/assets/f724503a-837a-4362-bc2f-ecd734da3baf" />
+    <br>
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/43d3e4bc-785f-429e-82fc-399b86c00ef0" />
 </div>
 <br>
-
-
 
 
 
