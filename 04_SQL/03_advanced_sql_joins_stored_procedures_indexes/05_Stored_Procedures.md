@@ -124,7 +124,7 @@ EXEC usp_GetMoviesByYear 2024;
 
 
 
-### SQL Server — `XACT_ABORT` & Stored Procedures
+###  `XACT_ABORT` , `XACT_STATE`
 
 * **`XACT_ABORT`** → controls what happens to a transaction when a runtime error occurs.
 * `SET XACT_ABORT ON;` → automatically rolls back the transaction when a qualifying runtime error occurs.
