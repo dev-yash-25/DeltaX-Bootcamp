@@ -329,6 +329,14 @@ HAVING COUNT(AM2.MovieId) = 0;
 | B       |           1 | C       |        NULL |
 
 
+<br>
+<div align = "center">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/54910b28-1ac3-4c81-a357-96a00ff5b872" />
+    <br>
+    <img width="350" alt="image" src="https://github.com/user-attachments/assets/c007083e-7eee-4d6b-a9a3-e6d1edd48526" />
+</div>
+<br>
+
 ### How to consciously think about it
 
 ```text
