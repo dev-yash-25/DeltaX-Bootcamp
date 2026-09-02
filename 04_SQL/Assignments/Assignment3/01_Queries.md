@@ -331,7 +331,7 @@ HAVING COUNT(AM2.MovieId) = 0;
 
 <br>
 <div align = "center">
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/54910b28-1ac3-4c81-a357-96a00ff5b872" />
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/ee8cbb13-9185-4eef-b926-a16049be4385" />
     <br>
     <img width="350" alt="image" src="https://github.com/user-attachments/assets/c007083e-7eee-4d6b-a9a3-e6d1edd48526" />
 </div>
