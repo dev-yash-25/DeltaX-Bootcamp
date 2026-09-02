@@ -798,3 +798,29 @@ Possible reasons:
 
 <br>
 
+# 13. Typical CRUD API
+
+For a `Movie` resource:
+
+| Operation | Method | Endpoint |
+|---|---|--|
+| Get all | GET | `/api/movies` |
+| Get one | GET | `/api/movies/{id}` |
+| Create | POST | `/api/movies` |
+| Replace/update | PUT | `/api/movies/{id}` |
+| Partial update | PATCH | `/api/movies/{id}` |
+| Delete | DELETE | `/api/movies/{id}` |
+
+This is the basic pattern to remember:
+
+```text
+Collection:
+GET    /movies
+POST   /movies
+
+Individual resource:
+GET    /movies/{id}
+PUT    /movies/{id}
+PATCH  /movies/{id}
+DELETE /movies/{id}
+```
