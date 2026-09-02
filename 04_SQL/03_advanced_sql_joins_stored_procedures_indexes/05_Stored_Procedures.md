@@ -182,6 +182,10 @@ SELECT XACT_STATE();
 > `THROW` = re-raise error
 
 
+**@@TRANCOUNT** → "Is/how many transactions are open?"
+
+**XACT_STATE()** → "Can the current transaction still be committed?"
+
 <br>
 
 ---
