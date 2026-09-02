@@ -1,5 +1,7 @@
 # Points to Rememmber
 
+> “What mistakes do developers commonly make when they move from training into actual development? Things that I should start observing and avoiding from now itself
+
 > [!note]
 > There is a Design Tradeoff in Database Design
 >
