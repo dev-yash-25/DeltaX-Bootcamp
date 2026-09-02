@@ -162,6 +162,17 @@ BEGIN CATCH
 END CATCH;
 ```
 
+```sql
+SELECT XACT_STATE();
+```
+
+| `XACT_STATE()` | Meaning                                 |
+| -------------- | --------------------------------------- |
+| `1`            | Transaction exists and can be committed |
+| `0`            | No transaction                          |
+| `-1`           | Transaction exists but is uncommittable |
+
+
 **Remember:**
 
 > `TRY/CATCH` = handle error
