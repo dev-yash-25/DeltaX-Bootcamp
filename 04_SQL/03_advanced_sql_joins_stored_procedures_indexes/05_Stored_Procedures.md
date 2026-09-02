@@ -131,7 +131,7 @@ EXEC usp_GetMoviesByYear 2024;
 
 
 
-###  `XACT_ABORT` , `XACT_STATE`
+##  `XACT_ABORT` , `XACT_STATE`
 
 * **`XACT_ABORT`** → controls what happens to a transaction when a runtime error occurs.
 * `SET XACT_ABORT ON;` → automatically rolls back the transaction when a qualifying runtime error occurs.
@@ -165,6 +165,7 @@ END CATCH;
 ```sql
 SELECT XACT_STATE();
 ```
+**Output :**
 
 | `XACT_STATE()` | Meaning                                 |
 | -------------- | --------------------------------------- |
@@ -190,7 +191,7 @@ SELECT XACT_STATE();
 
 
 
-# 3. Otput Paramter and Return Value
+# 3. Output Paramter and Return Value
 ## 3.1 OUTPUT Parameter
 
 <div align = "center">
