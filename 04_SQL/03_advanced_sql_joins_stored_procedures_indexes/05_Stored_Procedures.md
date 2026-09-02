@@ -124,6 +124,54 @@ EXEC usp_GetMoviesByYear 2024;
 
 
 
+### SQL Server — `XACT_ABORT` & Stored Procedures
+
+* **`XACT_ABORT`** → controls what happens to a transaction when a runtime error occurs.
+* `SET XACT_ABORT ON;` → automatically rolls back the transaction when a qualifying runtime error occurs.
+   - If a qualifying runtime error occurs while a transaction is running, automatically abort (roll back) the entire transaction.
+* **`TRY...CATCH`** → catches the error so you can handle it.
+* **`XACT_STATE()`** → tells the transaction's current state:
+  * `1` → active & committable
+  * `-1` → active but uncommittable
+  * `0` → no transaction
+
+### Typical stored procedure pattern
+
+```sql
+SET XACT_ABORT ON;
+
+BEGIN TRY
+    BEGIN TRANSACTION;
+
+    -- SQL operations
+
+    COMMIT;
+END TRY
+BEGIN CATCH
+    IF XACT_STATE() <> 0
+        ROLLBACK;
+
+    THROW;
+END CATCH;
+```
+
+**Remember:**
+
+> `TRY/CATCH` = handle error
+> `XACT_ABORT` = rollback behavior
+> `XACT_STATE()` = transaction status
+> `THROW` = re-raise error
+
+
+<br>
+
+---
+
+<br>
+
+
+
+
 # 3. Otput Paramter and Return Value
 ## 3.1 OUTPUT Parameter
 
