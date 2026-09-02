@@ -1,5 +1,12 @@
 # SQL Server – Stored Procedures 
 
+<br>
+
+**Index**:
+1. [XACT_STATE, XACT_ABORT](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/03_advanced_sql_joins_stored_procedures_indexes/05_Stored_Procedures.md#xact_abort--xact_state)
+
+<br>
+
 # 1. What is a Stored Procedure?
 
 A **Stored Procedure (SP)** is a precompiled collection of one or more SQL statements stored in the database and executed as a single unit.
