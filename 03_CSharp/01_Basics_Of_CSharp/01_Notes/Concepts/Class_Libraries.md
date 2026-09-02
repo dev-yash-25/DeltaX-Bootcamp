@@ -5,7 +5,7 @@
 A **Class Library is a project** whose purpose is to contain reusable C# code.
 
 
-# Without a Class Library
+## Without a Class Library
 
 Suppose you have one ASP.NET Core API project:
 
@@ -41,7 +41,7 @@ This is completely valid, especially for a small application.
 <br>
 
 
-# With Class Libraries
+## With Class Libraries
 
 You can split the application into separate projects:
 
@@ -85,7 +85,7 @@ Each of these can be a **Class Library project**.
 
 
 
-# Example
+### Example
 
 Suppose you create:
 
@@ -132,7 +132,7 @@ public class TasksController : ControllerBase
 <br>
 
 
-# Why use Class Libraries?
+## Why use Class Libraries?
 
 Main reason:
 
