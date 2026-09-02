@@ -53,6 +53,7 @@
 10. [HTTP Methods / Verbs](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#10-http-methods--verbs)
 11. [HTTP Status Code Categories](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#11-http-status-code-categories)
 12. [Frequently Used Status Codes](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#12-frequently-used-status-codes)
+13. [General APIs used Frequenctly](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#13-typical-crud-api)
 
 
 <br>
@@ -794,9 +795,7 @@ Possible reasons:
 
 <br>
 
----
 
-<br>
 
 # 13. Typical CRUD API
 
@@ -824,3 +823,9 @@ PUT    /movies/{id}
 PATCH  /movies/{id}
 DELETE /movies/{id}
 ```
+
+<br>
+
+---
+
+<br>
