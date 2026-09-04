@@ -18,7 +18,7 @@
 * [11. Resource-Oriented Thinking](#11-resource-oriented-thinking)
 * [12. `UseDeveloperExceptionPage`](#12-usedeveloperexceptionpage)
 * [13. Complete Controller Example](#13-complete-controller-example)
-* [14. Quick Revision](#14-quick-revision)
+
 
 
 <br>
@@ -26,7 +26,6 @@
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/8f62a432-f25d-459c-bc10-430a1d68eb6f" />
 </div>
 <br>
-
 
 ---
 
@@ -66,7 +65,12 @@ GetEmployees()
 
 > **Controller = entry point for handling API requests.**
 
+<br>
+
 ---
+
+<br>
+
 
 ## 2. Controller Naming Convention
 
@@ -99,7 +103,12 @@ The important convention is:
 <ResourceName>Controller
 ```
 
+<br>
+
 ---
+
+<br>
+
 
 ## 3. `ControllerBase`
 
@@ -147,7 +156,12 @@ API-related controller functionality
 HTTP responses
 ```
 
+<br>
+
 ---
+
+<br>
+
 
 ## 4. `Controller` vs `ControllerBase`
 
@@ -198,7 +212,12 @@ Web API → ControllerBase
 MVC     → Controller
 ```
 
+<br>
+
 ---
+
+<br>
+
 
 ## 5. `[ApiController]` Attribute
 
@@ -228,7 +247,6 @@ It enables Web API-specific behaviors such as:
 * Attribute routing
 * Automatic `400 Bad Request` responses for model validation errors
 * Automatic parameter binding from sources such as:
-
   * URL
   * Request body
   * Headers
@@ -241,7 +259,12 @@ It enables Web API-specific behaviors such as:
 "Treat this class as a Web API controller"
 ```
 
+<br>
+
 ---
+
+<br>
+
 
 ## 6. Creating the `Controllers` Folder
 
@@ -263,7 +286,12 @@ MyWebApi
 
 The `Controllers` folder is the conventional place for controller classes.
 
+<br>
+
 ---
+
+<br>
+
 
 ## 7. Creating a Controller
 
@@ -307,7 +335,12 @@ ControllerBase
 Base functionality for Web APIs
 ```
 
+<br>
+
 ---
+
+<br>
+
 
 # 8. Controller Routing
 
@@ -343,7 +376,12 @@ So the basic relationship is:
 TestController
 ```
 
+<br>
+
 ---
+
+<br>
+
 
 ## 9. Action Methods
 
@@ -410,7 +448,12 @@ GET /test/employee
 
 are different endpoints.
 
+<br>
+
 ---
+
+<br>
+
 
 # 10. Avoiding Route Ambiguity
 
@@ -469,7 +512,12 @@ GET /test/employee
 
 > **Multiple actions are allowed in a controller, but their routing must be unambiguous.**
 
+<br>
+
 ---
+
+<br>
+
 
 # 11. Resource-Oriented Thinking
 
@@ -515,7 +563,12 @@ Then decide the appropriate HTTP method and endpoint.
 
 This resource-oriented thinking becomes important when designing **RESTful APIs**.
 
+<br>
+
 ---
+
+<br>
+
 
 # 12. `UseDeveloperExceptionPage`
 
@@ -540,7 +593,12 @@ It provides detailed error information while developing/debugging the applicatio
 
 It is **middleware**, so it is separate from controller routing.
 
+<br>
+
 ---
+
+<br>
+
 
 # 13. Complete Controller Example
 
@@ -590,9 +648,14 @@ return Ok()
 HTTP 200
 ```
 
+<br>
+
 ---
 
-# 14. Quick Revision
+<br>
+
+
+# Overview
 
 | Concept                       | Meaning                               |
 | ----------------------------- | ------------------------------------- |
