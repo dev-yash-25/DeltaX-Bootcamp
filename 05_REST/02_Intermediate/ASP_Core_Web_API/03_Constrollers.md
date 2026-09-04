@@ -147,6 +147,8 @@ HTTP responses
 
 
 <br>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/8f62a432-f25d-459c-bc10-430a1d68eb6f" />
+<br>
 <img width="500"  alt="image" src="https://github.com/user-attachments/assets/eb1b69d6-e32b-4010-9eca-af26ff333384" />
 <br>
 
