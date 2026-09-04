@@ -1,4 +1,3 @@
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/185a7208-2dd2-4af2-873b-4e18d002fefa" />
 
 
 # Add a New Controller in ASP.NET Core
@@ -20,7 +19,11 @@
 * [13. Complete Controller Example](#13-complete-controller-example)
 * [14. Quick Revision](#14-quick-revision)
 
+<br>
+
 ---
+
+<br>
 
 ## 1. What is a Controller?
 
@@ -162,6 +165,10 @@ MVC     → Controller
 ---
 
 ## 5. `[ApiController]` Attribute
+
+<br>
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/185a7208-2dd2-4af2-873b-4e18d002fefa" />
+<br>
 
 A Web API controller should use:
 
