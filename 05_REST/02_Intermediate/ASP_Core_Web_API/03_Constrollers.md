@@ -144,6 +144,13 @@ HTTP responses
 
 ## 4. `Controller` vs `ControllerBase`
 
+
+
+<br>
+<img width="500"  alt="image" src="https://github.com/user-attachments/assets/eb1b69d6-e32b-4010-9eca-af26ff333384" />
+<br>
+
+
 There are two commonly encountered base classes:
 
 | Class            | Used for                    |
@@ -152,6 +159,10 @@ There are two commonly encountered base classes:
 | `Controller`     | MVC applications with Views |
 
 `Controller` inherits from `ControllerBase` and adds MVC/View-related functionality.
+
+<br>
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/2a8b3aa3-e013-40df-8f64-4a161285c058" />
+<br>
 
 A Web API normally doesn't need Views because it returns data such as JSON.
 
