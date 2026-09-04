@@ -168,6 +168,20 @@ There are two commonly encountered base classes:
 `Controller` inherits from `ControllerBase` and adds MVC/View-related functionality.
 
 
+
+```
+┌──────────┐     HTTP      ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌────────────┐
+│  CLIENT  │ ────────────> │  CONTROLLER  │ ──> │   SERVICE    │ ──> │  REPOSITORY  │ ──> │  DATABASE  │
+└──────────┘               └──────────────┘     └──────────────┘     └──────────────┘     └────────────┘
+     ↑                            │
+     │                            │
+     │                            ↓
+     └────────────────────── JSON RESPONSE
+
+Controller Does not directly interact with Model, its just a simplification used,
+It gets response throw Service and repo layers 
+```
+
 > MVC is an architectural pattern. A Web API can use the MVC framework without actually having the “View” part of MVC.
 
 <br>
