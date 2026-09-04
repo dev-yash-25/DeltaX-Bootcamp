@@ -179,7 +179,8 @@ There are two commonly encountered base classes:
      └────────────────────── JSON RESPONSE
 
 Controller Does not directly interact with Model, its just a simplification used,
-It gets response throw Service and repo layers 
+It gets response through Service and repo layers 
+
 ```
 
 > MVC is an architectural pattern. A Web API can use the MVC framework without actually having the “View” part of MVC.
