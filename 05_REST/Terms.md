@@ -42,7 +42,7 @@ This means Kestrel is listening for HTTP requests on port `5000`.
 
 
 
-# IIS
+## IIS
 
 **IIS (Internet Information Services)** is Microsoft's **web server for Windows**.
 
@@ -73,7 +73,7 @@ The client communicates with IIS, and IIS forwards the request to the ASP.NET Co
 
 
 
-# IIS vs Kestrel
+### IIS vs Kestrel
 
 |                                 | Kestrel                           | IIS                                              |
 | ------------------------------- | --------------------------------- | ------------------------------------------------ |
@@ -90,3 +90,18 @@ The client communicates with IIS, and IIS forwards the request to the ASP.NET Co
 ---
 
 <br>
+
+
+## Nested route 
+
+A route where one resource is inside another resource, showing their relationship.
+```
+Parent → provides context
+Child → resource being accessed/modified
+```
+Example:
+```
+/users/{userId}/orders
+```
+User = parent/context
+Orders = child/resource being accessed
