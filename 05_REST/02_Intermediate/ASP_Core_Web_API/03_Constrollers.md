@@ -2,11 +2,6 @@
 
 # Add a New Controller in ASP.NET Core
 
-<br>
-<div align = "center">
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/8f62a432-f25d-459c-bc10-430a1d68eb6f" />
-</div>
-<br>
 
 ## Index
 
@@ -25,7 +20,13 @@
 * [13. Complete Controller Example](#13-complete-controller-example)
 * [14. Quick Revision](#14-quick-revision)
 
+
 <br>
+<div align = "center">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/8f62a432-f25d-459c-bc10-430a1d68eb6f" />
+</div>
+<br>
+
 
 ---
 
