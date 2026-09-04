@@ -167,6 +167,9 @@ There are two commonly encountered base classes:
 
 `Controller` inherits from `ControllerBase` and adds MVC/View-related functionality.
 
+
+> MVC is an architectural pattern. A Web API can use the MVC framework without actually having the “View” part of MVC.
+
 <br>
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/2a8b3aa3-e013-40df-8f64-4a161285c058" />
 <br>
