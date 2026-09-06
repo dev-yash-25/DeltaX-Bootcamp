@@ -15,7 +15,7 @@
 * [8. Controller Routing](#8-controller-routing)
 * [9. Action Methods](#9-action-methods)
 * [10. Avoiding Route Ambiguity](#10-avoiding-route-ambiguity)
-* [11. Resource-Oriented Thinking](#11-resource-oriented-thinking-%EF%B8%8F)
+* [11. Resource-Oriented Thinking](#11-resource-oriented-thinking-%EF%B8%8F) 🏷️
 * [12. `UseDeveloperExceptionPage`](#12-usedeveloperexceptionpage)
 * [13. Complete Controller Example](#13-complete-controller-example)
 
