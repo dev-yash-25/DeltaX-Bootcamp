@@ -519,7 +519,7 @@ GET /test/employee
 <br>
 
 
-# 11. Resource-Oriented Thinking
+# 11. Resource-Oriented Thinking 🏷️
 
 When designing Web APIs, think in terms of **resources**.
 
