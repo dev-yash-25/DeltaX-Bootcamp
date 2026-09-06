@@ -607,11 +607,11 @@ A simple ASP.NET Core 5 Web API controller:
 ```csharp
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("employees")]
-public class EmployeeController : ControllerBase
+[ApiController]  // <-- 1. Controller Attribute
+[Route("employees")]  //<-- 2. Base Route 
+public class EmployeeController : ControllerBase  //<-- 3. Inherit ControllerBase class
 {
-    [HttpGet]
+    [HttpGet]  // <-- 4. Map request to action  Method
     public IActionResult GetEmployees()
     {
         return Ok();
