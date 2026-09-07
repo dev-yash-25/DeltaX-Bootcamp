@@ -924,7 +924,7 @@ Middleware 1 After
 
 
 > [!Tip]
-> ## `Next()` method in built-in middleware 🏷️,
+> ## `Next()` method is built-in middleware 🏷️,
 > - We inspect open-source implementation on [GitHub](https://github.com/dotnet/aspnetcore), [class1](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Builder/EndpointRoutingApplicationBuilderExtensions.cs) and [class2](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/EndpointRoutingMiddleware.cs)
 > - By navigating the repository, we can confirm how the framework handles request flow through the middleware pipeline via dependency injection.
 
