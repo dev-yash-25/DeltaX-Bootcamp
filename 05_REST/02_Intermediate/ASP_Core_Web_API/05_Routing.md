@@ -31,8 +31,11 @@
 
 ## 1. What is Routing?
 
-**Routing** is the process of matching an incoming HTTP request to the appropriate **controller action method**.
-
+**Routing** is the process of matching an incoming HTTP request URL to the appropriate **resource**.
+   ```
+    https://orders.com/url/endpoint   ->  Resource-Order
+   ```
+   
 For example:
 
 ```text
