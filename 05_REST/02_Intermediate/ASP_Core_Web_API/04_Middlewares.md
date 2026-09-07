@@ -1,6 +1,34 @@
-Video 1
+# Action Methods & Middleware
 
-## Action Methods inside `Startup.cs`
+## Index
+
+- [1. Action Methods in `Startup.cs`](#1-action-methods-in-startupcs)
+- [2. Action Methods in Controllers](#2-action-methods-in-controllers)
+- [3. HTTP Request Pipeline](#3-http-request-pipeline)
+- [4. Middleware](#4-middleware)
+- [5. Middleware Execution Flow](#5-middleware-execution-flow)
+- [6. `Use()`, `Next()`, `Run()` and `Map()`](#6-use-next-run-and-map)
+- [7. `Use()`](#7-use)
+- [8. `Next()`](#8-next)
+- [9. `Run()`](#9-run)
+- [10. `Map()`](#10-map)
+- [11. `Use()` + `Run()` Example](#11-use--run-example)
+- [12. `Map()` Example](#12-map-example)
+- [13. Custom Middleware](#13-custom-middleware)
+- [14. Custom Middleware Execution Flow](#14-custom-middleware-execution-flow)
+- [15. `Next()` in Built-in Middleware](#15-next-in-built-in-middleware)
+- [16. Quick Revision](#16-quick-revision)
+
+<br>
+
+---
+
+<br>
+
+
+## 1. Action Methods in `Startup.cs`
+
+Endpoints can be mapped directly inside `Startup.cs` using `MapGet()`.
 
 ```csharp
 using Microsoft.AspNetCore.Builder;
@@ -44,8 +72,31 @@ namespace ConsoleAppone
 }
 ```
 
+### Output
 
-## Action Methods inside Controllers
+`GET /`
+
+```text
+Hello from web API app.
+```
+
+`GET /test`
+
+```text
+Hello from web API app - Test
+```
+
+
+<br>
+
+
+
+## 2. Action Methods in Controllers
+
+Instead of defining endpoint logic directly in `Startup.cs`, it can be placed inside a controller.
+
+### `Startup.cs`
+
 ```csharp
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -80,6 +131,9 @@ namespace ConsoleAppone
     }
 }
 ```
+
+### `TestController.cs`
+
 ```csharp
 using Microsoft.AspNetCore.Mvc;
 
@@ -101,139 +155,418 @@ namespace ConsoleAppone.Controllers
     }
 }
 ```
-Access
+
+### How `[action]` works
+
+```text
+[Route("test/[action]")]
 ```
+
+`[action]` is replaced by the action method's name.
+
+```text
+Get()  → /test/get
+Get1() → /test/get1
+```
+
+### Access
+
+```text
 endpoint ->
 1. https://localhost:64428/test/get  
 2. https://localhost:64428/test/get1
 ```
 
+### Output
 
-Video 2
-# What is Middleware and HTTP Request Pipeline | Asp.Net Core Web API tutorial
+For `/test/get`:
+
+```text
+Hello From Get
+```
+
+For `/test/get1`:
+
+```text
+Hello From Get1
+```
 
 
+<br>
 
-This tutorial explains the fundamental concept of **Middleware** and the **HTTP Request Pipeline** in ASP.NET Core web applications.
+---
+
+<br>
+
+
+## 3. HTTP Request Pipeline
+
+A request does not go directly from the client to a controller.
+
+It first passes through the **HTTP request pipeline**, which consists of middleware components.
 
 > [!Important]
-> Order matters in Middleware
-
-
-### The HTTP Request Pipeline
-Contrary to the assumption that a request goes directly from the browser to a controller's action method, it must first pass through a **pipeline** (0:52-1:04). 
+> **Order matters in Middleware.**
 
 <br>
-
 <div align = "center">
-  <p>Request First Passes through the Pipeline of Midlewares before reaching controller</p>
-  <img width="500" alt="image" src="https://github.com/user-attachments/assets/69a0b7d3-7500-40cb-a5a0-eb8fe9c867c9" />
+  <img
+    width="500"
+    alt="image"
+    src="https://github.com/user-attachments/assets/69a0b7d3-7500-40cb-a5a0-eb8fe9c867c9"
+  />
 </div>
-
 <br>
 
-*   **How it works:** The pipeline consists of multiple middleware components (1:11-1:14). When a request enters, it passes through the first middleware, then the second, and so on (1:30-1:58).
-*   **The 'Next' Method:** Each middleware has the option to call a `next` method to pass the execution to the subsequent middleware. If a middleware does not call `next`, the request stops there and returns (1:39-2:03).
-*   **Response Path:** Once the request hits the end of the pipeline and generates a response, it travels back through the middleware components in reverse order (2:03-2:24).
+### Request flow
 
+```text
+Client
+  ↓
+Middleware 1
+  ↓
+Middleware 2
+  ↓
+Middleware 3
+  ↓
+Controller / Endpoint
+  ↓
+Response
+  ↑
+Middleware 3
+  ↑
+Middleware 2
+  ↑
+Middleware 1
+  ↑
+Client
+```
+
+The request travels through middleware in insertion order. The response travels back through them in reverse order.
+
+If middleware calls `next()`, execution continues.
+
+If it does not call `next()`, the pipeline stops there.
+
+### Middleware diagrams
 
 <br>
-<p>Middleware Diagram</p>
-<table align = "center">
+<table>
 <tr>
   <td>
-    <img width="450" alt="image" src="https://github.com/user-attachments/assets/cd210a7e-4396-4ea1-8890-bc82d271d84b" />
+    <img width="559" height="357" alt="image" src="https://github.com/user-attachments/assets/cd210a7e-4396-4ea1-8890-bc82d271d84b" />
   </td>
   <td>
-    <img width="450" alt="image" src="https://github.com/user-attachments/assets/a936d461-6d9a-4181-9326-135c506baeb0" />
+    <img width="738" height="342" alt="image" src="https://github.com/user-attachments/assets/a936d461-6d9a-4181-9326-135c506baeb0" />
   </td>
 </tr>
 </table>
+
+
+<br>
+
+---
+
 <br>
 
 
-### Understanding Middleware
-*   **Definition:** Middleware is a piece of code (a "bundle of lines of code") inserted into the request pipeline to provide specific functionality to an application.    A function that handles the request or calls the given next function.
-*   **Flexibility:** Developers can use pre-built middleware or create custom ones. An application can have any number of middleware components (2:46-3:04).
-*   **Order Matters:** The order in which middleware is added to the pipeline is critical. The request will travel through them in exactly the same sequence they were inserted (3:04-3:13).
+## 4. Middleware
 
-### Real-World Examples 
-*   **Routing:** Required to handle path-based requests (3:17-3:26).
-*   **Authentication:** Validates requests before they reach the controller. If the request is invalid, the middleware can return the request immediately, securing the controller (3:35-4:18).
-*   **Exception Handling:** Ideal for global exception handling because every request and response passes through the middleware (4:23-4:41).
+### Definition
 
-### Implementation in ASP.NET Core
-*   **Startup Class:** The `Configure` method in the `Startup` class is where the request pipeline is defined (4:53-5:01).
-*   **Must-Have Method:** The `Configure` method is mandatory; the application will not run without it (5:01-5:12).
-*   **Code Examples:** The instructor demonstrates adding middleware like `app.useDeveloperExceptionPage`, `app.useRouting`, and `app.useEndpoints` (5:18-5:32).
-*   **Instructor Observation:** The instructor emphasizes that the **order is vital**. For example, changing the order of `useRouting` and `useEndpoints` can cause exceptions, highlighting that developers must be very careful when configuring the pipeline (5:32-5:56).
+**Middleware is a piece of code inserted into the HTTP request pipeline to perform a specific function.**
+
+A middleware can:
+- Handle a request.
+- Call the next middleware.
+- Modify the request.
+- Modify the response.
+- Stop the pipeline.
+
+An application can contain any number of middleware components.
+
+### Common examples
+
+**Routing**
+
+Handles path-based requests.
+
+```text
+Request → Routing → Appropriate endpoint/controller
+```
+
+**Authentication**
+
+Validates requests before they reach protected application logic.
+
+```text
+Request
+  ↓
+Authentication
+  ↓
+Valid → Continue
+Invalid → Stop / return response
+```
+
+**Exception Handling**
+
+Useful for global exception handling because requests and responses pass through the middleware pipeline.
+
+### Where is the pipeline configured?
+
+The `Configure()` method in `Startup.cs` defines the request pipeline.
+
+It is mandatory for the application in this ASP.NET Core 5.0 `Startup` model.
+
+---
+
+## 5. Middleware Execution Flow
+
+Suppose the pipeline contains:
+
+```text
+Middleware 1
+    ↓
+Middleware 2
+    ↓
+Middleware 3
+```
+
+Request:
+
+```text
+1 → 2 → 3
+```
+
+Response:
+
+```text
+3 → 2 → 1
+```
+
+Middleware can therefore have code both before and after `next()`:
+
+```csharp
+app.Use(async (context, next) =>
+{
+    // Executes before next middleware
+    await next();
+
+    // Executes after next middleware returns
+});
+```
+
+### Mental model
+
+```text
+Middleware 1 Before
+        ↓
+Middleware 2 Before
+        ↓
+Endpoint
+        ↓
+Middleware 2 After
+        ↓
+Middleware 1 After
+```
 
 
- Video 3
+<br>
 
- # Working with Run(), Map(), Use() and Next() method | ASP.NET Core 5.0 Web API Tutorial
+---
 
-This tutorial provides an introduction to the fundamental middleware components in *ASP.NET Core* used to handle HTTP requests. Below are the key concepts and methods discussed:
+<br>
 
-*   **Middleware Basics:** The instructor explains that understanding middleware methods is essential for building and customizing your network communication in *ASP.NET Core* (0:02 - 0:28).
-*   **Key Methods:**
-    *   **Use():** This method is used to implement custom middleware (0:20).
-         - Takes 2 paramteres `HttpContext context`, `RequestDelegate next`
-            - context represents the current HTTP request + response.
-          ```
-          HttpContext
-          │
-          ├── Request
-          │   ├── Path
-          │   ├── Method
-          │   ├── Headers
-          │   ├── Query
-          │   └── Body
-          │
-          ├── Response
-          │   ├── StatusCode
-          │   ├── Headers
-          │   └── Body
-          │
-          └── User
-          ```
-          ```csharp
-          app.Use(async (context, next) =>
-          {
-              // context + next
-              await next();
-          });
-          ```  
-    *   **Next():** A crucial component for controlling the flow of the request pipeline. It allows the execution to pass from one piece of middleware to the next (0:47 - 0:52).
-    *   **Run():** Acts as a terminal middleware. When used, it terminates the pipeline, meaning it will not call the next middleware .
-         - Takes single Paramter `HttpContext context` that gives access to
-           ```
-            context.Request
-            context.Response
-            context.User
-            context.Session
-            context.Items
-            ```
-            ```csharp
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("End of Middleware Pipeline");
-            });
-            ```
-    *   **Map():** Used for branching the request pipeline based on specific path segments, allowing for different logic for different URLs (1:18 - 1:34).
-*   **Instructor's Observations:**
-    *   The instructor emphasizes that `Next()` plays a very important role in communication (1:18).
-    *   These methods should be used based on specific requirements for your application's network handling and routing logic (1:21 - 1:30).
-    *   Proper use of these methods helps in creating a clean and efficient request processing pipeline (1:34 - 1:38).
- 
+
+## 6. `Use()`, `Next()`, `Run()` and `Map()`
+
+| Method | Purpose |
+|---|---|
+| `Use()` | Adds middleware that can call the next middleware |
+| `Next()` | Passes execution to the next middleware |
+| `Run()` | Terminal middleware; does not call next |
+| `Map()` | Branches the pipeline based on a path |
+
+
+<br>
+
+---
+
+<br>
+
+
+## 7. `Use()`
+
+`Use()` is used to add middleware.
+
+It takes:
+
+```text
+HttpContext context
+RequestDelegate next
+```
+
+Example:
+
+```csharp
+app.Use(async (context, next) =>
+{
+    // context + next
+    await next();
+});
+```
+
+### `HttpContext`
+
+`HttpContext` represents the current HTTP request and response.
+
+```text
+HttpContext
+│
+├── Request
+│   ├── Path
+│   ├── Method
+│   ├── Headers
+│   ├── Query
+│   └── Body
+│
+├── Response
+│   ├── StatusCode
+│   ├── Headers
+│   └── Body
+│
+└── User
+```
+
+
+<br>
+
+---
+
+<br>
+
+
+## 8. `Next()`
+
+`next()` passes execution to the next middleware.
+
+```csharp
+app.Use(async (context, next) =>
+{
+    await next();
+});
+```
+
+Without:
+
+```csharp
+await next();
+```
+
+execution does not continue to the next middleware.
+
+### Flow
+
+```text
+Current Middleware
+       ↓
+    next()
+       ↓
+Next Middleware
+       ↓
+returns
+       ↓
+Current Middleware continues
+```
+
+
+<br>
+
+---
+
+<br>
+
+
+## 9. `Run()`
+
+`Run()` adds **terminal middleware**.
+
+```csharp
+app.Run(async context =>
+{
+    await context.Response.WriteAsync("End of Middleware Pipeline");
+});
+```
+
+It takes one parameter:
+
+```text
+HttpContext context
+```
+
+Through `HttpContext`, the middleware can access:
+
+```text
+context.Request
+context.Response
+context.User
+context.Session
+context.Items
+```
+
 > [!Note]
-> `Run` marks the end of middleware pipeline, after thaat no middleware shall execute.
+> `Run()` marks the end of the middleware pipeline. It does not call `next()`, so later middleware is not executed.
+
 
 <br>
 
-Startup.cs
+---
 
-Using Use, Run
+<br>
+
+
+## 10. `Map()`
+
+`Map()` branches the request pipeline based on a path.
+
+Example:
+
+```csharp
+app.Map("/yash", CustomCode);
+```
+
+A request matching:
+
+```text
+/yash
+```
+
+is sent into the branch defined by `CustomCode`.
+
+### Mental model
+
+```text
+Request
+   ↓
+Main Pipeline
+   ↓
+Does path match /yash?
+   ↙             ↘
+ Yes              No
+  ↓                ↓
+Branch          Main Pipeline
+```
+
+
+<br>
+
+---
+
+<br>
+
+
+## 11. `Use()` + `Run()` Example
+
 ```csharp
 namespace ConsoleAppone
 {
@@ -249,23 +582,24 @@ namespace ConsoleAppone
             // Middleware 1
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello From Use 1.1 Middleware \n");
+                await context.Response.WriteAsync("Hello From Use 1.1 Middleware");
                 await next();
-                await context.Response.WriteAsync("Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2  \n");
+                await context.Response.WriteAsync("Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2 ");
             });
 
             // Middleware 2
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello From Use 2.1 Middleware \n");
+                await context.Response.WriteAsync("Hello From Use 2.1 Middleware 
+");
                 await next();
-                await context.Response.WriteAsync("Hello From Use 2.2 Middleware - I am executed at the last after Run \n");
+                await context.Response.WriteAsync("Hello From Use 2.2 Middleware - I am executed at the last after Run");
             });
 
             // Middleware 3
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Request Complete.. No next() after this. Thus Pipeline stops here \n");
+                await context.Response.WriteAsync("Request Complete.. No next() after this. Thus Pipeline stops here");
             });
 
             if (env.IsDevelopment())
@@ -283,13 +617,16 @@ namespace ConsoleAppone
             // End of Middleware Pipeline - Middleware 4
             app.Run(async context =>
             {
-                await context.Response.WriteAsync("End of Run Middleware Pipeline\n");
+                await context.Response.WriteAsync("End of Run Middleware Pipeline");
             });
         }
     }
 }
 ```
-```
+
+### Output
+
+```text
 Hello From Use 1.1 Middleware 
 Hello From Use 2.1 Middleware 
 Request Complete.. No next() after this. Thus Pipeline stops here 
@@ -297,16 +634,54 @@ Hello From Use 2.2 Middleware - I am executed at the last after Run
 Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2
 ```
 
-Using Map
-- Branch out to new endpoint, and run customcode
+### Why?
+
+Execution enters:
+
+```text
+Use 1.1
+   ↓
+Use 2.1
+   ↓
+Middleware 3
+```
+
+Middleware 3 does not call `next()`:
+
+```csharp
+app.Use(async (context, next) =>
+{
+    await context.Response.WriteAsync("Request Complete.. No next() after this. Thus Pipeline stops here 
+");
+});
+```
+
+Therefore, later middleware such as `Run()` is not reached.
+
+Then execution returns through the previous middleware:
+
+```text
+Middleware 3
+   ↓
+Use 2.2
+   ↓
+Use 1.2
+```
+
+This is why code after `await next()` runs on the way back.
+
+
+<br>
+
+---
+
+<br>
+
+
+## 12. `Map()` Example
+
 ```csharp
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Threading.Tasks;
 
 namespace ConsoleAppone
 {
@@ -323,14 +698,14 @@ namespace ConsoleAppone
             // Middleware 1
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello From Use 1.1 Middleware \n");
+                await context.Response.WriteAsync("Hello From Use 1.1 Middleware ");
                 await next();
-                await context.Response.WriteAsync("Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2  \n");
+                await context.Response.WriteAsync("Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2");
             });
 
             // Middleware Map 2 - Branched to seperate route
             app.Map("/yash", CustomCode);
-            
+
             // Middleware 3
             app.Use(async (context, next) =>
             {
@@ -363,109 +738,274 @@ namespace ConsoleAppone
         {
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello from Yash \n");
+                await context.Response.WriteAsync("Hello from Yash ");
             });
         }
     }
 }
 ```
+
+### Request
+
+```text
+/yash
 ```
+
+### Output
+
+```text
 Hello From Use 1.1 Middleware 
 Hello from Yash 
 Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2
 ```
 
+### Flow
 
-## Custom Middlewares
-1. Create `CustomMiddleware.cs` class
-2. Define Middleware
-    ```csharp
-    using Microsoft.AspNetCore.Http;
-    using System.Runtime.CompilerServices;
-    using System.Threading.Tasks;
-    
-    namespace ConsoleAppone
-    {
-        public class CustomMiddleware : IMiddleware
-        {
-            public async Task InvokeAsync(HttpContext context, RequestDelegate next)
-            {
-                await context.Response.WriteAsync("Hello From new file 2 Custom Middleware 1\n");
-                await next(context);
-                await context.Response.WriteAsync("Bye From new file 2 Custom Middleware \n");
-            }
-        }
-    }
-    ```
-3. Add CustomMiddleware Services inside `Startup.cs`, inside `ConfigureServices`
-      ```csharp
-      public void ConfigureServices(IServiceCollection services)
-      {
-          services.AddControllers();
-          services.AddTransient<CustomMiddleware>();
-      }
-     ```
-4. Use inside Configure, just as other Middlewares, using `UseMiddleware<Name>()` method
-     ```csharp 
-      namespace ConsoleAppone
-      {
-          public class Startup
-          {
-              public void ConfigureServices(IServiceCollection services)
-              {
-                  services.AddControllers();
-                  services.AddTransient<CustomMiddleware>();
-              }   
-      
-              public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-              {   
-      
-                  // Middleware 1
-                  app.Use(async (context, next) =>
-                  {
-                      await context.Response.WriteAsync("Hello From Use 1.1 Middleware \n");
-                      await next();
-                      await context.Response.WriteAsync("Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2  \n");
-                  });
-      
-                  // Custom Middleware 2
-                  app.UseMiddleware<CustomMiddleware>();
-      
-                  // Middleware 3
-                  app.Use(async (context, next) =>
-                  {
-                      await context.Response.WriteAsync("Hello From Use 3.1 Middleware \n");
-                      await next();
-                      await context.Response.WriteAsync("Hello From Use 3.2 Middleware - I am executed at the last after Run \n");
-                  });
-  
-                  if (env.IsDevelopment())
-                  {
-                      app.UseDeveloperExceptionPage();
-                  }
-      
-                  app.UseRouting();
-      
-                  app.UseEndpoints(endpoints =>
-                  {
-                      endpoints.MapControllers();
-                  });
-              }
-          }
-      }
-     ```
-      ```
-      Hello From Use 1.1 Middleware 
-      Hello From new file 2 Custom Middleware 1
-      Hello From Use 3.1 Middleware 
-      Hello From Use 3.2 Middleware - I am executed at the last after Run 
-      Bye From new file 2 Custom Middleware 
-      Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2  
-      ```
+```text
+Request /yash
+      ↓
+Use 1.1
+      ↓
+Map("/yash")
+      ↓
+CustomCode
+      ↓
+Return to Use 1.2
+```
+
+`Map()` creates a separate branch for matching requests.
+
 
 <br>
 
-> [!Tip]
-> ## `Next()` method in built-in middleware 🏷️,
-> - We inspect open-source implementation on [GitHub](https://github.com/dotnet/aspnetcore), [class1](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Builder/EndpointRoutingApplicationBuilderExtensions.cs) and [class2](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/EndpointRoutingMiddleware.cs)
-> - By navigating the repository, we can confirm how the framework handles request flow through the middleware pipeline via dependency injection.
+---
+
+<br>
+
+
+# 13. Custom Middleware
+
+Instead of putting middleware directly in `Startup.cs`, create a separate middleware class.
+
+## Step 1 — Create `CustomMiddleware.cs`
+
+```csharp
+using Microsoft.AspNetCore.Http;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+
+namespace ConsoleAppone
+{
+    public class CustomMiddleware : IMiddleware
+    {
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        {
+            await context.Response.WriteAsync("Hello From new file 2 Custom Middleware 1");
+            await next(context);
+            await context.Response.WriteAsync("Bye From new file 2 Custom Middleware ");
+        }
+    }
+}
+```
+
+### Important parts
+
+```csharp
+public class CustomMiddleware : IMiddleware
+```
+
+The middleware implements `IMiddleware`.
+
+Its logic is placed in:
+
+```csharp
+InvokeAsync()
+```
+
+It receives:
+
+```text
+HttpContext context
+RequestDelegate next
+```
+
+<br>
+
+## Step 2 — Register the Middleware
+
+Inside `ConfigureServices()`:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllers();
+    services.AddTransient<CustomMiddleware>();
+}
+```
+
+`AddTransient` registers `CustomMiddleware` with the dependency injection container.
+
+
+<br>
+
+
+
+## Step 3 — Use the Middleware
+
+Use:
+
+```csharp
+app.UseMiddleware<CustomMiddleware>();
+```
+
+Complete example:
+
+```csharp
+namespace ConsoleAppone
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+            services.AddTransient<CustomMiddleware>();
+        }   
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {   
+
+            // Middleware 1
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Hello From Use 1.1 Middleware ");
+                await next();
+                await context.Response.WriteAsync("Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2 ");
+            });
+
+            // Custom Middleware 2
+            app.UseMiddleware<CustomMiddleware>();
+
+            // Middleware 3
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Hello From Use 3.1 Middleware ");
+                await next();
+                await context.Response.WriteAsync("Hello From Use 3.2 Middleware - I am executed at the last after Run ");
+            });
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
+}
+```
+
+### Output
+
+```text
+Hello From Use 1.1 Middleware 
+Hello From new file 2 Custom Middleware 1
+Hello From Use 3.1 Middleware 
+Hello From Use 3.2 Middleware - I am executed at the last after Run 
+Bye From new file 2 Custom Middleware 
+Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2  
+```
+
+### Execution flow
+
+```text
+Use 1.1
+   ↓
+Custom Middleware
+   ↓
+Use 3.1
+   ↓
+Use 3.2
+   ↓
+Custom Middleware "Bye"
+   ↓
+Use 1.2
+```
+
+The statements after `next()` execute while the pipeline is unwinding.
+
+
+<br>
+
+---
+
+<br>
+
+
+# 14. Custom Middleware Execution Flow
+
+Consider:
+
+```csharp
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Before");
+    await next();
+    Console.WriteLine("After");
+});
+```
+
+Flow:
+
+```text
+Before
+  ↓
+next()
+  ↓
+Next Middleware
+  ↓
+returns
+  ↓
+After
+```
+
+For multiple middleware:
+
+```text
+Middleware 1 Before
+    ↓
+Middleware 2 Before
+    ↓
+Endpoint
+    ↓
+Middleware 2 After
+    ↓
+Middleware 1 After
+```
+
+
+<br>
+
+---
+
+<br>
+
+
+# 15. `Next()` in Built-in Middleware
+
+The ASP.NET Core framework itself implements middleware and request-flow behavior.
+
+The source material recommends inspecting the open-source implementation to understand how the framework handles request flow through the middleware pipeline and dependency injection.
+
+- [ASP.NET Core GitHub repository](https://github.com/dotnet/aspnetcore)
+- [EndpointRoutingApplicationBuilderExtensions](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Builder/EndpointRoutingApplicationBuilderExtensions.cs)
+- [EndpointRoutingMiddleware](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/EndpointRoutingMiddleware.cs)
+
+
+> [!Important]
+>  Middleware executes in the order it is added. Code before `next()` runs on the forward path; code after `next()` runs on the return path.
+
