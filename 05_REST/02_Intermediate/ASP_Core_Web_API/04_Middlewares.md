@@ -8,8 +8,7 @@
 - [4. Middleware](#4-middleware)
 - [5. `Use()`, `Next()`, `Run()` and `Map()`](#5-use-next-run-and-map)
 - [6. Custom Middleware](#6-custom-middleware)
-- [7. Custom Middleware Execution Flow](#7-custom-middleware-execution-flow)
-- [8. `Next()` in Built-in Middleware](#8-next-in-built-in-middleware) 🏷️
+- [7. `Next()` in Built-in Middleware](#7-next-in-built-in-middleware) 🏷️
 
 <br>
 
@@ -872,12 +871,10 @@ The statements after `next()` execute while the pipeline is unwinding.
 
 <br>
 
----
-
-<br>
 
 
-# 7. Custom Middleware Execution Flow
+
+###  Custom Middleware Execution Flow
 
 Consider:
 
@@ -926,7 +923,7 @@ Middleware 1 After
 <br>
 
 
-# 8. `Next()` in Built-in Middleware 
+# 7. `Next()` in Built-in Middleware 
 
 The ASP.NET Core framework itself implements middleware and request-flow behavior. 🏷️
 
