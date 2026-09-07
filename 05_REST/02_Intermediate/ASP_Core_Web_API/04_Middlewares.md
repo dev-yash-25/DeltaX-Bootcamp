@@ -259,28 +259,28 @@ An application can contain any number of middleware components.
 
 1. **Routing**
 
-Handles path-based requests.
-
-```text
-Request → Routing → Appropriate endpoint/controller
-```
+    Handles path-based requests.
+    
+    ```text
+    Request → Routing → Appropriate endpoint/controller
+    ```
 
 2. **Authentication**
 
-Validates requests before they reach protected application logic.
-
-```text
-Request
-  ↓
-Authentication
-  ↓
-Valid → Continue
-Invalid → Stop / return response
-```
+    Validates requests before they reach protected application logic.
+    
+    ```text
+    Request
+      ↓
+    Authentication
+      ↓
+    Valid → Continue
+    Invalid → Stop / return response
+    ```
 
 3. **Exception Handling**
 
-Useful for global exception handling because requests and responses pass through the middleware pipeline.
+    Useful for global exception handling because requests and responses pass through the middleware pipeline.
 
 <br>
 
