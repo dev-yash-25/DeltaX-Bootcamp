@@ -265,7 +265,7 @@ An application can contain any number of middleware components.
 
 ### Common examples
 
-**Routing**
+1. **Routing**
 
 Handles path-based requests.
 
@@ -273,7 +273,7 @@ Handles path-based requests.
 Request → Routing → Appropriate endpoint/controller
 ```
 
-**Authentication**
+2. **Authentication**
 
 Validates requests before they reach protected application logic.
 
@@ -286,7 +286,7 @@ Valid → Continue
 Invalid → Stop / return response
 ```
 
-**Exception Handling**
+3. **Exception Handling**
 
 Useful for global exception handling because requests and responses pass through the middleware pipeline.
 
@@ -296,31 +296,7 @@ The `Configure()` method in `Startup.cs` defines the request pipeline.
 
 It is mandatory for the application in this ASP.NET Core 5.0 `Startup` model.
 
----
 
-## 5. Middleware Execution Flow
-
-Suppose the pipeline contains:
-
-```text
-Middleware 1
-    ↓
-Middleware 2
-    ↓
-Middleware 3
-```
-
-Request:
-
-```text
-1 → 2 → 3
-```
-
-Response:
-
-```text
-3 → 2 → 1
-```
 
 Middleware can therefore have code both before and after `next()`:
 
@@ -356,7 +332,7 @@ Middleware 1 After
 <br>
 
 
-## 6. `Use()`, `Next()`, `Run()` and `Map()`
+## 5. `Use()`, `Next()`, `Run()` and `Map()`
 
 | Method | Purpose |
 |---|---|
@@ -368,12 +344,8 @@ Middleware 1 After
 
 <br>
 
----
 
-<br>
-
-
-## 7. `Use()`
+### 1. `Use()`
 
 `Use()` is used to add middleware.
 
@@ -394,7 +366,7 @@ app.Use(async (context, next) =>
 });
 ```
 
-### `HttpContext`
+#### `HttpContext`
 
 `HttpContext` represents the current HTTP request and response.
 
@@ -419,12 +391,10 @@ HttpContext
 
 <br>
 
----
-
-<br>
 
 
-## 8. `Next()`
+
+### 2. `Next()`
 
 `next()` passes execution to the next middleware.
 
@@ -443,7 +413,7 @@ await next();
 
 execution does not continue to the next middleware.
 
-### Flow
+#### Flow
 
 ```text
 Current Middleware
@@ -460,12 +430,10 @@ Current Middleware continues
 
 <br>
 
----
-
-<br>
 
 
-## 9. `Run()`
+
+### 3. `Run()`
 
 `Run()` adds **terminal middleware**.
 
@@ -498,12 +466,10 @@ context.Items
 
 <br>
 
----
-
-<br>
 
 
-## 10. `Map()`
+
+### 4. `Map()`
 
 `Map()` branches the request pipeline based on a path.
 
@@ -521,7 +487,7 @@ A request matching:
 
 is sent into the branch defined by `CustomCode`.
 
-### Mental model
+#### Mental model
 
 ```text
 Request
@@ -543,7 +509,7 @@ Branch          Main Pipeline
 <br>
 
 
-## 11. `Use()` + `Run()` Example
+## 6. `Use()` + `Run()` Example
 
 ```csharp
 namespace ConsoleAppone
@@ -568,8 +534,7 @@ namespace ConsoleAppone
             // Middleware 2
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello From Use 2.1 Middleware 
-");
+                await context.Response.WriteAsync("Hello From Use 2.1 Middleware ");
                 await next();
                 await context.Response.WriteAsync("Hello From Use 2.2 Middleware - I am executed at the last after Run");
             });
