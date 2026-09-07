@@ -6,18 +6,10 @@
 - [2. Action Methods in Controllers](#2-action-methods-in-controllers)
 - [3. HTTP Request Pipeline](#3-http-request-pipeline)
 - [4. Middleware](#4-middleware)
-- [5. Middleware Execution Flow](#5-middleware-execution-flow)
-- [6. `Use()`, `Next()`, `Run()` and `Map()`](#6-use-next-run-and-map)
-- [7. `Use()`](#7-use)
-- [8. `Next()`](#8-next)
-- [9. `Run()`](#9-run)
-- [10. `Map()`](#10-map)
-- [11. `Use()` + `Run()` Example](#11-use--run-example)
-- [12. `Map()` Example](#12-map-example)
-- [13. Custom Middleware](#13-custom-middleware)
-- [14. Custom Middleware Execution Flow](#14-custom-middleware-execution-flow)
-- [15. `Next()` in Built-in Middleware](#15-next-in-built-in-middleware)
-- [16. Quick Revision](#16-quick-revision)
+- [5. `Use()`, `Next()`, `Run()` and `Map()`](#5-use-next-run-and-map)
+- [6. Custom Middleware](#6-custom-middleware)
+- [7. Custom Middleware Execution Flow](#7-custom-middleware-execution-flow)
+- [8. `Next()` in Built-in Middleware](#8-next-in-built-in-middleware) 🏷️
 
 <br>
 
@@ -290,12 +282,15 @@ Invalid → Stop / return response
 
 Useful for global exception handling because requests and responses pass through the middleware pipeline.
 
+<br>
+
 ### Where is the pipeline configured?
 
 The `Configure()` method in `Startup.cs` defines the request pipeline.
 
 It is mandatory for the application in this ASP.NET Core 5.0 `Startup` model.
 
+<br>
 
 
 Middleware can therefore have code both before and after `next()`:
@@ -428,6 +423,112 @@ Current Middleware continues
 ```
 
 
+### `Use()` + `Run()` Example
+
+```csharp
+namespace ConsoleAppone
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+        }   
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            // Middleware 1
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Hello From Use 1.1 Middleware");
+                await next();
+                await context.Response.WriteAsync("Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2 ");
+            });
+
+            // Middleware 2
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Hello From Use 2.1 Middleware ");
+                await next();
+                await context.Response.WriteAsync("Hello From Use 2.2 Middleware - I am executed at the last after Run");
+            });
+
+            // Middleware 3
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Request Complete.. No next() after this. Thus Pipeline stops here");
+            });
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+            // End of Middleware Pipeline - Middleware 4
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("End of Run Middleware Pipeline");
+            });
+        }
+    }
+}
+```
+
+#### Output
+
+```text
+Hello From Use 1.1 Middleware 
+Hello From Use 2.1 Middleware 
+Request Complete.. No next() after this. Thus Pipeline stops here 
+Hello From Use 2.2 Middleware - I am executed at the last after Run 
+Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2
+```
+
+#### Why?
+
+Execution enters:
+
+```text
+Use 1.1
+   ↓
+Use 2.1
+   ↓
+Middleware 3
+```
+
+Middleware 3 does not call `next()`:
+
+```csharp
+app.Use(async (context, next) =>
+{
+    await context.Response.WriteAsync("Request Complete.. No next() after this. Thus Pipeline stops here 
+");
+});
+```
+
+Therefore, later middleware such as `Run()` is not reached.
+
+Then execution returns through the previous middleware:
+
+```text
+Middleware 3
+   ↓
+Use 2.2
+   ↓
+Use 1.2
+```
+
+This is why code after `await next()` runs on the way back.
+
+
+
 <br>
 
 
@@ -501,127 +602,10 @@ Does path match /yash?
 Branch          Main Pipeline
 ```
 
-
-<br>
-
----
-
 <br>
 
 
-## 6. `Use()` + `Run()` Example
-
-```csharp
-namespace ConsoleAppone
-{
-    public class Startup
-    {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
-        }   
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            // Middleware 1
-            app.Use(async (context, next) =>
-            {
-                await context.Response.WriteAsync("Hello From Use 1.1 Middleware");
-                await next();
-                await context.Response.WriteAsync("Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2 ");
-            });
-
-            // Middleware 2
-            app.Use(async (context, next) =>
-            {
-                await context.Response.WriteAsync("Hello From Use 2.1 Middleware ");
-                await next();
-                await context.Response.WriteAsync("Hello From Use 2.2 Middleware - I am executed at the last after Run");
-            });
-
-            // Middleware 3
-            app.Use(async (context, next) =>
-            {
-                await context.Response.WriteAsync("Request Complete.. No next() after this. Thus Pipeline stops here");
-            });
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
-            // End of Middleware Pipeline - Middleware 4
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("End of Run Middleware Pipeline");
-            });
-        }
-    }
-}
-```
-
-### Output
-
-```text
-Hello From Use 1.1 Middleware 
-Hello From Use 2.1 Middleware 
-Request Complete.. No next() after this. Thus Pipeline stops here 
-Hello From Use 2.2 Middleware - I am executed at the last after Run 
-Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2
-```
-
-### Why?
-
-Execution enters:
-
-```text
-Use 1.1
-   ↓
-Use 2.1
-   ↓
-Middleware 3
-```
-
-Middleware 3 does not call `next()`:
-
-```csharp
-app.Use(async (context, next) =>
-{
-    await context.Response.WriteAsync("Request Complete.. No next() after this. Thus Pipeline stops here 
-");
-});
-```
-
-Therefore, later middleware such as `Run()` is not reached.
-
-Then execution returns through the previous middleware:
-
-```text
-Middleware 3
-   ↓
-Use 2.2
-   ↓
-Use 1.2
-```
-
-This is why code after `await next()` runs on the way back.
-
-
-<br>
-
----
-
-<br>
-
-
-## 12. `Map()` Example
+### `Map()` Example
 
 ```csharp
 using Microsoft.AspNetCore.Builder;
@@ -688,13 +672,13 @@ namespace ConsoleAppone
 }
 ```
 
-### Request
+#### Request
 
 ```text
 /yash
 ```
 
-### Output
+#### Output
 
 ```text
 Hello From Use 1.1 Middleware 
@@ -702,7 +686,7 @@ Hello from Yash
 Hello From Use 1.2 Middleware - I am executed at the last after Use 2.2
 ```
 
-### Flow
+#### Flow
 
 ```text
 Request /yash
@@ -726,7 +710,11 @@ Return to Use 1.2
 <br>
 
 
-# 13. Custom Middleware
+
+
+
+
+# 6. Custom Middleware
 
 Instead of putting middleware directly in `Startup.cs`, create a separate middleware class.
 
@@ -889,7 +877,7 @@ The statements after `next()` execute while the pipeline is unwinding.
 <br>
 
 
-# 14. Custom Middleware Execution Flow
+# 7. Custom Middleware Execution Flow
 
 Consider:
 
@@ -938,9 +926,9 @@ Middleware 1 After
 <br>
 
 
-# 15. `Next()` in Built-in Middleware
+# 8. `Next()` in Built-in Middleware 
 
-The ASP.NET Core framework itself implements middleware and request-flow behavior.
+The ASP.NET Core framework itself implements middleware and request-flow behavior. 🏷️
 
 The source material recommends inspecting the open-source implementation to understand how the framework handles request flow through the middleware pipeline and dependency injection.
 
