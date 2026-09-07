@@ -220,28 +220,6 @@ It first passes through the **HTTP request pipeline**, which consists of middlew
 
 ### Request flow
 
-```text
-Client
-  ↓
-Middleware 1
-  ↓
-Middleware 2
-  ↓
-Middleware 3
-  ↓
-Controller / Endpoint
-  ↓
-Response
-  ↑
-Middleware 3
-  ↑
-Middleware 2
-  ↑
-Middleware 1
-  ↑
-Client
-```
-
 The request travels through middleware in insertion order. The response travels back through them in reverse order.
 
 If middleware calls `next()`, execution continues.
