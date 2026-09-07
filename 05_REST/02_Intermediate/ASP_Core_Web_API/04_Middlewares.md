@@ -6,9 +6,9 @@
 - [2. Action Methods in Controllers](#2-action-methods-in-controllers)
 - [3. HTTP Request Pipeline](#3-http-request-pipeline)
 - [4. Middleware](#4-middleware)
-- [5. `Use()`, `Next()`, `Run()` and `Map()`](#5-use-next-run-and-map)
+- [5. `Use()`, `Next()`, `Run()` and `Map()`](#5-use-next-run-and-map)  🏷️
 - [6. Custom Middleware](#6-custom-middleware)
-- [7. `Next()` in Built-in Middleware](#7-next-in-built-in-middleware) 🏷️
+
 
 <br>
 
@@ -923,17 +923,19 @@ Middleware 1 After
 <br>
 
 
-# 7. `Next()` in Built-in Middleware 
+> [!Tip]
+> ## `Next()` method in built-in middleware 🏷️,
+> - We inspect open-source implementation on [GitHub](https://github.com/dotnet/aspnetcore), [class1](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Builder/EndpointRoutingApplicationBuilderExtensions.cs) and [class2](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/EndpointRoutingMiddleware.cs)
+> - By navigating the repository, we can confirm how the framework handles request flow through the middleware pipeline via dependency injection.
 
-The ASP.NET Core framework itself implements middleware and request-flow behavior. 🏷️
-
-The source material recommends inspecting the open-source implementation to understand how the framework handles request flow through the middleware pipeline and dependency injection.
-
-- [ASP.NET Core GitHub repository](https://github.com/dotnet/aspnetcore)
-- [EndpointRoutingApplicationBuilderExtensions](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Builder/EndpointRoutingApplicationBuilderExtensions.cs)
-- [EndpointRoutingMiddleware](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/EndpointRoutingMiddleware.cs)
-
+<br>
 
 > [!Important]
 >  Middleware executes in the order it is added. Code before `next()` runs on the forward path; code after `next()` runs on the return path.
 
+
+<br>
+
+---
+
+<br>
