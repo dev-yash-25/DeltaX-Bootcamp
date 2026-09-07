@@ -13,7 +13,17 @@
 - [9. Multiple Routes for the Same Resource](#9-multiple-routes-for-the-same-resource)
 - [10. Route Constraints](#10-route-constraints)
 
+
+
 <br>
+<div align = "center">
+  <img width="500" alt="image" src="https://github.com/user-attachments/assets/553c84e3-a50a-495b-8718-f381645f3316" />
+</div>
+<br>
+
+
+
+
 
 ---
 
@@ -33,8 +43,20 @@ The routing system examines the URL and HTTP method and determines which action 
 
 The collection of routes used by the application is commonly referred to as the **routing table**.
 
+
 > **Mental Model:**  
 > `Request → Routing → Matching Endpoint → Controller Action`
+
+
+
+<br>
+<div align = "center">
+<p>Routing Table</p>
+  <img width="500" alt="image" src="https://github.com/user-attachments/assets/d04ed65e-225f-438e-b69e-bee4de75fce3" />
+</div>
+<br>
+
+
 
 <br>
 
@@ -470,6 +492,14 @@ This is useful when an API needs to expose the same resource through more than o
 ## 10. Route Constraints
 
 A route constraint restricts which values are considered valid during route matching.
+
+
+<br>
+<div align = "center">
+  <p>Route Value Constraints</p>
+  <img width="500" alt="image" src="https://github.com/user-attachments/assets/322db3d0-896b-4901-84a0-75f2a714bf95" />
+</div>
+<br>
 
 For example:
 
