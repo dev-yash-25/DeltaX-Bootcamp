@@ -254,7 +254,20 @@ Multiple query parameters are separated using `&`.
 
 The query parameter is not normally written into the route template.
 
-### When to use
+<br>
+
+## Route and Query Parameters 🏷️
+```
+/api/books/10
+```
+or
+```
+/api/books/?id=20
+```
+
+### When to use what?
+
+
 
 Use **route parameters** when the value identifies the resource being accessed.
 
