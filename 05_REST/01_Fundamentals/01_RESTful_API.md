@@ -213,7 +213,7 @@ Returns JSON
 </div>
 <br>
 
-| # | Principle                       | Meaning                                                                                                                                                | Example                                      |
+| | Principle                       | Meaning                                                                                                                                                | Example                                      |
 | - | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
 | 1 | **Client–Server**               | Client and server have separate responsibilities. The client handles the UI, while the server handles data and business logic.                         | App → API → Database                         |
 | 2 | **Stateless**                   | The server does not store client session state between requests. Each request must contain all the information needed to process it.                   | `GET /users/10` + authentication token       |
@@ -222,10 +222,11 @@ Returns JSON
 | 5 | **Layered System**              | The client may not know whether it is communicating directly with the actual server. Requests can pass through gateways, load balancers, proxies, etc. | Client → API Gateway → Server                |
 | 6 | **Code-on-Demand** *(Optional)* | The server can optionally send executable code to the client, allowing the client's functionality to be extended.                                      | Server → JavaScript → Browser                |
 
+<br>
 
 ## Best Practises of Design
 
-| #  | Best Practice                  | Meaning                                                                        | Example                                                                |
+| | Best Practice                  | Meaning                                                                        | Example                                                                |
 | -- | ------------------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
 | 1  | **Use Nouns for Resources**    | URLs should represent resources, while HTTP methods describe the action.       | ✅ `GET /users` ❌ `GET /getUsers`                                       |
 | 2  | **Use Plural Resource Names**  | Prefer plural names for collections to keep API naming consistent.             | ✅ `/users` ❌ `/user`                                                   |
@@ -243,6 +244,7 @@ Returns JSON
 | 14 | **Use Filtering & Sorting**    | Allow clients to request only the data they need.                              | `/products?category=mobile&sort=price`                                 |
 | 15 | **Use Proper Authentication**  | Secure APIs using appropriate authentication and authorization mechanisms.     | `Authorization: Bearer <token>`                                        |
 
+<br>
 
 # REST Uses HTTP Methods
 
