@@ -368,6 +368,23 @@ The endpoints demonstrate that the application can receive HTTP requests and ret
 
 <br>
 
+---
+
+> [!Tip]
+> `Program.cs`  -> Configure Host (HostBuilder) -> Application Lifetime
+>
+> `Startup.cs` -> Configures application ->  Services, HTTP request pipeline.
+
+<br>
+
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/acde74bf-a253-4626-a375-9422f970e85a" />
+
+
+---
+
+
+<br>
+
 # 6. Default Host Builder
 
 The **Host** is responsible for managing the application's lifetime and providing common application infrastructure.
