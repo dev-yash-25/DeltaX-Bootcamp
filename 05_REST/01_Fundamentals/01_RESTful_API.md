@@ -10,13 +10,11 @@
 * [6. REST Uses HTTP Methods](#rest-uses-http-methods)
 * [7. REST Uses Existing Standards](#rest-uses-existing-standards)
 * [8. Core Concepts of REST](#core-concepts-of-rest)
-
   * [8.1 Resource](#1-resource)
   * [8.2 URI (Uniform Resource Identifier)](#2-uri-uniform-resource-identifier)
   * [8.3 Verbs (HTTP Methods)](#3-verbs-http-methods)
   * [8.4 Representation](#4-representation)
 * [9. REST API Examples](#rest-api-examples)
-
   * [9.1 Get All Users](#get-all-users)
   * [9.2 Get Single User](#get-single-user)
   * [9.3 Create User](#create-user)
@@ -25,7 +23,6 @@
   * [9.6 Delete User](#delete-user)
 * [10. ASP.NET Core](#aspnet-core)
 * [11. MVC (Model View Controller)](#mvc-model-view-controller)
-
   * [11.1 Model](#model)
   * [11.2 View](#view)
   * [11.3 Controller](#controller)
@@ -37,7 +34,6 @@
 * [17. Mocking](#mocking)
 * [18. Uploading Images to Firebase](#uploading-images-to-firebase)
 * [19. Important Topics to Read](#important-topics-to-read)
-
   * [19.1 Cross-Origin Requests (CORS)](#cross-origin-requests-cors)
   * [19.2 Dapper](#dapper)
   * [19.3 Parameterized Query](#parameterized-query)
@@ -47,7 +43,6 @@
   * [19.7 JWT (JSON Web Token)](#jwt-json-web-token)
   * [19.8 API Versioning](#api-versioning)
 * [20. Additional Reading (Optional)](#additional-reading-optional)
-
   * [20.1 GraphQL](#graphql)
   * [20.2 API Testing](#api-testing)
   * [20.3 BDD (Behavior Driven Development)](#bdd-behavior-driven-development)
@@ -207,6 +202,45 @@ Returns JSON
 ```
 
 <br>
+
+## 6 Rest Principles
+
+<br>
+<div align = "center">
+ <img width="550" alt="image" src="https://github.com/user-attachments/assets/49678e14-d997-47df-99a5-03f160aba4b9" />
+</div>
+<br>
+
+| # | Principle                       | Meaning                                                                                                                                                | Example                                      |
+| - | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| 1 | **Client–Server**               | Client and server have separate responsibilities. The client handles the UI, while the server handles data and business logic.                         | App → API → Database                         |
+| 2 | **Stateless**                   | The server does not store client session state between requests. Each request must contain all the information needed to process it.                   | `GET /users/10` + authentication token       |
+| 3 | **Cacheable**                   | A response should indicate whether it can be cached. Cached data can be reused instead of requesting it from the server again.                         | `GET /products` → response cached for 10 min |
+| 4 | **Uniform Interface**           | There should be a consistent way to identify and interact with resources, using standard methods and representations.                                  | `GET /users/10`, `DELETE /users/10`          |
+| 5 | **Layered System**              | The client may not know whether it is communicating directly with the actual server. Requests can pass through gateways, load balancers, proxies, etc. | Client → API Gateway → Server                |
+| 6 | **Code-on-Demand** *(Optional)* | The server can optionally send executable code to the client, allowing the client's functionality to be extended.                                      | Server → JavaScript → Browser                |
+
+
+## Best Practises of Design
+
+| #  | Best Practice                  | Meaning                                                                        | Example                                                                |
+| -- | ------------------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| 1  | **Use Nouns for Resources**    | URLs should represent resources, while HTTP methods describe the action.       | ✅ `GET /users` ❌ `GET /getUsers`                                       |
+| 2  | **Use Plural Resource Names**  | Prefer plural names for collections to keep API naming consistent.             | ✅ `/users` ❌ `/user`                                                   |
+| 3  | **Use HTTP Methods Correctly** | Use standard HTTP verbs according to the operation being performed.            | `GET` → read, `POST` → create, `PUT/PATCH` → update, `DELETE` → delete |
+| 4  | **Use Hierarchical URLs**      | Show relationships between related resources through the URL structure.        | `/users/10/orders`                                                     |
+| 5  | **Use Resource IDs**           | Use unique identifiers to access a specific resource.                          | `GET /users/10`                                                        |
+| 6  | **Avoid Verbs in URLs**        | Don't put actions in URLs; let the HTTP method represent the action.           | ❌ `/createUser` → ✅ `POST /users`                                      |
+| 7  | **Use HTTP Status Codes**      | Return appropriate status codes so the client knows the result of the request. | `200` → success, `201` → created, `404` → not found                    |
+| 8  | **Use JSON Representations**   | Use a standard, consistent format for exchanging resource data.                | `{ "id": 10, "name": "John" }`                                         |
+| 9  | **Use Query Parameters**       | Use query parameters for filtering, sorting, searching, and pagination.        | `/users?role=admin&page=2`                                             |
+| 10 | **Consistent Naming**          | Follow one naming convention throughout the API.                               | `/first-name` or `/firstName` — don't mix both                         |
+| 11 | **API Versioning**             | Use versions when making changes that could break existing clients.            | `/api/v1/users`                                                        |
+| 12 | **Consistent Error Responses** | Return errors in a predictable structure so clients can handle them easily.    | `{ "error": "User not found" }`                                        |
+| 13 | **Use Pagination**             | Don't return huge collections at once; divide large results into pages.        | `/users?page=2&limit=20`                                               |
+| 14 | **Use Filtering & Sorting**    | Allow clients to request only the data they need.                              | `/products?category=mobile&sort=price`                                 |
+| 15 | **Use Proper Authentication**  | Secure APIs using appropriate authentication and authorization mechanisms.     | `Authorization: Bearer <token>`                                        |
+
 
 # REST Uses HTTP Methods
 
