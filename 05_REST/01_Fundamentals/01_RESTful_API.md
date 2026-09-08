@@ -7,6 +7,8 @@
 * [3. What is an API?](#what-is-an-api)
 * [4. What is REST?](#what-is-rest)
 * [5. Motivation Behind REST](#motivation-behind-rest)
+   * [6 Design Principles](#6-rest-principles) 
+   * [Best Practises of Design](#best-practises-of-design)
 * [6. REST Uses HTTP Methods](#rest-uses-http-methods)
 * [7. REST Uses Existing Standards](#rest-uses-existing-standards)
 * [8. Core Concepts of REST](#core-concepts-of-rest)
