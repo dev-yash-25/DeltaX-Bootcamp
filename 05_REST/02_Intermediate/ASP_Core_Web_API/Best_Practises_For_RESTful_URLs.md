@@ -21,7 +21,7 @@
 ---
 
 > [!Tip]
-> ### [Revise - Best Practises of Design](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/01_Fundamentals/01_RESTful_API.md#best-practises-of-design)
+> ### Revise - [Best Practises of Design](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/01_Fundamentals/01_RESTful_API.md#best-practises-of-design)
 
 ---
 
