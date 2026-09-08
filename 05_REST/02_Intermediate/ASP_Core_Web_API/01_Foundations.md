@@ -39,21 +39,21 @@
 
 ## Index
 
-[Mental Model](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#mental-model-for-designing-rest-apis)
+[Mental Model](#mental-model-for-designing-rest-apis)
 
-1. [Course Overview](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#1-course-overview)
-2. [Why Do We Need Web APIs?](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#2-why-do-we-need-web-apis)
-3. [Role of a Web API](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#3-role-of-a-web-api)
-4. [What is a Web API?](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#4-what-is-a-web-api)
-5. [ASP.NET Web API vs ASP.NET Core](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#5-aspnet-web-api-vs-aspnet-core)
-6. [REST](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#6-rest)
-7. [HTTP](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#7-http)
-8. [HTTP Request](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#8-http-request)
-9. [HTTP Response](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#9-http-response)
-10. [HTTP Methods / Verbs](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#10-http-methods--verbs)
-11. [HTTP Status Code Categories](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#11-http-status-code-categories)
-12. [Frequently Used Status Codes](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#12-frequently-used-status-codes)
-13. [General APIs used Frequenctly](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/01_Module-1-to-10.md#13-typical-crud-api)
+1. [Course Overview](#1-course-overview)
+2. [Why Do We Need Web APIs?](#2-why-do-we-need-web-apis)
+3. [Role of a Web API](#3-role-of-a-web-api)
+4. [What is a Web API?](#4-what-is-a-web-api)
+5. [ASP.NET Web API vs ASP.NET Core](#5-aspnet-web-api-vs-aspnet-core)
+6. [REST](#6-rest)
+7. [HTTP](#7-http)
+8. [HTTP Request](#8-http-request)
+9. [HTTP Response](#9-http-response)
+10. [HTTP Methods / Verbs](#10-http-methods--verbs)
+11. [HTTP Status Code Categories](#11-http-status-code-categories)
+12. [Frequently Used Status Codes](#12-frequently-used-status-codes)
+13. [General APIs used Frequenctly](#13-typical-crud-api)
 
 
 <br>
