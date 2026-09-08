@@ -371,13 +371,13 @@ The endpoints demonstrate that the application can receive HTTP requests and ret
 ---
 
 > [!Tip]
-> `Program.cs`  -> Configure Host (HostBuilder) -> Application Lifetime
+> `Program.cs`  -> Configure Host (HostBuilder) -> Application Lifetime (Starts the application)
 >
 > `Startup.cs` -> Configures application ->  Services, HTTP request pipeline.
 
 <br>
 
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/acde74bf-a253-4626-a375-9422f970e85a" />
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/acde74bf-a253-4626-a375-9422f970e85a" />
 
 
 ---
