@@ -2,12 +2,11 @@
 
 ## Index
 
-- [1. Action Methods in `Startup.cs`](#1-action-methods-in-startupcs)
-- [2. Action Methods in Controllers](#2-action-methods-in-controllers)
-- [3. HTTP Request Pipeline](#3-http-request-pipeline)
-- [4. Middleware](#4-middleware)
-- [5. `Use()`, `Next()`, `Run()` and `Map()`](#5-use-next-run-and-map)  🏷️
-- [6. Custom Middleware](#6-custom-middleware)
+- [1. Action Methods Usage](#1-action-methods-usage)
+- [2. HTTP Request Pipeline](#2-http-request-pipeline)
+- [3. Middleware](#3-middleware)
+- [4. `Use()`, `Next()`, `Run()` and `Map()`](#4-use-next-run-and-map)  🏷️
+- [5. Custom Middleware](#5-custom-middleware)
 
 
 <br>
@@ -16,8 +15,8 @@
 
 <br>
 
-
-## 1. Action Methods in `Startup.cs`
+# 1. Action Methods Usage
+## 1.1 Action Methods in `Startup.cs`
 
 Endpoints can be mapped directly inside `Startup.cs` using `MapGet()`.
 
@@ -82,7 +81,7 @@ Hello from web API app - Test
 
 
 
-## 2. Action Methods in Controllers
+## 1.2 Action Methods in Controllers
 
 Instead of defining endpoint logic directly in `Startup.cs`, it can be placed inside a controller.
 
@@ -190,7 +189,7 @@ Hello From Get1
 <br>
 
 
-## 3. HTTP Request Pipeline
+## 2. HTTP Request Pipeline
 
 A request does not go directly from the client to a controller.
 
@@ -239,7 +238,7 @@ If it does not call `next()`, the pipeline stops there.
 <br>
 
 
-## 4. Middleware
+## 3. Middleware
 
 ### Definition
 
@@ -326,7 +325,7 @@ Middleware 1 After
 <br>
 
 
-## 5. `Use()`, `Next()`, `Run()` and `Map()`
+## 4. `Use()`, `Next()`, `Run()` and `Map()`
 
 | Method | Purpose |
 |---|---|
@@ -713,7 +712,7 @@ Return to Use 1.2
 
 
 
-# 6. Custom Middleware
+# 5. Custom Middleware
 
 Instead of putting middleware directly in `Startup.cs`, create a separate middleware class.
 
