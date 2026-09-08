@@ -373,7 +373,7 @@ The endpoints demonstrate that the application can receive HTTP requests and ret
 > [!Tip]
 > `Program.cs`  -> Configure Host (HostBuilder) -> Application Lifetime (Starts the application)
 >
-> `Startup.cs` -> Configures application ->  Services, HTTP request pipeline.
+> `Startup.cs` -> Configure application ->  Services, HTTP request pipeline.
 
 <br>
 
