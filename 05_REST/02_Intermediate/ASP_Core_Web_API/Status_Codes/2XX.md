@@ -1,6 +1,51 @@
 # Status Code 2XX - 200, 201, 202 & 204 
 
 
+> [!Tip]
+> **When asked: What is the difference between Created/Accepted — `Plain`, `By Action`, and `By Route`?**
+>
+> The difference is **how the `Location` URL is provided/generated**.
+>
+> * **Plain** → We provide the **entire location URL ourselves**.
+>
+>   ```csharp
+>   return Created(
+>       location: $"/api/Animals/{animal.Id}",
+>       value: animal
+>   );
+>   ```
+>
+> * **By Action** → We tell ASP.NET to **identify/generate the location using an action**.
+>
+>   ```csharp
+>   return CreatedAtAction(
+>       actionName: nameof(GetAnimal),
+>       routeValues: new { id = animal.Id },
+>       value: animal
+>   );
+>   ```
+>
+>   Meaning:
+>
+>   > "Find the URL belonging to the `GetAnimal` action."
+>
+> * **By Route** → We tell ASP.NET to **identify/generate the location using a named route**.
+>
+>   ```csharp
+>   return CreatedAtRoute(
+>       routeName: "GetAnimalById",
+>       routeValues: new { id = animal.Id },
+>       value: animal
+>   );
+>   ```
+
+> [!Note]
+> Location = the URL of the resource/endpoint that the client should go to next.
+>
+> To access the Posted- Created,accepted resource
+
+<br>
+
 ## Index
 
 1. [HTTP 200 — OK](#1-http-200--ok)
