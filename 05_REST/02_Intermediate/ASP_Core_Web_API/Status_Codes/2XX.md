@@ -748,9 +748,11 @@ CreatedAtRoute(
 
 → **Find by route name**
 
+<br>
 
 
-**Example Controller:**
+
+# Example Controller Code
 ```csharp
 /*
  | Thing                 | Name                |
