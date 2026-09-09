@@ -8,6 +8,13 @@
 - [4. Why Use `IActionResult`?](#4-why-use-iactionresult)
 - [5. Example](#5-example)
 
+
+## Status Codes
+1. [2XX](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/Status_Codes/2XX.md)
+2. [3XX](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/Status_Codes/3XX.md)
+3. [4XX](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/Status_Codes/4XX.md)
+4. [5XX](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/05_REST/02_Intermediate/ASP_Core_Web_API/Status_Codes/5XX.md)
+
 <br>
 
 ---
