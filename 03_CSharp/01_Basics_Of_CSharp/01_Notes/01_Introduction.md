@@ -1,5 +1,60 @@
 # C# Basics
 
+## Index
+
+1. [Introduction](#1-introduction)
+   * 1.1 [What is C#?](#11-what-is-c)
+   * 1.2 [Why Was C# Created?](#12-why-was-c-created)
+   * 1.3 [Real-World Analogy](#13-real-world-analogy)
+   * 1.4 [Where is C# Used?](#14-where-is-c-used)
+   * 1.5 [Features of C#](#15-features-of-c)
+   * 1.6 [Why Companies Use C#](#16-why-companies-use-c)
+   * 1.7 [C# in the Real Industry](#17-c-in-the-real-industry)
+   * 1.8 [Key Takeaways](#18-key-takeaways)
+2. [C# and .NET](#2-c-and-net)
+   * 2.1 [What is C#?](#21-what-is-c)
+   * 2.2 [What is .NET?](#22-what-is-net)
+   * 2.3 [Simple Analogy](#23-simple-analogy)
+   * 2.4 [Relationship Between C# and .NET](#24-relationship-between-c-and-net)
+   * 2.5 [Why Do We Need .NET?](#25-why-do-we-need-net)
+   * 2.6 [.NET Libraries](#26-net-libraries)
+   * 2.7 [Modern .NET](#27-modern-net)
+   * 2.8 [Popular Technologies Built on .NET](#28-popular-technologies-built-on-net)
+   * 2.9 [Real Industry Example](#29-real-industry-example)
+   * 2.10 [Interview Quick Revision](#210-interview-quick-revision)
+   * 2.11 [Key Takeaways](#211-key-takeaways)
+3. [Common Language Runtime (CLR)](#3-common-language-runtime-clr)
+   * 3.1 [What is CLR?](#31-what-is-clr)
+   * 3.2 [Why Do We Need CLR?](#32-why-do-we-need-clr)
+   * 3.3 [How a C# Program Runs](#33-how-a-c-program-runs)
+   * 3.4 [Intermediate Language (IL)](#34-intermediate-language-il)
+   * 3.5 [What is JIT Compiler?](#35-what-is-jit-compiler)
+   * 3.6 [Memory Management](#36-memory-management)
+   * 3.7 [Garbage Collection (GC)](#37-garbage-collection-gc)
+   * 3.8 [Exception Handling](#38-exception-handling)
+   * 3.9 [Security](#39-security)
+   * 3.10 [Benefits of CLR](#310-benefits-of-clr)
+   * 3.11 [Interview Quick Revision](#311-interview-quick-revision)
+4. [.NET Architecture](#4-net-architecture)
+   * 4.1 [What is .NET Architecture?](#41-what-is-net-architecture)
+   * 4.2 [Big Picture (Full Execution Flow)](#42-big-picture-full-execution-flow)
+   * 4.3 [Main Components of .NET Architecture](#43-main-components-of-net-architecture)
+   * 4.4 [.NET Class Library](#44-net-class-library)
+   * 4.5 [Operating System](#45-operating-system)
+5. [First Application](#5-first-application)
+   * 5.1 [Introduction](#51-introduction)
+   * 5.2 [Creating the First C# Program](#52-creating-the-first-c-program)
+   * 5.3 [Complete Program Structure](#53-complete-program-structure)
+   * 5.4 [Understanding Each Part](#54-understanding-each-part)
+   * 5.5 [Program Execution Flow](#55-program-execution-flow)
+   * 5.6 [Why the Main Method is Important](#56-why-the-main-method-is-important)
+
+<br>
+
+---
+
+<br>
+
 # 1. Introduction
 
 ## 1.1 What is C#?
@@ -40,10 +95,10 @@ The goal was to create a language that is:
 Think of programming as constructing a building.
 
 | Real World                          | Programming                 |
-| ----------------------------------- | --------------------------- |
-| Architect creates blueprint         | Developer writes code       |
-| Construction workers build building | Compiler builds application |
-| Building                            | Software Application        |
+| ------------------------------------ | ---------------------------- |
+| Architect creates blueprint          | Developer writes code        |
+| Construction workers build building  | Compiler builds application  |
+| Building                             | Software Application         |
 
 C# is the language used to write the blueprint.
 
@@ -147,13 +202,9 @@ The compiler catches the error before execution.
 
 ### Automatic Memory Management
 
-C# automatically cleans unused memory using Garbage Collection.
+C# automatically cleans unused memory using Garbage Collection — imagine a cleaner removing unused files from your desk automatically, so you focus on work, not cleaning.
 
-Analogy:
-
-Imagine a cleaner removing unused files from your desk automatically.
-
-You focus on work, not cleaning.
+(Covered in full detail, with a code example, in [§3.7 Garbage Collection](#37-garbage-collection-gc).)
 
 <br>
 
@@ -192,13 +243,13 @@ Common use cases:
 
 Some common technologies used with C#:
 
-| Technology       | Purpose          |
-| ---------------- | ---------------- |
-| ASP.NET Core     | Web Development  |
-| Entity Framework | Database Access  |
-| SQL Server       | Database         |
-| Azure            | Cloud Hosting    |
-| Unity            | Game Development |
+| Technology        | Purpose            |
+| ------------------ | -------------------- |
+| ASP.NET Core       | Web Development      |
+| Entity Framework   | Database Access       |
+| SQL Server         | Database              |
+| Azure              | Cloud Hosting          |
+| Unity              | Game Development       |
 
 <br>
 
@@ -217,11 +268,9 @@ Some common technologies used with C#:
 
 <br>
 
-# C# Basics
+# 2. C# and .NET
 
-# 1.2 C# and .NET
-
-## 1. What is C#?
+## 2.1 What is C#?
 
 C# is a **programming language**.
 
@@ -242,7 +291,7 @@ This tells the computer to display text on the screen.
 
 <br>
 
-## 2. What is .NET?
+## 2.2 What is .NET?
 
 .NET (pronounced "Dot Net") is a **development platform** created by Microsoft.
 
@@ -257,17 +306,17 @@ Without .NET, C# code cannot run.
 
 <br>
 
-## 3. Simple Analogy
+## 2.3 Simple Analogy
 
 Think of building a car.
 
-| Component    | Real World            | C# Ecosystem   |
-| ------------ | --------------------- | -------------- |
-| Driver       | Person driving        | Developer      |
-| Language     | Spoken language       | C#             |
-| Car Engine   | Powers the car        | .NET Runtime   |
-| Car Parts    | Wheels, brakes, seats | .NET Libraries |
-| Complete Car | Working vehicle       | .NET Platform  |
+| Component     | Real World              | C# Ecosystem     |
+| -------------- | ------------------------ | ------------------ |
+| Driver         | Person driving            | Developer          |
+| Language       | Spoken language            | C#                  |
+| Car Engine     | Powers the car              | .NET Runtime         |
+| Car Parts      | Wheels, brakes, seats         | .NET Libraries        |
+| Complete Car   | Working vehicle                 | .NET Platform            |
 
 ### Important
 
@@ -277,7 +326,7 @@ C# is only the language.
 
 <br>
 
-## 4. Relationship Between C# and .NET
+## 2.4 Relationship Between C# and .NET
 
 A common beginner mistake is thinking C# and .NET are the same thing.
 
@@ -307,7 +356,7 @@ Provides:
 
 <br>
 
-## 5. Why Do We Need .NET?
+## 2.5 Why Do We Need .NET?
 
 Imagine writing a program that:
 
@@ -318,7 +367,7 @@ Imagine writing a program that:
 
 Writing everything from scratch would be impossible.
 
-.NET already provides these features through built-in libraries. (Like C++ STL), OR Node Modules
+.NET already provides these features through built-in libraries (like C++ STL, or Node modules).
 
 Example:
 
@@ -330,7 +379,7 @@ You can read a file using a single line because .NET already contains the implem
 
 <br>
 
-## 6. .NET Libraries
+## 2.6 .NET Libraries
 
 .NET comes with thousands of ready-made classes.
 
@@ -338,13 +387,13 @@ These classes help developers perform common tasks.
 
 Examples:
 
-| Task            | Library Support |
-| --------------- | --------------- |
-| File Handling   | File            |
-| Date and Time   | DateTime        |
-| Collections     | List<T>         |
-| Math Operations | Math            |
-| Networking      | HttpClient      |
+| Task             | Library Support |
+| ------------------ | ------------------ |
+| File Handling      | File                |
+| Date and Time      | DateTime             |
+| Collections        | List<T>               |
+| Math Operations    | Math                    |
+| Networking         | HttpClient                |
 
 Example:
 
@@ -358,41 +407,7 @@ The DateTime class is provided by .NET.
 
 <br>
 
-## 7. How a C# Program Runs
-
-### Step 1
-
-Developer writes C# code.
-
-```csharp
-Console.WriteLine("Hello");
-```
-
-↓
-
-### Step 2
-
-Compiler converts code into Intermediate Language (IL).
-
-↓
-
-### Step 3
-
-.NET Runtime executes the code. (CLR)
-
-↓
-
-### Step 4
-
-Output appears on the screen.
-
-```text
-Hello
-```
-
-<br>
-
-## 8. Modern .NET
+## 2.7 Modern .NET
 
 Older versions:
 
@@ -416,7 +431,7 @@ Most companies today use modern .NET versions.
 
 <br>
 
-## 9. Popular Technologies Built on .NET
+## 2.8 Popular Technologies Built on .NET
 
 ### ASP.NET Core
 
@@ -466,7 +481,7 @@ Examples:
 
 <br>
 
-## 10. Real Industry Example
+## 2.9 Real Industry Example
 
 Suppose you are building an online shopping website.
 
@@ -488,7 +503,7 @@ Together they create the complete application.
 
 <br>
 
-## 11. Interview Quick Revision
+## 2.10 Interview Quick Revision
 
 ### What is C#?
 
@@ -513,7 +528,7 @@ C# code requires .NET to compile and execute.
 
 <br>
 
-## 12. Key Takeaways
+## 2.11 Key Takeaways
 
 * C# is a programming language.
 * .NET is a development platform.
@@ -528,16 +543,14 @@ C# code requires .NET to compile and execute.
 
 <br>
 
-# C# Basics
-
-# 1.3 Common Language Runtime (CLR)
+# 3. Common Language Runtime (CLR)
 
 <div align = "center">
        
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/d9fc8ba9-8c43-4328-a025-bd7cd0fcfbdc" />
 </div>
 
-## 1. What is CLR?
+## 3.1 What is CLR?
 
 CLR stands for **Common Language Runtime**.
 
@@ -555,30 +568,25 @@ Without CLR, a C# program cannot run.
 
 <br>
 
-## 2. Simple Analogy
+### Analogy
 
 Think of a restaurant.
 
-| Restaurant                               | C# Application         |
-| ---------------------------------------- | ---------------------- |
-| Customer places order                    | Developer writes code  |
-| Kitchen prepares food                    | Compiler converts code |
-| Restaurant manager supervises everything | CLR manages execution  |
+| Restaurant                                 | C# Application            |
+| -------------------------------------------- | ---------------------------- |
+| Customer places order                        | Developer writes code           |
+| Kitchen prepares food                        | Compiler converts code            |
+| Restaurant manager supervises everything     | CLR manages execution               |
 
-The manager ensures everything runs smoothly.
-
-Similarly, CLR ensures your application runs correctly and efficiently.
+The manager ensures everything runs smoothly. Similarly, CLR ensures your application runs correctly and efficiently. This same "manager" role comes up again in [§4.3](#43-main-components-of-net-architecture) when we look at the full .NET architecture.
 
 <br>
 
-## 3. Why Do We Need CLR?
+## 3.2 Why Do We Need CLR?
 
-One thing is, before designing .NET platform, Microsoft thought like, diff Computers, have different specifications, OS , hardware, 
+Before designing the .NET platform, Microsoft recognized that different computers have different specifications, OS, and hardware.
 
-So there is a need of a single Runtime , that shall convert the 'Intermediate Language' generated by compiler, (common for all platforms), to machine code (specific to machine), and thats CLR, which they adopted from `Java JIT` f/w,  
-
-
-also 
+So there is a need for a single runtime that converts the Intermediate Language generated by the compiler (common for all platforms) into machine code (specific to the machine) — and that's CLR, an approach adopted from the `Java JIT` framework.
 
 Imagine developers had to manually:
 
@@ -594,7 +602,7 @@ CLR handles these responsibilities automatically.
 
 <br>
 
-## 4. How a C# Program Runs
+## 3.3 How a C# Program Runs
 
 Consider this code:
 
@@ -649,9 +657,7 @@ CPU executes the machine code.
 Hello World
 ```
 
-<br>
-
-## 5. Execution Flow Diagram
+### Quick-recap diagram
 
 ```text
 C# Source Code
@@ -675,29 +681,21 @@ Machine Code
 Execution
 ```
 
-This is the complete flow followed by most C# applications.
+This is the complete flow followed by most C# applications — see [§4.2](#42-big-picture-full-execution-flow) for the fuller version that adds Metadata and Assembly packaging.
 
 <br>
 
-## 6. Intermediate Language (IL)
+## 3.4 Intermediate Language (IL)
 
 IL is a platform-independent language.
 
 Why?
 
-Because the same compiled application can run on:
-
-* Windows
-* Linux
-* macOS
-
-CLR converts IL into machine code suitable for the operating system.
-
-This is one reason .NET is cross-platform.
+Because the same compiled application can run on multiple operating systems. CLR converts IL into machine code suitable for the operating system it's running on — this is one reason .NET is cross-platform (full OS list in [§4.5](#45-operating-system)).
 
 <br>
 
-## 7. What is JIT Compiler?
+## 3.5 What is JIT Compiler?
 
 JIT stands for:
 
@@ -728,7 +726,7 @@ Similarly:
 
 <br>
 
-## 8. Memory Management
+## 3.6 Memory Management
 
 One of the biggest responsibilities of CLR is memory management.
 
@@ -740,15 +738,13 @@ Person p = new Person();
 
 Memory is allocated automatically.
 
-When objects are no longer needed:
-
-CLR cleans them up automatically.
+When objects are no longer needed, CLR cleans them up automatically.
 
 Developers do not need to manually release memory in most cases.
 
 <br>
 
-## 9. Garbage Collection (GC)
+## 3.7 Garbage Collection (GC)
 
 Garbage Collection is a feature provided by CLR.
 
@@ -782,7 +778,7 @@ Similarly, Garbage Collector removes unused objects.
 
 <br>
 
-## 10. Exception Handling
+## 3.8 Exception Handling
 
 CLR helps manage runtime errors.
 
@@ -805,7 +801,7 @@ Benefits:
 
 <br>
 
-## 11. Security
+## 3.9 Security
 
 CLR provides security checks during execution.
 
@@ -819,7 +815,7 @@ This reduces many common programming mistakes.
 
 <br>
 
-## 12. Benefits of CLR
+## 3.10 Benefits of CLR
 
 ### Automatic Memory Management
 
@@ -857,7 +853,7 @@ Additional protection during execution.
 
 <br>
 
-## 13. Interview Quick Revision
+## 3.11 Interview Quick Revision
 
 ### What is CLR?
 
@@ -884,19 +880,15 @@ Just-In-Time Compiler that converts IL into machine code during execution.
 
 Yes. CLR automatically manages memory and performs garbage collection.
 
-
 <br>
 
 ---
 
 <br>
 
+# 4. .NET Architecture
 
-# C# Basics
-
-# 1.4 .NET Architecture
-
-## 1. What is .NET Architecture?
+## 4.1 What is .NET Architecture?
 
 .NET Architecture describes how different components work together to run a C# application.
 
@@ -909,42 +901,25 @@ Understanding the architecture helps answer:
 * Where .NET libraries fit in
 * How applications run on different operating systems
 
-
 ### [Namespace](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/e2f20b92c613979c752b33b00fda705fa88fc20f/03_Basics_Of_CSharp/01_Notes/Namespace.md)
 
-
-
-
 <div align = "center">
-
 <img width="600"  alt="image" src="https://github.com/user-attachments/assets/2192894f-6351-4c62-ab45-543107d7179c" />
-
-       
 </div>
-
 
 <div align = "center">
-
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/d2744671-5fd3-4275-8698-7396c3e442d7" />
-
-       
 </div>
-
-
-
-
 
 <br>
 
-## 2. Big Picture
+## 4.2 Big Picture (Full Execution Flow)
 
 <div align = "center">
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/79f15f6c-6211-45fb-8516-6602bf146ac3" />
-
-       
 </div>
 
-When a developer writes a C# application, the flow looks like this:
+When a developer writes a C# application, the full flow — including the pieces §3.3's simpler diagram left out (Metadata, Assembly packaging) — looks like this:
 
 ```text
        Developer
@@ -956,7 +931,7 @@ When a developer writes a C# application, the flow looks like this:
        C# Compiler
            |
            v
-       Intermediate Language (IL - Universal to all devices) +  + Metadata
+       Intermediate Language (IL - Universal to all devices) + Metadata
            |
            v
        Byte Code packed into Assembly (.exe or .dll) package - IL
@@ -981,7 +956,7 @@ This is the complete journey from code to execution.
 
 <br>
 
-## 3. Main Components of .NET Architecture
+## 4.3 Main Components of .NET Architecture
 
 The architecture mainly consists of:
 
@@ -993,19 +968,11 @@ The architecture mainly consists of:
 * .NET Class Library
 * Operating System
 
-Let's understand each one.
+CLR again plays the "manager" role described back in [§3.1](#31-what-is-clr) — the workers (compiler, JIT) do the actual work, but CLR ensures everything runs properly.
 
 <br>
 
-### Analogy
-
-Think of CLR as the manager of a factory.
-
-The workers do the actual work, but the manager ensures everything runs properly.
-
-<br>
-
-## 4. .NET Class Library
+## 4.4 .NET Class Library
 
 .NET provides thousands of ready-made classes.
 
@@ -1013,13 +980,13 @@ These libraries save developers from writing everything from scratch.
 
 Examples:
 
-| Task           | Class    |
-| -------------- | -------- |
-| Display Output | Console  |
-| Current Date   | DateTime |
-| File Handling  | File     |
-| Lists          | List<T>  |
-| Mathematics    | Math     |
+| Task            | Class     |
+| ------------------ | ------------ |
+| Display Output      | Console        |
+| Current Date        | DateTime         |
+| File Handling       | File               |
+| Lists               | List<T>              |
+| Mathematics         | Math                   |
 
 Example:
 
@@ -1027,26 +994,11 @@ Example:
 DateTime today = DateTime.Now;
 ```
 
-The DateTime class comes from the .NET Class Library.
+The `DateTime` class comes from the .NET Class Library, and it — along with every other class in the table above — is available to the application at any point in the flow shown in §4.2, alongside the compiler/CLR/JIT pipeline.
 
 <br>
 
-##  Architecture Including Libraries
-
-A more complete view:
-
-```text
-                .NET Class Library
-                       ^
-                       |
-Developer --> C# Code --> Compiler --> IL --> CLR --> JIT --> Machine Code
-```
-
-The application can use built-in .NET libraries whenever needed.
-
-<br>
-
-##  Operating System
+## 4.5 Operating System
 
 After JIT compilation, machine code runs on the operating system.
 
@@ -1056,37 +1008,17 @@ Examples:
 * Linux
 * macOS
 
-Modern .NET supports all major operating systems.
-
-This is why .NET is called cross-platform.
-
-<br>
-
-
-
-##  Why This Architecture is Useful
-
-### Platform Independence
-
-Same IL can run on:
-
-* Windows
-* Linux
-* macOS
+Modern .NET supports all major operating systems — the same IL can run on any of them, which is why .NET is called cross-platform.
 
 <br>
 
 ---
 
-
 <br>
 
+# 5. First Application
 
-# C# Basics
-
-# 1.5 First Application
-
-## 1. Introduction
+## 5.1 Introduction
 
 The traditional first program in almost every programming language is:
 
@@ -1100,10 +1032,9 @@ Its purpose is simple:
 * Understand basic program structure
 * Learn how code gets executed
 
-
 <br>
 
-## 2. Creating the First C# Program
+## 5.2 Creating the First C# Program
 
 ```csharp
 Console.WriteLine("Hello World");
@@ -1117,8 +1048,9 @@ Hello World
 
 This displays the text on the console window.
 
+<br>
 
-##  Complete Program Structure
+## 5.3 Complete Program Structure
 
 A typical C# console application looks like this:
 
@@ -1140,10 +1072,9 @@ Output:
 Hello World
 ```
 
-
 <br>
 
-## 6. Understanding Each Part
+## 5.4 Understanding Each Part
 
 ### using System;
 
@@ -1154,7 +1085,6 @@ It provides access to useful classes such as:
 * Console
 * DateTime
 * Math
-
 
 <br>
 
@@ -1172,7 +1102,6 @@ This is the entry point of the application.
 
 When the program starts, execution begins from Main().
 
-
 <br>
 
 ### Curly Braces {}
@@ -1186,10 +1115,9 @@ Used to define a block of code.
 
 Everything inside belongs together.
 
-
 <br>
 
-##  Program Execution Flow
+## 5.5 Program Execution Flow
 
 When you run a C# application:
 
@@ -1219,10 +1147,7 @@ Output appears.
 Hello World
 ```
 
-
-<br>
-
-##  Visual Flow
+### Visual Flow
 
 ```text
 Program Starts
@@ -1237,10 +1162,11 @@ Console.WriteLine()
 Output Displayed
 ```
 
-
 Execution happens from top to bottom.
 
-## Why the Main Method is Important
+<br>
+
+## 5.6 Why the Main Method is Important
 
 Every console application needs a starting point.
 
