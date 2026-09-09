@@ -23,42 +23,49 @@ A C# console application for managing movies, actors, and producers. It demonstr
 
 ```text
 Assignment4/
-├── README.md
-└── IMDBConsoleApp/
-    ├── IMDBConsoleApp.sln
-    └── IMDBConsoleApp/
+    └── IMDBConsoleApp
         ├── Program.cs                         # Console menu, input, and output
-        ├── Models/
+        |
+        ├── Models
         │   ├── Person.cs                      # Abstract base class
-        │   ├── Entities/
+        |   |
+        │   ├── Entities
         │   │   ├── Actor.cs
         │   │   ├── Producer.cs
         │   │   └── Movie.cs
-        │   ├── Request/
+        |   |
+        │   ├── Request
         │   │   └── MovieRequest.cs            # Input data for adding a movie
-        │   └── Response/
+        |   |
+        │   └── Response
         │       └── MovieResponse.cs           # Display-ready movie data
-        ├── Repository/
+        |   
+        ├── Repository
         │   ├── ActorRepository.cs
         │   ├── ProducerRepository.cs
         │   ├── MovieRepository.cs
-        │   └── Interface/
+        |   |
+        │   └── Interface
         │       ├── IActorRepository.cs
         │       ├── IProducerRepository.cs
         │       └── IMovieRepository.cs
-        ├── Services/
+        |   
+        ├── Services
         │   ├── ActorService.cs
         │   ├── ProducerService.cs
         │   ├── MovieService.cs
-        │   └── Interface/
+        |   |
+        │   └── Interface
         │       ├── IActorService.cs
         │       ├── IProducerService.cs
         │       └── IMovieService.cs
-        ├── Helpers/
+        |   
+        ├── Helpers
         │   ├── ValidationHelper.cs
-        │   └── Validators/
+        │   └── Validators
         │       └── PersonValidator.cs
-        └── Exceptions/
+        |   
+        └── Exceptions
             ├── InvalidInputException.cs
             └── ValidationException.cs
 ```
