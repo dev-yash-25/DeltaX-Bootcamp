@@ -13,6 +13,23 @@
 <br>
 
 
+# 1. What are 3xx Status Codes?
+
+**3xx status codes** are mainly used for **redirection**.
+
+They tell the client:
+
+> "The resource/action you requested is somewhere else. Go there."
+
+The most important ones for our notes:
+
+| Status Code | Meaning | Main Idea |
+|---|---|---|
+| **301** | Moved Permanently | The destination has permanently changed |
+| **302** | Found | Temporary redirect |
+
+<br>
+
 
 ## 1. 301 — Moved Permanently
 
