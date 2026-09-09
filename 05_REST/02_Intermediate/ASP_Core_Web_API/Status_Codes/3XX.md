@@ -2,8 +2,8 @@
 
 ## Index
 
-1. **301 — Moved Permanently**
-2. **302 — Found / Temporary Redirect**
+1. [**301 — Moved Permanently**)[#1-301--moved-permanently)
+2. [**302 — Found / Temporary Redirect**)[#2-302--found--temporary-redirect]
 3. **Quick Revision**
 
 <br>
