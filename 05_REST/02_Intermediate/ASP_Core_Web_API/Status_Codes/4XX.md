@@ -170,6 +170,12 @@ Unauthorized()
 
 > The client is authenticated, but does not have permission to access this resource.
 
+<br>
+<div align = "center">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/c9969a65-c7a0-4ef8-9c19-e79b749c65c9" />
+</div>
+<br>
+
 ### Return examples
 
 ```csharp
