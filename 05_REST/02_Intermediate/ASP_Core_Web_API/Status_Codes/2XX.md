@@ -48,6 +48,8 @@
 
 ## Index
 
+[Base - Example Code](#example-controller-code)
+
 1. [HTTP 200 — OK](#1-http-200--ok)
 2. [HTTP 201 — Created](#2-http-201--created)\
    2.1. [Created() — Plain](#21-created--plain)\
