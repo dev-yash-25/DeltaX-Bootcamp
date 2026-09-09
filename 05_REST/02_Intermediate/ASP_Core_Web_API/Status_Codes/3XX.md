@@ -13,7 +13,7 @@
 <br>
 
 
-# 1. What are 3xx Status Codes?
+## What are 3xx Status Codes?
 
 **3xx status codes** are mainly used for **redirection**.
 
