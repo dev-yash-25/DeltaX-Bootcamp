@@ -4,13 +4,13 @@
 ## Index
 
 1. [HTTP 200 — OK](#1-http-200--ok)
-2. [HTTP 201 — Created](#2-http-201--created)
-   2.1. [Created() — Plain](#21-created--plain)
-   2.2. [CreatedAtAction() — By Action](#22-createdataction--by-action)
+2. [HTTP 201 — Created](#2-http-201--created)\
+   2.1. [Created() — Plain](#21-created--plain)\
+   2.2. [CreatedAtAction() — By Action](#22-createdataction--by-action)\
    2.3. [CreatedAtRoute() — By Route Name](#23-createdatroute--by-route-name)
-3. [HTTP 202 — Accepted](#3-http-202--accepted)
-   3.1. [Accepted() — Plain](#31-accepted--plain)
-   3.2. [AcceptedAtAction() — By Action](#32-acceptedataction--by-action)
+3. [HTTP 202 — Accepted](#3-http-202--accepted)\
+   3.1. [Accepted() — Plain](#31-accepted--plain)\
+   3.2. [AcceptedAtAction() — By Action](#32-acceptedataction--by-action)\
    3.3. [AcceptedAtRoute() — By Route Name](#33-acceptedatroute--by-route-name)
 4. [AtAction vs AtRoute](#ataction-vs-atroute)
 5. [HTTP 204 — No Content](#4-http-204--no-content)
