@@ -42,6 +42,9 @@
 11. [Final Parameter Cheat Sheet](#final-parameter-cheat-sheet)
 12. [Final Memory Trick](#final-memory-trick)
 
+
+Important
+400, 401, 403, 404, 505, 409
 <br>
 
 ---
