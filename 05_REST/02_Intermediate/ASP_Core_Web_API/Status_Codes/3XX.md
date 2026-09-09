@@ -35,6 +35,8 @@ The most important ones for our notes:
 
 Used when the resource has **permanently moved**.
 
+> "This resource has permanently moved to another location."
+
 ### Main Methods
 
 ```csharp
@@ -78,6 +80,8 @@ RedirectToRoutePermanent(
 ## 2. 302 — Found / Temporary Redirect
 
 Used for a **temporary redirect**.
+
+> "For now, go to another location."
 
 ### Main Methods
 
