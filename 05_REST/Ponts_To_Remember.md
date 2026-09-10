@@ -91,4 +91,87 @@ So:
 
 
 
+## 3. Parent, Child & Junction Table
 
+```http
+POST /v1/carts/{cartId}/items
+```
+
+→ **ItemsController**
+
+* We don't create `CartItemsController` just because `CartItems` is a junction table.
+* `cartId` gives **parent context**; `items` is the resource being operated on.
+* Junction tables are usually **relationship/DB implementation details**.
+
+```text
+Cart → CartItems → Item
+ ↑                  ↑
+Parent           Resource
+```
+Inside ItemsController, we could have operations such as:\
+GetCartItems()\
+AddItemToCart()\
+RemoveItemFromCart()
+
+> [!Important]
+
+Don't decide the controller based on:
+
+> "Which tables exist in the database?"
+
+Instead ask:
+
+> "What resource is the API operating on?"
+
+
+---
+
+### 4. Property vs Entity
+
+```http
+PATCH /v1/orders/{orderId}/status
+```
+**Controller → `OrdersController`**
+
+Here, we are changing the **status of a specific Order**.
+
+`Status` is a property/part of the Order being operated on.
+
+```text
+Order
+ ├── Id
+ ├── Status        ← being updated
+ └── ...
+```
+
+Therefore:
+
+```text
+PATCH /v1/orders/{orderId}/ status
+                    ↓
+              OrdersController
+```
+
+We don't use:
+
+```http
+PATCH /v1/status
+```
+
+or create a `StatusController` simply because `Status` exists as a property/enum.
+
+### When would we use `StatusController`?
+
+When **Status itself is a separate entity/resource** that we are managing.
+
+For example, if the database has:
+
+```text
+Status
+----------------
+Id
+Name
+Description
+```
+
+and we need to manage those Status records:
