@@ -244,6 +244,13 @@ return CreatedAtAction(
     value: animal
 );
 ```
+```
+CreatedAtAction(
+    WHICH ACTION?,               // nameof(GetById)
+    WITH WHICH ROUTE?,           // new { id = 1 }
+    WHAT RESPONSE BODY DATA?     // null
+)
+```
 
 ### Parameters
 
