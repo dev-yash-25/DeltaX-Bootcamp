@@ -1,5 +1,17 @@
 # Points to Remember
 
+<br>
+
+## Index
+
+1. [How to Choose which Controller?](#1-how-to-choose-which-controller)
+2. [Choosing Route vs Query Parameter](#2-choosing-route-vs-query-parameter)
+3. [Parent, Child & Junction Table](#3-parent-child--junction-table)
+4. [Property vs Entity](#4-property-vs-entity)
+
+
+<br>
+
 ## 1. How to Choose which controller?
 Don't ask:
 > "What is the first resource in the URL?"
@@ -124,7 +136,12 @@ Instead ask:
 > "What resource is the API operating on?"
 
 
+
+<br>
+
 ---
+
+<br>
 
 ### 4. Property vs Entity
 
@@ -175,3 +192,9 @@ Description
 ```
 
 and we need to manage those Status records:
+
+<br>
+
+---
+
+<br>
