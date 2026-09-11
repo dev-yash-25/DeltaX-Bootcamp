@@ -228,6 +228,8 @@ Incoming HTTP Request
 
 `[BindProperty]` enables model binding for a **public property inside a controller**.
 
+<br>
+
 ## Why We need `BindProperty`?
 
 Model binding is automatic. [BindProperty] is not required just because you're using model binding. 
@@ -261,7 +263,8 @@ Binding:
 JSON → country action parameter
 ```
 
----
+<br>
+
 
 ### 2. With `[BindProperty]` — Controller property
 
@@ -312,6 +315,7 @@ Country Country
 > [!tip]
 > For **Web API controllers**, prefer the **action parameter** approach in most cases. `[BindProperty]` is much more commonly useful in **Razor Pages**.
 
+<br>
 
 
 ### Purpose
