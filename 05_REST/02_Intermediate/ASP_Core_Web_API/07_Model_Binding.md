@@ -227,6 +227,92 @@ Incoming HTTP Request
 
 `[BindProperty]` enables model binding for a **public property inside a controller**.
 
+## Why We need `BindProperty`?
+
+Model binding is automatic. [BindProperty] is not required just because you're using model binding. 
+It is used when you specifically want binding to a controller/page property
+Instead of `Action Paramter` which is default.
+
+### 1. Without `[BindProperty]` — Action parameter
+
+```csharp
+public class CountriesController : ControllerBase
+{
+    [HttpPost]
+    public IActionResult AddCountry(Country country)
+    {
+        return Ok(country.Name);
+    }
+}
+```
+
+Request:
+
+```json
+{
+    "name": "India"
+}
+```
+
+Binding:
+
+```text
+JSON → country action parameter
+```
+
+---
+
+### 2. With `[BindProperty]` — Controller property
+
+```csharp
+public class CountriesController : ControllerBase
+{
+    [BindProperty]
+    public Country Country { get; set; }
+
+    [HttpPost]
+    public IActionResult AddCountry()
+    {
+        return Ok(Country.Name);
+    }
+}
+```
+
+Same request:
+
+```json
+{
+    "name": "India"
+}
+```
+
+Binding:
+
+```text
+JSON → Country controller property
+```
+
+### Key difference
+
+```text
+Action parameter:
+AddCountry(Country country)
+             ↑
+       data goes here
+
+
+Controller property:
+[BindProperty]
+Country Country
+       ↑
+ data goes here
+```
+
+> [!tip]
+> For **Web API controllers**, prefer the **action parameter** approach in most cases. `[BindProperty]` is much more commonly useful in **Razor Pages**.
+
+
+
 ### Purpose
 
 Incoming form-data can be mapped directly to a controller property instead of being received as an action parameter.
@@ -235,6 +321,7 @@ Incoming form-data can be mapped directly to a controller property instead of be
 [BindProperty]
 public Country country { get; set; }
 ```
+
 
 > [!Important]
 > `[BindProperty]` works with **form-data**.
