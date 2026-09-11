@@ -627,6 +627,9 @@ Example:
 
 > [!Important]
 > If you need to explicitly control the source of a value, use binding attributes such as `[FromQuery]`, `[FromRoute]`, `[FromBody]`, `[FromForm]`, or `[FromHeader]`.
+>
+> Means, when you decide, "The source should come from either Query only, or Body only etc, at a time, even if data is fed from different sources at a single time (Query + Route + Property)
+
 
 <br>
 
