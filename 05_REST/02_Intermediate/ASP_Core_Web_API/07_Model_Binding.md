@@ -6,6 +6,7 @@
 - [2. Data Sources for Model Binding](#2-data-sources-for-model-binding)
 - [3. Core Concept: Model Binder](#3-core-concept-model-binder)
 - [4. `[BindProperty]` Attribute](#4-bindproperty-attribute)
+   - [Why we Need BindProperty?](#why-we-need-bindproperty)
 - [5. `[BindProperties]` Attribute](#5-bindproperties-attribute)
 - [6. Default Model Binding Rules](#6-default-model-binding-rules)
 - [7. `[FromQuery]` Attribute](#7-fromquery-attribute)
