@@ -56,7 +56,9 @@ With DI:
 ```text
 Controller
    |
-   └── IProductRepository
+   └── IServiceCollection
+             ↑
+       IProductRepository
              ↑
        DI Container
              ↑
