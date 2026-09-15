@@ -30,8 +30,9 @@
 
 **Dependency Injection (DI)** is a design pattern used in ASP.NET Core to provide a class with the dependencies it needs instead of having the class create those dependencies itself.
 
-DI promotes:
+> Dependency Injection (DI) in C# is a design pattern where a class receives its required dependencies from an external source rather than creating them itself using the new keyword
 
+DI promotes:
 - **Loose coupling**
 - **Inversion of Control (IoC)**
 - Easier maintenance
