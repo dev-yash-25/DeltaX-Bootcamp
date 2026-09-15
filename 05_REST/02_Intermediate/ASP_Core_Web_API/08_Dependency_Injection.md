@@ -490,6 +490,18 @@ services.AddScoped<IProductRepository, ProductRepository>();
 > [!Important]
 > **Scoped = one instance per HTTP request**, not one instance per application.
 
+```csharp
+// Single HTTP Request -> Same scope, using same Instance
+[HttpPost("")]
+public IActionResult AddProduct([FromBody] Product product)
+{
+    _productRepository.AddProduct(product);  //Add using 1st instance
+    var products = _productRepository1.GetAllProducts(); // get using 2nd instance
+    // Works because both share single scoped repo instance
+
+    return Ok(products);
+}
+```
 
 <br>
 
