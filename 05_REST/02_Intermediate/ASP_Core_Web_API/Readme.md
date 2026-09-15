@@ -46,7 +46,7 @@ ASP.NET Core Web API
 │   ├─ FromHeader
 │   └─ Custom Model Binder
 │
-├── 7. Dependency Injection ............... 75–81
+├── 7. Dependency Injection ............... 75–81  IMP
 │   ├─ DI
 │   ├─ Services
 │   ├─ Singleton
@@ -54,7 +54,7 @@ ASP.NET Core Web API
 │   ├─ Transient
 │   └─ Service Resolution
 │
-├── 8. Entity Framework Core .............. 82–87
+├── 8. Entity Framework Core .............. 82–87    NIMP
 │   ├─ Real-world API setup
 │   ├─ EF Core
 │   ├─ DbContext
@@ -72,12 +72,12 @@ ASP.NET Core Web API
 │   ├─ Model Validation
 │   └─ AutoMapper
 │
-├── 11. Angular + Web API ................ 97–100
+├── 11. Angular + Web API ................ 97–100 NIMP
 │   ├─ Angular setup
 │   ├─ CORS
 │   └─ Consuming APIs
 │
-└── 12. Authentication & Security ........ 101–107
+└── 12. Authentication & Security ........ 101–107  IMP
     ├─ Identity Core
     ├─ Signup / Login
     ├─ Authorization
