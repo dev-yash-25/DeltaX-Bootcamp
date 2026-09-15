@@ -343,7 +343,7 @@ Example:
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddControllers();
-
+    //                        Service Type       Implementation
     services.AddSingleton<IProductRepository, ProductRepository>();
 }
 ```
