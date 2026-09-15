@@ -212,6 +212,15 @@ and then injecting a real or mock implementation.
 
 DI promotes **Inversion of Control (IoC)** and loose coupling.
 
+**IoC = Inversion of Control :**
+Instead of your class controlling/creating its dependencies, someone else controls that.
+
+### IoC vs DI
+
+These two are related but not exactly the same:
+> **IoC** = the principle — control of object creation/dependencies is inverted.\
+> **DI** = a technique used to achieve IoC — dependencies are provided to a class instead of the class creating them.
+
 Instead of:
 
 ```text
