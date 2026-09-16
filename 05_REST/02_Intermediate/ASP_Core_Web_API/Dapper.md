@@ -332,9 +332,8 @@ using var connection = new SqlConnection(connectionString);
 await connection.OpenAsync();
 ```
 
-[!Important]
-
-Dapper does not create the database connection for you. It operates on an ADO.NET connection such as `SqlConnection`.
+> [!Important]
+> Dapper does not create the database connection for you. It operates on an ADO.NET connection such as `SqlConnection`.
 
 
 <br>
