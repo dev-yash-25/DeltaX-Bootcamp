@@ -347,9 +347,8 @@ AutoMapper.Extensions.Microsoft.DependencyInjection
 
 This package allows AutoMapper to work with ASP.NET Core's Dependency Injection system.
 
-[!Note]
-
-AutoMapper itself can be used in .NET applications generally. The `AutoMapper.Extensions.Microsoft.DependencyInjection` package is specifically useful for ASP.NET Core DI integration.
+> [!Note]
+> AutoMapper itself can be used in .NET applications generally. The `AutoMapper.Extensions.Microsoft.DependencyInjection` package is specifically useful for ASP.NET Core DI integration.
 
 
 <br>
@@ -663,9 +662,8 @@ BookModel.Title
 
 The profile must define how these differently named properties correspond.
 
-[!Note]
-
-The tutorial emphasizes that matching property names are the easiest case. When names differ, configure the mapping explicitly in the mapping profile.
+> [!Note]
+> The tutorial emphasizes that matching property names are the easiest case. When names differ, configure the mapping explicitly in the mapping profile.
 
 
 <br>
