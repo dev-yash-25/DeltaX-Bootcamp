@@ -148,7 +148,7 @@ JWT works particularly well for APIs because the server can validate the
 signed token and establish the user's identity without maintaining a
 traditional server-side session for every access token.
 
-\[!Important\]
+> [!Important]
 
 JWT is **signed, not automatically encrypted**. Its payload is
 Base64URL-encoded and can normally be decoded. Never put passwords, API
@@ -496,7 +496,7 @@ Private → Sign
 Public  → Verify
 ```
 
-\[!Important\]
+> [!Important]
 
 The API should explicitly trust the algorithms/keys appropriate to its
 architecture. Do not blindly accept an incoming token's claimed
@@ -756,7 +756,7 @@ Who is this user?
 Is this user allowed?
 ```
 
-\[!Important\]
+> [!Important]
 
 `UseAuthentication()` must execute before `UseAuthorization()`.
 
@@ -920,7 +920,7 @@ public class AuthController : ControllerBase
 }
 ```
 
-\[!Important\]
+> [!Important]
 
 The hardcoded credentials are only a demonstration. Never store
 plaintext passwords in a real application. Use a proper
@@ -1257,7 +1257,7 @@ Example response:
 }
 ```
 
-\[!Important\]
+> [!Important]
 
 A refresh token is not simply an access JWT with a longer expiration.
 Production systems commonly treat refresh tokens as high-entropy
