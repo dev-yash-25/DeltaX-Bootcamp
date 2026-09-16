@@ -197,4 +197,14 @@ and we need to manage those Status records:
 
 ---
 
-<br>
+<br
+    
+
+### Using `_async()`
+- You don't use async on every method in an ASP.NET Core application.
+
+- You generally use async when the method is performing an asynchronous operation, especially I/O such as `database calls`, `HTTP calls`, or `file operations`.
+
+> CPU-only/simple calculation → synchronous is often fine.
+
+> Waiting for DB/API/file/network → async is usually preferred.
