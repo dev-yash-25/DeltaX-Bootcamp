@@ -403,11 +403,9 @@ Simple and efficient.
 Every party that verifies tokens needs access to the same secret.
 
 
-<br>
-
----
 
 <br>
+
 
 
 ## 5.2 RS256
@@ -441,11 +439,10 @@ Useful when a centralized issuer signs tokens and multiple services need
 to verify them without receiving the private signing key.
 
 
-<br>
-
----
 
 <br>
+
+
 
 
 ## 5.3 ES256
@@ -464,11 +461,9 @@ Public Key  → Verify
 It provides strong public-key cryptography with relatively compact keys.
 
 
-<br>
-
----
 
 <br>
+
 
 
 ## 5.4 Algorithm Comparison
@@ -582,11 +577,10 @@ Microsoft.AspNetCore.Authentication.JwtBearer
 This adds JWT Bearer authentication support.
 
 
-<br>
-
----
 
 <br>
+
+
 
 
 ## 7.2 `appsettings.json`
@@ -606,11 +600,9 @@ For production, keep real secrets in an appropriate secret-management
 mechanism rather than committing them to source control.
 
 
-<br>
-
----
 
 <br>
+
 
 
 ## 7.3 `Startup.cs`
@@ -703,10 +695,6 @@ This example removes the normal clock-skew allowance.
 
 <br>
 
----
-
-<br>
-
 
 ## 7.4 Middleware Order
 
@@ -779,11 +767,9 @@ public class LoginModel
 ```
 
 
-<br>
-
----
 
 <br>
+
 
 
 ## 8.2 Token Generation
@@ -864,11 +850,9 @@ JWT string
 ```
 
 
-<br>
-
----
 
 <br>
+
 
 
 ## 8.3 Login Endpoint
@@ -958,9 +942,6 @@ Controller executes
 
 <br>
 
----
-
-<br>
 
 
 ## 9.2 `[AllowAnonymous]`
@@ -981,9 +962,6 @@ public IActionResult Login(LoginModel model)
 Otherwise the client could not obtain its first token.
 
 
-<br>
-
----
 
 <br>
 
@@ -1043,9 +1021,6 @@ Admin endpoint
 
 <br>
 
----
-
-<br>
 
 
 ## 9.4 Claims & Policies
