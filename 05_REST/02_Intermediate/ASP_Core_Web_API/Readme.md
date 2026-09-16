@@ -72,7 +72,7 @@ ASP.NET Core Web API
 │   ├─ Model Validation
 │   └─ AutoMapper
 │
-├── 11. Angular + Web API ................ 97–100 NIMP
+├── 11. Angular + Web API ................ 97–100 NIMP (SKIP)
 │   ├─ Angular setup
 │   ├─ CORS
 │   └─ Consuming APIs
@@ -83,4 +83,4 @@ ASP.NET Core Web API
     ├─ Authorization
     ├─ JWT
     └─ Securing APIs
-    ```
+```
