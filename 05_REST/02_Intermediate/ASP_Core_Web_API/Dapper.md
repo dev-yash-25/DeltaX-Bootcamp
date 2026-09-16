@@ -563,9 +563,8 @@ T result = await connection.ExecuteScalarAsync<T>(
 );
 ```
 
-[!Note]
-
-`ExecuteScalar` is for the first column of the first row of the result.
+> [!Note]
+> `ExecuteScalar` is for the first column of the first row of the result.
 
 
 <br>
@@ -826,9 +825,8 @@ var books = multi.Read<Book>().ToList();
 var authors = multi.Read<Author>().ToList();
 ```
 
-[!Important]
-
-The order of `Read<T>()` calls must match the order of result sets returned by SQL.
+> [!Important]
+> The order of `Read<T>()` calls must match the order of result sets returned by SQL.
 
 
 <br>
@@ -1435,9 +1433,8 @@ var books = await connection.QueryAsync<Book>(
 
 Dapper expands the parameter list appropriately for the query.
 
-[!Important]
-
-Do not construct an `IN` clause by concatenating untrusted strings.
+> [!Important]
+> Do not construct an `IN` clause by concatenating untrusted strings.
 
 
 <br>
@@ -1473,9 +1470,8 @@ var books = await connection.QueryAsync<Book>(
 
 Dapper sends the value as a parameter instead of treating it as SQL syntax.
 
-[!Important]
-
-**Do not confuse parameterization with string interpolation.**
+> [!Important]
+> **Do not confuse parameterization with string interpolation.**
 
 Avoid:
 
@@ -1557,9 +1553,8 @@ Rows consumed as enumerated
 
 Useful for very large result sets where you want streaming behavior.
 
-[!Important]
-
-With unbuffered queries, the connection and reader remain important while enumeration is in progress. Do not dispose the connection before finishing enumeration.
+> [!Important]
+> With unbuffered queries, the connection and reader remain important while enumeration is in progress. Do not dispose the connection before finishing enumeration.
 
 
 <br>
@@ -1846,9 +1841,8 @@ DynamicParameters
 C#
 ```
 
-[!Important]
-
-Read the output parameter **after** the command has executed.
+> [!Important]
+> Read the output parameter **after** the command has executed.
 
 
 <br>
@@ -1935,9 +1929,8 @@ Stored Procedure
 SQL Server
 ```
 
-[!Note]
-
-TVPs are SQL Server-specific functionality; the exact API depends on the database provider and Dapper/provider support.
+> [!Note]
+> TVPs are SQL Server-specific functionality; the exact API depends on the database provider and Dapper/provider support.
 
 
 <br>
@@ -2122,9 +2115,8 @@ catch
 }
 ```
 
-[!Important]
-
-Every database operation that should participate in the transaction must receive the same transaction object:
+> [!Important]
+> Every database operation that should participate in the transaction must receive the same transaction object:
 
 ```csharp
 transaction: transaction
