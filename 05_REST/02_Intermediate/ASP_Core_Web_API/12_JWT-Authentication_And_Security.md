@@ -149,8 +149,7 @@ signed token and establish the user's identity without maintaining a
 traditional server-side session for every access token.
 
 > [!Important]
-
-JWT is **signed, not automatically encrypted**. Its payload is
+> JWT is **signed, not automatically encrypted**. Its payload is
 Base64URL-encoded and can normally be decoded. Never put passwords, API
 secrets, or other confidential data into a normal JWT payload.
 
@@ -497,8 +496,7 @@ Public  → Verify
 ```
 
 > [!Important]
-
-The API should explicitly trust the algorithms/keys appropriate to its
+> The API should explicitly trust the algorithms/keys appropriate to its
 architecture. Do not blindly accept an incoming token's claimed
 algorithm.
 
@@ -757,8 +755,7 @@ Is this user allowed?
 ```
 
 > [!Important]
-
-`UseAuthentication()` must execute before `UseAuthorization()`.
+> `UseAuthentication()` must execute before `UseAuthorization()`.
 
 
 <br>
@@ -921,8 +918,7 @@ public class AuthController : ControllerBase
 ```
 
 > [!Important]
-
-The hardcoded credentials are only a demonstration. Never store
+> The hardcoded credentials are only a demonstration. Never store
 plaintext passwords in a real application. Use a proper
 password-hashing/identity system.
 
@@ -1258,8 +1254,7 @@ Example response:
 ```
 
 > [!Important]
-
-A refresh token is not simply an access JWT with a longer expiration.
+> A refresh token is not simply an access JWT with a longer expiration.
 Production systems commonly treat refresh tokens as high-entropy
 credentials and handle expiration, revocation, rotation, secure storage
 and reuse detection.
