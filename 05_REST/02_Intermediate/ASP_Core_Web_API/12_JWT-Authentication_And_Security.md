@@ -1,4 +1,4 @@
-# JWT & Authentication in ASP.NET Core 5.0 Web API
+# JWT & Authentication in ASP.NET Core 5
 
 ## Index
 
