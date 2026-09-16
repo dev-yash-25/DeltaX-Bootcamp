@@ -107,7 +107,7 @@ public string Title { get; set; }
 
 If `Title` is missing/invalid according to the validation rules, model validation fails.
 
----
+<br>
 
 #### `[StringLength]`
 
@@ -125,7 +125,7 @@ It can also specify both minimum and maximum lengths.
 public string Title { get; set; }
 ```
 
----
+<br>
 
 #### `[EmailAddress]`
 
@@ -136,7 +136,7 @@ Validates that the value follows an email-address format.
 public string Email { get; set; }
 ```
 
----
+<br>
 
 #### `[RegularExpression]`
 
@@ -276,6 +276,7 @@ Custom messages make validation responses more meaningful to API consumers.
 
 <br>
 
+---
 ---
 
 <br>
@@ -884,3 +885,11 @@ Destination Model
       ↓
 API Response
 ```
+
+
+<br>
+
+---
+---
+
+<br>
