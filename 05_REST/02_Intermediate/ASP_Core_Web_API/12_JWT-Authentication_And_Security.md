@@ -280,15 +280,15 @@ A **claim** is a statement/information about the token subject.
 
 ### Registered JWT claims
 
-  Claim   Meaning
-  ------- -----------------
-  `iss`   Issuer
-  `sub`   Subject
-  `aud`   Audience
-  `exp`   Expiration time
-  `nbf`   Not before
-  `iat`   Issued at
-  `jti`   JWT ID
+| Claim | Meaning |
+|---|---|
+| `iss` | Issuer |
+| `sub` | Subject |
+| `aud` | Audience |
+| `exp` | Expiration time |
+| `nbf` | Not before |
+| `iat` | Issued at |
+| `jti` | JWT ID |
 
 Example:
 
@@ -468,11 +468,11 @@ It provides strong public-key cryptography with relatively compact keys.
 
 ## 5.4 Algorithm Comparison
 
-  Algorithm   Type         Sign            Verify
-  ----------- ------------ --------------- --------------------
-  HS256       Symmetric    Shared secret   Same shared secret
-  RS256       Asymmetric   Private key     Public key
-  ES256       Asymmetric   Private key     Public key
+| Algorithm | Type       | Sign         | Verify             |
+|-----------|------------|--------------|--------------------|
+| HS256     | Symmetric  | Shared secret | Same shared secret |
+| RS256     | Asymmetric | Private key   | Public key         |
+| ES256     | Asymmetric | Private key   | Public key         |
 
 ### Mental model
 
@@ -1570,31 +1570,30 @@ public class BooksController : ControllerBase
 
 
 # 15. JWT Cheat Sheet
-
-  Concept                          Remember
-  -------------------------------- -------------------------------------------------
-  JWT                              JSON Web Token
-  Structure                        Header.Payload.Signature
-  Header                           Algorithm + token metadata
-  Payload                          Claims
-  Signature                        Integrity/authenticity
-  HS256                            Shared secret
-  RS256                            Private sign / public verify
-  ES256                            Private sign / public verify
-  Bearer header                    `Authorization: Bearer <token>`
-  ASP.NET package                  `Microsoft.AspNetCore.Authentication.JwtBearer`
-  Protect endpoint                 `[Authorize]`
-  Public endpoint                  `[AllowAnonymous]`
-  Role authorization               `[Authorize(Roles = "Admin")]`
-  Policy authorization             `[Authorize(Policy = "...")]`
-  Authentication middleware        `UseAuthentication()`
-  Authorization middleware         `UseAuthorization()`
-  Missing/invalid authentication   `401`
-  Authenticated but forbidden      `403`
-  Token lifetime                   `exp`
-  Issuer                           `iss`
-  Audience                         `aud`
-  Subject                          `sub`
+| Concept | Remember |
+|---|---|
+| JWT | JSON Web Token |
+| Structure | Header.Payload.Signature |
+| Header | Algorithm + token metadata |
+| Payload | Claims |
+| Signature | Integrity/authenticity |
+| HS256 | Shared secret |
+| RS256 | Private sign / public verify |
+| ES256 | Private sign / public verify |
+| Bearer header | `Authorization: Bearer <token>` |
+| ASP.NET package | `Microsoft.AspNetCore.Authentication.JwtBearer` |
+| Protect endpoint | `[Authorize]` |
+| Public endpoint | `[AllowAnonymous]` |
+| Role authorization | `[Authorize(Roles = "Admin")]` |
+| Policy authorization | `[Authorize(Policy = "...")]` |
+| Authentication middleware | `UseAuthentication()` |
+| Authorization middleware | `UseAuthorization()` |
+| Missing/invalid authentication | `401` |
+| Authenticated but forbidden | `403` |
+| Token lifetime | `exp` |
+| Issuer | `iss` |
+| Audience | `aud` |
+| Subject | `sub` |
 
 
 <br>
