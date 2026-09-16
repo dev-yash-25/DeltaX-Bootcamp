@@ -471,9 +471,9 @@ BookModel ────→ Book
 
 So the same mapping configuration can be used for both entity-to-model and model-to-entity conversion.
 
-[!Important]
-
-`ReverseMap()` is useful when the application needs to map in both directions.
+> [!Important]
+>
+> `ReverseMap()` is useful when the application needs to map in both directions.
 
 
 <br>
