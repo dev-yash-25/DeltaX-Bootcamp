@@ -192,7 +192,7 @@ JWT
  └── Signature
 ```
 
-`<br>`{=html}
+<br>
 
 ## 3.1 Header
 
@@ -209,7 +209,7 @@ Contains token metadata.
 
 `typ` identifies the token type.
 
-`<br>`{=html}
+<br>
 
 ## 3.2 Payload
 
@@ -226,7 +226,7 @@ Contains **claims**.
 
 The payload is not secret simply because it is inside the JWT.
 
-`<br>`{=html}
+<br>
 
 ## 3.3 Signature
 
@@ -353,7 +353,7 @@ RS256
 ES256
 ```
 
-`<br>`{=html}
+<br>
 
 ## 5.1 HS256
 
@@ -1214,7 +1214,7 @@ Expired
 The exact lifetime should depend on the application's security and UX
 requirements.
 
-`<br>`{=html}
+<br>
 
 ## Refresh tokens
 
@@ -1395,7 +1395,7 @@ Check:
 Authorization: Bearer <token>
 ```
 
-`<br>`{=html}
+<br>
 
 ## `403 Forbidden`
 
@@ -1415,7 +1415,7 @@ BUT
 Role ≠ Admin
 ```
 
-`<br>`{=html}
+<br>
 
 ## Signature validation failed
 
@@ -1428,7 +1428,7 @@ Different algorithm
 Configuration mismatch
 ```
 
-`<br>`{=html}
+<br>
 
 ## Role authorization not working
 
@@ -1447,7 +1447,7 @@ and:
 [Authorize(Roles = "Admin")]
 ```
 
-`<br>`{=html}
+<br>
 
 ## `User.Claims` unexpected/empty
 
@@ -1492,7 +1492,7 @@ Claim mapping/configuration
 }
 ```
 
-`<br>`{=html}
+<br>
 
 ## `Startup.cs`
 
@@ -1539,7 +1539,7 @@ public void ConfigureServices(
 }
 ```
 
-`<br>`{=html}
+<br>
 
 ## `Configure()`
 
@@ -1561,7 +1561,7 @@ public void Configure(
 }
 ```
 
-`<br>`{=html}
+<br>
 
 ## Protected Controller
 
