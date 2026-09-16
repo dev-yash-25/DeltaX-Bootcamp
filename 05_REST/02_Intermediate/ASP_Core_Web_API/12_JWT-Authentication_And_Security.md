@@ -47,12 +47,7 @@
 
 # 1. Authentication & Authorization
 
-<br>
-<div align = "center">
-  <img width="700" alt="image" src="https://github.com/user-attachments/assets/47f70ea2-a481-49aa-a33a-ddc10ed4bb91" />
-  <img width="650" alt="image" src="https://github.com/user-attachments/assets/91883c29-3a21-431b-acc8-1d2a95eed05c" />
-</div>
-<br>
+
 
 ### Authentication
 
@@ -113,6 +108,18 @@ A JWT is a compact, URL-safe token format used to transmit claims
 between parties. In Web APIs, it is commonly used as a **bearer access
 token**.
 
+<br>
+<table>
+  <tr>
+    <td align="center">
+      <img width="700" alt="image" src="https://github.com/user-attachments/assets/47f70ea2-a481-49aa-a33a-ddc10ed4bb91" />
+    </td>
+    <td align="center">
+      <img width="650" alt="image" src="https://github.com/user-attachments/assets/91883c29-3a21-431b-acc8-1d2a95eed05c" />
+    </td>
+  </tr>
+</table>
+<br>
 Typical flow:
 
 ``` text
