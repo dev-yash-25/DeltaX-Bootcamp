@@ -8,6 +8,7 @@
 2. [Choosing Route vs Query Parameter](#2-choosing-route-vs-query-parameter)
 3. [Parent, Child & Junction Table](#3-parent-child--junction-table)
 4. [Property vs Entity](#4-property-vs-entity)
+5. [Using `_async`](#using-_async)
 
 
 <br>
@@ -197,10 +198,11 @@ and we need to manage those Status records:
 
 ---
 
-<br
+<br>
     
 
 ### Using `_async()`
+
 - You don't use async on every method in an ASP.NET Core application.
 
 - You generally use async when the method is performing an asynchronous operation, especially I/O such as `database calls`, `HTTP calls`, or `file operations`.
