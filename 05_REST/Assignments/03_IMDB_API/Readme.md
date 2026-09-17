@@ -9,6 +9,24 @@
 
 
 Skip very lasts, ask this to GPT
+```
+In order to ensure isolation (like of transaction) we create scoped instances 
+transient for very small utiility changes like calcu, date
+
+IMP
+
+How many instance created per req, 
+
+Give examples for each, 
+what if this instance was singleton/scoped/transient
+
+Lets go in depth!
+
+What is scope here, is it a session..
+
+frame all these questions first..give ..in sequence 
+, before i ask u to explain each
+```
 <pre>
 
 Yes. Let's structure **DI Lifetimes in ASP.NET Core** as a sequence of questions, from basic mental model → request lifecycle → each lifetime → real scenarios → mistakes.
