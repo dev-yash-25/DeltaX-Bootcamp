@@ -5,7 +5,7 @@
     services.AddAutoMapper(typeof(MappingProfile));
     ```
     **This tells ASP.NET Core:** "Add AutoMapper to the application's Dependency Injection container, and load the mappings from MappingProfile."
-
+3. We dont generally use Validations, `try catch` inside  `Controllers`, but we can use it intensionally, when we not have error handling inside middlewares and services, and we want to catch inside `Controller`
 
 
 Skip very lasts, ask this to GPT
