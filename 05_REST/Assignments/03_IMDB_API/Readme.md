@@ -1,6 +1,6 @@
 ## Points to Remember
 
-### 1. Update Id
+### 1.Do we Update Id?
 We do not have Id in a Request, Id is added at backend. 
 For update:
 ```csharp
@@ -11,7 +11,7 @@ Here, We dont pass Id in request object, because we dont have `Update(id)` featu
 <br>
 
 
-### 2. DI Registration
+### 2. Service Registration = Adding to DI Container
 Registering a service in Startup.cs means adding its registration to ASP.NET Core's Dependency Injection (DI) container.\
 Example :-
 ```csharp
@@ -22,7 +22,7 @@ services.AddAutoMapper(typeof(MappingProfile));
 <br>
 
 
-### 3. Validation / try-catch in Controlle
+### 3. Shall we have Validation / try-catch in Controller?
 We generally keep **validation** and **exception handling** out of Controllers. However, a Controller can intentionally use `try-catch` when global exception-handling middleware is not implemented and we want to handle specific exceptions there.
 ```csharp
 // Create Actor
