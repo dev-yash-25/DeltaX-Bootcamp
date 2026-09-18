@@ -26,6 +26,10 @@
     }
     ```
 4. **R** - Get Methods `Get()`, `Get(id)` return `Response`, and perform Mapping, Other methods **C,U,D** - Add(), Update(), Delete() accept request and perform operation
+5. Think while coding, what each layer returns to the Connected layer, like
+    - Service Gets `EntityRequest` from Controller, and returns `Entity` to Repository
+    - Service Adds `EntityResponse` from Controller, and returns `Entity` to Repository
+    - Repository Adds `Entity` to the List/DB
 
 Skip very lasts, ask this to GPT
 ```
