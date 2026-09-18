@@ -23,25 +23,25 @@ services.AddAutoMapper(typeof(MappingProfile));
 
 ### 3. Validation / try-catch in Controlle
 We generally keep **validation** and **exception handling** out of Controllers. However, a Controller can intentionally use `try-catch` when global exception-handling middleware is not implemented and we want to handle specific exceptions there.
-    ```csharp
-    // Create Actor
-    [HttpPost]
-    public IActionResult Add([FromBody]ActorRequest request)
+```csharp
+// Create Actor
+[HttpPost]
+public IActionResult Add([FromBody]ActorRequest request)
+{
+    try
     {
-        try
-        {
-            int id = _actorService.Add(request);
-            return CreatedAtAction(
-                nameof(Get), 
-                new { id = id }, 
-                request);
-        }
-        catch (ArgumentException ex)
-        {
-           return BadRequest(ex.Message);
-        }
+        int id = _actorService.Add(request);
+        return CreatedAtAction(
+            nameof(Get), 
+            new { id = id }, 
+            request);
     }
-    ```
+    catch (ArgumentException ex)
+    {
+       return BadRequest(ex.Message);
+    }
+}
+```
 
 <br>
 
