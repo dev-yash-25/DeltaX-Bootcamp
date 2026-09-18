@@ -1,11 +1,12 @@
 ## Points to Remember
 
 ### 1. Update Id
-We do not have Id in ActorRequest. For update:
+We do not have Id in a Request, Id is added at backend. 
+For update:
 ```csharp
 Update(int id, ActorRequest request);
 ```
-we dont pass Id in request object, but we require a Id for update, so we pass id as a parameter through update() method
+Here, We dont pass Id in request object, because we dont have `Update(id)` feature here, but we require a Id for update, so we pass id as a parameter through update() method
 
 <br>
 
