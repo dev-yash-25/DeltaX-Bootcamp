@@ -25,6 +25,7 @@
         }
     }
     ```
+4. **R** - Get Methods `Get()`, `Get(id)` return `Response`, and perform Mapping, Other methods **C,U,D** - Add(), Update(), Delete() accept request and perform operation
 
 Skip very lasts, ask this to GPT
 ```
