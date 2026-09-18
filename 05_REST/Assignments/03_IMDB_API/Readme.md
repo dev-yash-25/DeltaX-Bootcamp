@@ -1,11 +1,28 @@
-1. We are not having `Update Id` feature, and also remember we dont pass Id in request object, but we require a Id for update, so we pass id as a parameter through update() method
-2.  Registering a service in Startup.cs means adding its registration to ASP.NET Core's Dependency Injection (DI) container.\
-    Example :-
-    ```csharp
-    services.AddAutoMapper(typeof(MappingProfile));
-    ```
-    **This tells ASP.NET Core:** "Add AutoMapper to the application's Dependency Injection container, and load the mappings from MappingProfile."
-3. We dont generally use Validations, `try catch` inside  `Controllers`, but we can use it intensionally, when we not have error handling inside middlewares and services, and we want to catch inside `Controller`
+## Points to Remember
+
+### 1. Update Id
+We do not have Id in ActorRequest. For update:
+```csharp
+Update(int id, ActorRequest request);
+```
+we dont pass Id in request object, but we require a Id for update, so we pass id as a parameter through update() method
+
+<br>
+
+
+### 2. DI Registration
+Registering a service in Startup.cs means adding its registration to ASP.NET Core's Dependency Injection (DI) container.\
+Example :-
+```csharp
+services.AddAutoMapper(typeof(MappingProfile));
+```
+**This tells ASP.NET Core:** "Add AutoMapper to the application's Dependency Injection container, and load the mappings from MappingProfile."
+
+<br>
+
+
+### 3. Validation / try-catch in Controlle
+We generally keep **validation** and **exception handling** out of Controllers. However, a Controller can intentionally use `try-catch` when global exception-handling middleware is not implemented and we want to handle specific exceptions there.
     ```csharp
     // Create Actor
     [HttpPost]
@@ -25,11 +42,91 @@
         }
     }
     ```
-4. **R** - Get Methods `Get()`, `Get(id)` return `Response`, and perform Mapping, Other methods **C,U,D** - Add(), Update(), Delete() accept request and perform operation
-5. Think while coding, what each layer returns to the Connected layer, like
-    - Service Gets `EntityRequest` from Controller, and returns `Entity` to Repository
-    - Service Adds `EntityResponse` from Controller, and returns `Entity` to Repository
-    - Repository Adds `Entity` to the List/DB
+
+<br>
+
+
+
+### 4. R vs C/U/D
+**R** — Get(), Get(id) return Response(s) and involve mapping.\
+**C/U/D** — Add(), Update(), Delete() perform Create/Update/Delete operations.\
+**Add() and Update()** accept a Request; Delete() only needs the id.
+
+
+<br>
+
+
+### 5. Think while coding — what each layer returns to the connected layer
+
+#### For `Get()` / `Get(id)` — **R (Read)**
+
+```text
+Client
+  ↓
+Controller
+  ↓
+Service
+  ↓
+Repository
+  ↓
+DB / List
+```
+
+* **Repository**
+  * Gets `Entity / Entities` from the DB/List.
+  * Returns them to the Service.
+
+* **Service**
+  * Gets `Entity / Entities` from Repository.
+  * Performs business/input validation and entity-existence checks.
+  * Maps `Entity → Response`.
+  * Returns `Response / IEnumerable<Response>` to Controller.
+
+* **Controller**
+  * Gets the `Response` from Service.
+  * Returns it to Client with the appropriate HTTP status code.
+
+
+#### For `Add()` / `Update()` / `Delete()` — **C / U / D**
+
+##### `Add()`
+
+```text
+Client
+  ↓ Request + Body
+Controller
+  ↓ Request
+Service
+  ↓ Entity
+Repository
+  ↓
+DB / List
+```
+
+* **Controller**
+  * Receives `Request` from Client.
+  * Passes it to Service.
+  * Returns the appropriate HTTP status code.
+
+* **Service**
+  * Receives `Request`.
+  * Validates it.
+  * Maps `Request → Entity`.
+  * Sends Entity to Repository.
+  * Receives the result if needed, e.g. generated `Id`.
+
+* **Repository**
+  * Receives `Entity`.
+  * Performs the data operation on DB/List.
+  * Returns the result required by Service, e.g. `Id`.
+
+
+<br>
+
+
+<br>
+
+
 
 Skip very lasts, ask this to GPT
 ```
