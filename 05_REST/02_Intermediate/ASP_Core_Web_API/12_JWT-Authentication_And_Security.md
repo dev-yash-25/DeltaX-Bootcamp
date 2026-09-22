@@ -4,59 +4,59 @@
 
 ```
 
-                                                                                    LOGIN
-                                                                                      │
-                                                                                      ▼
-                                                                             Email + Password
-                                                                                      │
-                                                                                      ▼
-                                                                              Check User in DB
-                                                                                      │
-                                                                                Credentials OK
-                                                                                      │
-                                                                                      ▼
-                                                                              Create JWT Token
-                                                                                      │
-                                                                          ┌───────────┴───────────┐
-                                                                          │                       │
-                                                                       Claims                 Configuration
-                                                                          │                       │
-                                                                     UserId = 1               Secret Key
-                                                                     Email = ...              Issuer
-                                                                                              Audience
-                                                                                              Expiry
-                                                                          │                       │
-                                                                          └───────────┬───────────┘
-                                                                                      ▼
-                                                                                 SIGN JWT
-                                                                                      │
-                                                                                      ▼
-                                                                              Return AccessToken
-                                                                                      │
-                                                                                      ▼
-                                                                                 CLIENT
-                                                                                      │
-                                                                                      │ Authorization:
-                                                                                      │ Bearer <token>
-                                                                                      ▼
-                                                                                ASP.NET API
-                                                                                      │
-                                                                                      ▼
-                                                                              JWT Middleware
-                                                                                      │
-                                                                             Validate signature
-                                                                             Validate issuer
-                                                                             Validate audience
-                                                                             Validate expiry
-                                                                                      │
-                                                                                      ▼
-                                                                                Authenticated
-                                                                                      │
-                                                                                      ▼
-                                                                                 Controller
-                                                                                      │
-                                                                                      ▼
-                                                                                  Service
+                                                                          LOGIN
+                                                                            │
+                                                                            ▼
+                                                                   Email + Password
+                                                                            │
+                                                                            ▼
+                                                                    Check User in DB
+                                                                            │
+                                                                      Credentials OK
+                                                                            │
+                                                                            ▼
+                                                                    Create JWT Token
+                                                                            │
+                                                                ┌───────────┴───────────┐
+                                                                │                       │
+                                                             Claims                 Configuration
+                                                                │                       │
+                                                           UserId = 1               Secret Key
+                                                           Email = ...              Issuer
+                                                                                    Audience
+                                                                                    Expiry
+                                                                │                       │
+                                                                └───────────┬───────────┘
+                                                                            ▼
+                                                                       SIGN JWT
+                                                                            │
+                                                                            ▼
+                                                                    Return AccessToken
+                                                                            │
+                                                                            ▼
+                                                                       CLIENT
+                                                                            │
+                                                                            │ Authorization:
+                                                                            │ Bearer <token>
+                                                                            ▼
+                                                                      ASP.NET API
+                                                                            │
+                                                                            ▼
+                                                                    JWT Middleware
+                                                                            │
+                                                                   Validate signature
+                                                                   Validate issuer
+                                                                   Validate audience
+                                                                   Validate expiry
+                                                                            │
+                                                                            ▼
+                                                                      Authenticated
+                                                                            │
+                                                                            ▼
+                                                                       Controller
+                                                                            │
+                                                                            ▼
+                                                                        Service
 
 ```
 
