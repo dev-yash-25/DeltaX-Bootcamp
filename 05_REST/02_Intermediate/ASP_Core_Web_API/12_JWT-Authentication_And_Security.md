@@ -978,6 +978,7 @@ password-hashing/identity system.
 
 ## 9.1 `[Authorize]`
 
+**Intercept** incoming requests and check the JWT
 ``` csharp
 [Authorize]
 [HttpGet]
