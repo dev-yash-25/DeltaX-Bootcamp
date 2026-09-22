@@ -1024,7 +1024,13 @@ Admin endpoint
 
 
 ## 9.4 Claims & Policies
+A claim is simply a **piece** of information about the **authenticated user/entity** contained in the **`token`**.
 
+For example:
+```
+User ID = 25
+Email = yash@gmail.com
+```
 Read a claim:
 
 ``` csharp
