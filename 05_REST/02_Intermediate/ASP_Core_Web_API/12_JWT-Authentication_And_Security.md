@@ -979,6 +979,11 @@ password-hashing/identity system.
 ## 9.1 `[Authorize]`
 
 **Intercept** incoming requests and check the JWT
+
+The difference between Middleware `app.UseAuthentication()` and `[Authorize]` is that
+- `[Authorize]` - Don't allow this endpoint unless the request has been authenticated.
+- `UseAuthentication()` - Examine the incoming request and figure out who the user is.
+
 ``` csharp
 [Authorize]
 [HttpGet]
