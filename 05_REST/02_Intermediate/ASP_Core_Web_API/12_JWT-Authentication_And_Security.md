@@ -984,6 +984,9 @@ The difference between Middleware `app.UseAuthentication()` and `[Authorize]` is
 - `[Authorize]` - Don't allow this endpoint unless the request has been authenticated.
 - `UseAuthentication()` - Examine the incoming request and figure out who the user is.
 
+> [!note]
+> if you don't put [Authorize] on an endpoint, it is generally accessible without authentication, assuming you haven't configured a global authorization policy.
+
 ``` csharp
 [Authorize]
 [HttpGet]
