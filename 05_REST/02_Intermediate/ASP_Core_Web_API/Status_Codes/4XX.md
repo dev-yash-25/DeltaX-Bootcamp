@@ -43,8 +43,9 @@
 12. [Final Memory Trick](#final-memory-trick)
 
 
-Important
-400, 401, 403, 404, 505, 409
+**Important**
+400, 401, 403, 404, 405, 409
+
 <br>
 
 ---
