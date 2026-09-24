@@ -336,7 +336,7 @@ Encoding ≠ Encryption ≠ Signing
 
 # 4. JWT Claims
 
-A **claim** is a statement/information about the token subject.
+A **claim** is a statement/ piece of information about the authenticated user.
 
 **Email and password are not claims.**
 
