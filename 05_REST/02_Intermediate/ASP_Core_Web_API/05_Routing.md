@@ -501,7 +501,8 @@ or:
 
 This is useful when an API needs to expose the same resource through more than one URL.
 
-> **Note:** Multiple routes can point to the same action, but different actions should not unintentionally produce the same route because that can create **route ambiguity**.
+> [!Note]
+> You can have multiple routes for one action method, but not multiple action methods with the same HTTP method and the same route.
 
 <br>
 
