@@ -1,5 +1,159 @@
 # WIth and Without DI
 
+For a **completely tight-coupled Actor chain with no DI**, make only these changes:
+
+### 1. `ActorsController`
+
+```csharp
+private readonly ActorService _actorService;
+
+public ActorsController()
+{
+    _actorService = new ActorService();
+}
+```
+
+No constructor injection.
+
+---
+
+### 2. `ActorService`
+
+```csharp
+public class ActorService
+{
+    private readonly ActorRepository _actorRepository;
+
+    public ActorService()
+    {
+        _actorRepository = new ActorRepository();
+    }
+}
+```
+
+No `IActorService`, no injected `IActorRepository`.
+
+---
+
+### 3. `ActorRepository`
+
+```csharp
+public class ActorRepository
+{
+    // existing List and methods
+}
+```
+
+No DI/interface required.
+
+---
+
+### 4. Remove Actor registrations from `Startup.cs`
+
+Remove:
+
+```csharp
+services.AddSingleton<IActorRepository, ActorRepository>();
+services.AddScoped<IActorService, ActorService>();
+```
+
+---
+
+### 5. Remove AutoMapper from `ActorService`
+
+Remove:
+
+```csharp
+private readonly IMapper _mapper;
+```
+
+and don't inject `IMapper`.
+
+Replace mapping manually.
+
+**Request → Entity:**
+
+```csharp
+var actor = new Actor
+{
+    Name = request.Name,
+    Bio = request.Bio,
+    DateOfBirth = request.DateOfBirth,
+    Gender = request.Gender
+};
+```
+
+**Entity → Response:**
+
+```csharp
+var response = new ActorResponse
+{
+    Id = actor.Id,
+    Name = actor.Name,
+    Bio = actor.Bio,
+    DateOfBirth = actor.DateOfBirth,
+    Gender = actor.Gender
+};
+```
+
+---
+
+### Final structure
+
+```text
+ActorsController
+      │
+      │ new ActorService()
+      ↓
+ActorService
+      │
+      │ new ActorRepository()
+      ↓
+ActorRepository
+```
+
+So the key difference is:
+
+**DI version:**
+
+```csharp
+public ActorService(IActorRepository repo)
+```
+
+**No-DI version:**
+
+```csharp
+public ActorService()
+{
+    _actorRepository = new ActorRepository();
+}
+```
+
+And similarly:
+
+**DI Controller:**
+
+```csharp
+public ActorsController(IActorService service)
+```
+
+**No-DI Controller:**
+
+```csharp
+public ActorsController()
+{
+    _actorService = new ActorService();
+}
+```
+
+
+
+<br>
+
+---
+
+<br>
+
 ## Q1. Will the application run and perform HTTP operations?
 
 **Not necessarily with your current fake `List<Actor>` repository.**
