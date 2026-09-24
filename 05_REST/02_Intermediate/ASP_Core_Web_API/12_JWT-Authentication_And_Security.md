@@ -338,6 +338,55 @@ Encoding ≠ Encryption ≠ Signing
 
 A **claim** is a statement/information about the token subject.
 
+**Email and password are not claims.**
+
+The flow is:
+
+```text
+1. User sends credentials
+   ↓
+   email + password
+   ↓
+2. Server verifies them
+   ↓
+3. Server creates JWT
+   ↓
+4. JWT contains claims
+```
+
+For example, the login request:
+
+```json
+{
+  "email": "yash@example.com",
+  "password": "123456"
+}
+```
+
+These are simply **credentials**.
+
+After verification, your server might create claims such as:
+
+```text
+sub  = 34
+email = yash@example.com
+role = Admin
+iss  = MyAuthServer
+aud  = IMDB_API
+exp  = ...
+```
+
+These are **claims** — statements about the authenticated user/token.
+
+So remember:
+
+> **Credentials → used to prove who you are.**
+> **Claims → information the server puts into the JWT after authentication.**
+
+> [!Critical]
+> Importantly, **the password should normally NOT be put into the JWT as a claim.**
+
+
 ### Registered JWT claims
 
 | Claim | Meaning |
