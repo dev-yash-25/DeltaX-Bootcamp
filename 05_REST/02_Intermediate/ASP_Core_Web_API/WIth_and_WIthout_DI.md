@@ -1,126 +1,49 @@
 # WIth and Without DI
 
-For a **completely tight-coupled Actor chain with no DI**, make only these changes:
 
-### 1. `ActorsController`
+```text
+Controller → IActorService
+               ↓
+          new ActorService()
+               ↓
+        IActorRepository
+               ↓
+       new ActorRepository()
+```
+
+The key point: **interfaces remain, but objects are manually created with `new` instead of being injected by ASP.NET Core.**
+
+### 1. `ActorRepository`
 
 ```csharp
-private readonly ActorService _actorService;
-
-public ActorsController()
+public class ActorRepository : IActorRepository
 {
-    _actorService = new ActorService();
+    // existing implementation
 }
 ```
 
-No constructor injection.
+No change to the methods.
 
 ---
 
 ### 2. `ActorService`
 
-```csharp
-public class ActorService
-{
-    private readonly ActorRepository _actorRepository;
+Keep the interface dependency:
 
-    public ActorService()
-    {
-        _actorRepository = new ActorRepository();
-    }
+```csharp
+private readonly IActorRepository _actorRepository;
+```
+
+But instead of constructor injection:
+
+```csharp
+public ActorService(IActorRepository actorRepository)
+{
+    _actorRepository = actorRepository;
 }
 ```
 
-No `IActorService`, no injected `IActorRepository`.
-
----
-
-### 3. `ActorRepository`
-
-```csharp
-public class ActorRepository
-{
-    // existing List and methods
-}
-```
-
-No DI/interface required.
-
----
-
-### 4. Remove Actor registrations from `Startup.cs`
-
-Remove:
-
-```csharp
-services.AddSingleton<IActorRepository, ActorRepository>();
-services.AddScoped<IActorService, ActorService>();
-```
-
----
-
-### 5. Remove AutoMapper from `ActorService`
-
-Remove:
-
-```csharp
-private readonly IMapper _mapper;
-```
-
-and don't inject `IMapper`.
-
-Replace mapping manually.
-
-**Request → Entity:**
-
-```csharp
-var actor = new Actor
-{
-    Name = request.Name,
-    Bio = request.Bio,
-    DateOfBirth = request.DateOfBirth,
-    Gender = request.Gender
-};
-```
-
-**Entity → Response:**
-
-```csharp
-var response = new ActorResponse
-{
-    Id = actor.Id,
-    Name = actor.Name,
-    Bio = actor.Bio,
-    DateOfBirth = actor.DateOfBirth,
-    Gender = actor.Gender
-};
-```
-
----
-
-### Final structure
-
-```text
-ActorsController
-      │
-      │ new ActorService()
-      ↓
-ActorService
-      │
-      │ new ActorRepository()
-      ↓
-ActorRepository
-```
-
-So the key difference is:
-
-**DI version:**
-
-```csharp
-public ActorService(IActorRepository repo)
-```
-
-**No-DI version:**
+use:
 
 ```csharp
 public ActorService()
@@ -129,15 +52,33 @@ public ActorService()
 }
 ```
 
-And similarly:
-
-**DI Controller:**
+So:
 
 ```csharp
-public ActorsController(IActorService service)
+public class ActorService : IActorService
+{
+    private readonly IActorRepository _actorRepository;
+
+    public ActorService()
+    {
+        _actorRepository = new ActorRepository();
+    }
+
+    // existing methods
+}
 ```
 
-**No-DI Controller:**
+---
+
+### 3. `ActorsController`
+
+Keep:
+
+```csharp
+private readonly IActorService _actorService;
+```
+
+But remove constructor injection:
 
 ```csharp
 public ActorsController()
@@ -146,6 +87,78 @@ public ActorsController()
 }
 ```
 
+So:
+
+```csharp
+public class ActorsController : ControllerBase
+{
+    private readonly IActorService _actorService;
+
+    public ActorsController()
+    {
+        _actorService = new ActorService();
+    }
+
+    // existing actions
+}
+```
+
+---
+
+### 4. `Startup.cs`
+
+Remove only the Actor registrations:
+
+```csharp
+// REMOVE
+services.AddSingleton<IActorRepository, ActorRepository>();
+services.AddScoped<IActorService, ActorService>();
+```
+
+Everything else stays.
+
+---
+
+### Result
+
+**With DI:**
+
+```csharp
+public ActorsController(IActorService actorService)
+```
+
+ASP.NET creates and supplies the service.
+
+**Without DI:**
+
+```csharp
+public ActorsController()
+{
+    _actorService = new ActorService();
+}
+```
+
+The controller creates the service itself.
+
+And inside:
+
+```csharp
+public ActorService()
+{
+    _actorRepository = new ActorRepository();
+}
+```
+
+The service creates the repository itself.
+
+### Important
+
+You **keep**:
+
+```csharp
+IActorService
+IActorRepository
+```
 
 
 <br>
