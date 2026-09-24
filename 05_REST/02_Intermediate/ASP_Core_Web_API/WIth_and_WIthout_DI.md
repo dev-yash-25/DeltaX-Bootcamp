@@ -1,6 +1,6 @@
 # WIth and Without DI
 
-## Implementation  (Lets try for implementing Tight coupling for Actor
+## Implementation  (Lets try for implementing Tight coupling for `Actor`)
 ```text
 Controller → IActorService
                ↓
