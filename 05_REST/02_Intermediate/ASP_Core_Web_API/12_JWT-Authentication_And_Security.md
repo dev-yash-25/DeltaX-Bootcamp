@@ -1,5 +1,44 @@
 # JWT & Authentication in ASP.NET Core 5
 
+
+
+## Index
+
+-   [1. Authentication & Authorization](#1-authentication--authorization)
+-   [2. What is JWT?](#2-what-is-jwt)
+-   [3. JWT Structure](#3-jwt-structure)
+    -   [3.1 Header](#31-header)
+    -   [3.2 Payload](#32-payload)
+    -   [3.3 Signature](#33-signature)
+-   [4. JWT Claims](#4-jwt-claims)
+-   [5. JWT Algorithms](#5-jwt-algorithms)
+    -   [5.1 HS256](#51-hs256)
+    -   [5.2 RS256](#52-rs256)
+    -   [5.3 ES256](#53-es256)
+    -   [5.4 Algorithm Comparison](#54-algorithm-comparison)
+-   [6. How JWT Authentication Works](#6-how-jwt-authentication-works)
+-   [7. JWT in ASP.NET Core 5.0](#7-jwt-in-aspnet-core-50)
+    -   [7.1 Package](#71-package)
+    -   [7.2 `appsettings.json`](#72-appsettingsjson)
+    -   [7.3 `Startup.cs`](#73-startupcs)
+    -   [7.4 Middleware Order](#74-middleware-order)
+-   [8. Generating a JWT](#8-generating-a-jwt)
+    -   [8.1 Login Model](#81-login-model)
+    -   [8.2 Token Generation](#82-token-generation)
+    -   [8.3 Login Endpoint](#83-login-endpoint)
+-   [9. Protecting APIs](#9-protecting-apis)
+    -   [9.1 `[Authorize]`](#91-authorize)
+    -   [9.2 `[AllowAnonymous]`](#92-allowanonymous)
+    -   [9.3 Roles](#93-roles)
+    -   [9.4 Claims & Policies](#94-claims--policies)
+-   [10. Postman Flow](#10-postman-flow)
+-   [11. Expiration & Refresh Tokens](#11-expiration--refresh-tokens)
+-   [12. JWT Security Rules](#12-jwt-security-rules)
+-   [13. Common Errors](#13-common-errors)
+-   [14. Complete JWT Template](#14-complete-jwt-template)
+-   [15. JWT Cheat Sheet](#15-jwt-cheat-sheet)
+-   [16. Final Mental Model](#16-final-mental-model)
+
 <br>
 
 ```
@@ -59,44 +98,6 @@
 ```
 
 <br>
-
-## Index
-
--   [1. Authentication & Authorization](#1-authentication--authorization)
--   [2. What is JWT?](#2-what-is-jwt)
--   [3. JWT Structure](#3-jwt-structure)
-    -   [3.1 Header](#31-header)
-    -   [3.2 Payload](#32-payload)
-    -   [3.3 Signature](#33-signature)
--   [4. JWT Claims](#4-jwt-claims)
--   [5. JWT Algorithms](#5-jwt-algorithms)
-    -   [5.1 HS256](#51-hs256)
-    -   [5.2 RS256](#52-rs256)
-    -   [5.3 ES256](#53-es256)
-    -   [5.4 Algorithm Comparison](#54-algorithm-comparison)
--   [6. How JWT Authentication Works](#6-how-jwt-authentication-works)
--   [7. JWT in ASP.NET Core 5.0](#7-jwt-in-aspnet-core-50)
-    -   [7.1 Package](#71-package)
-    -   [7.2 `appsettings.json`](#72-appsettingsjson)
-    -   [7.3 `Startup.cs`](#73-startupcs)
-    -   [7.4 Middleware Order](#74-middleware-order)
--   [8. Generating a JWT](#8-generating-a-jwt)
-    -   [8.1 Login Model](#81-login-model)
-    -   [8.2 Token Generation](#82-token-generation)
-    -   [8.3 Login Endpoint](#83-login-endpoint)
--   [9. Protecting APIs](#9-protecting-apis)
-    -   [9.1 `[Authorize]`](#91-authorize)
-    -   [9.2 `[AllowAnonymous]`](#92-allowanonymous)
-    -   [9.3 Roles](#93-roles)
-    -   [9.4 Claims & Policies](#94-claims--policies)
--   [10. Postman Flow](#10-postman-flow)
--   [11. Expiration & Refresh Tokens](#11-expiration--refresh-tokens)
--   [12. JWT Security Rules](#12-jwt-security-rules)
--   [13. Common Errors](#13-common-errors)
--   [14. Complete JWT Template](#14-complete-jwt-template)
--   [15. JWT Cheat Sheet](#15-jwt-cheat-sheet)
--   [16. Final Mental Model](#16-final-mental-model)
-
 
 <br>
 
