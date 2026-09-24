@@ -66,9 +66,6 @@ GET /api/tasks?status=pending&priority=high
 
 The filters are optional.. not mandaatory
 
-```http
-GET /api/tasks
-```
 
 ```http
 GET /api/tasks?status=pending
@@ -77,17 +74,50 @@ GET /api/tasks?status=pending
 ```http
 GET /api/tasks?priority=high
 ```
-
-Think
-```text
-Route parameter
-    ↓
-"WHICH specific resource?"
-
-Query parameter
-    ↓
-"WHAT resource FILTER / OPTIONS do I want?"
+Even if we dont apply filters and simply do ->
+```http
+GET /api/tasks
 ```
+
+It will return all tasks, filter just adds on convinience / limit
+
+Now, why not we do
+```http
+GET /api/tasks/?id=15
+```
+You **can** do:
+
+```http
+GET /api/tasks?id=15
+```
+
+There is nothing technically wrong with it.
+
+The distinction is mainly about **API semantics and conventions**.\
+and using the about syntax does not follow `REST Convention`
+
+### Query parameter is meant for → `filtering a collection`
+
+```http
+GET /api/tasks?status=pending
+```
+
+
+
+### Path parameter is meant for → `identifying one resource`
+
+```http
+GET /api/tasks/15
+```
+
+
+### Why prefer `/tasks/15` for ID?
+
+Because an ID usually **identifies a resource**, rather than merely filtering a collection.
+
+
+
+
 
 So:
 
