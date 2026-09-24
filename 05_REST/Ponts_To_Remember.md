@@ -85,15 +85,11 @@ Now, why not we do
 ```http
 GET /api/tasks/?id=15
 ```
-You **can** do:
-
-```http
-GET /api/tasks?id=15
-```
+We **can** do it
 
 There is nothing technically wrong with it.
 
-The distinction is mainly about **API semantics and conventions**.\
+The difference is mainly about **API semantics and conventions**.\
 and using the about syntax does not follow `REST Convention`
 
 ### Query parameter is meant for → `filtering a collection`
@@ -104,7 +100,7 @@ GET /api/tasks?status=pending
 
 
 
-### Path parameter is meant for → `identifying one resource`
+### Route parameter is meant for → `identifying one resource`
 
 ```http
 GET /api/tasks/15
@@ -116,15 +112,6 @@ GET /api/tasks/15
 Because an ID usually **identifies a resource**, rather than merely filtering a collection.
 
 
-
-
-
-So:
-
-```text
-/api/tasks/{taskId}              → mandatory identity
-/api/tasks?status=pending        → optional filter
-```
 
 <br>
 
