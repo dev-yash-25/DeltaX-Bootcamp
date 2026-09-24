@@ -381,12 +381,14 @@ These are **claims** — statements about the authenticated user/token.
 
 So remember:
 
-> **Credentials → used to prove who you are.**
+> [!Tip]
+> **Credentials → used to prove who you are.**\
 > **Claims → information the server puts into the JWT after authentication.**
 
-> [!Critical]
+> [!Important]
 > Importantly, **the password should normally NOT be put into the JWT as a claim.**
 
+<br>
 
 ### Registered JWT claims
 
