@@ -16,7 +16,7 @@
 - [9. Scoped — `AddScoped()`](#9-scoped--addscoped)
 - [10. Transient — `AddTransient()`](#10-transient--addtransient)
 - [11. `TryAddSingleton()`, `TryAddScoped()` and `TryAddTransient()`](#11-tryaddsingleton-tryaddscoped-and-tryaddtransient)
-- [12. Resolve a Service Directly in an Action Method](#12-resolve-a-service-directly-in-an-action-method)
+- [12. Resolve a Service Directly in an Action Method](#12-resolve-a-service-directly-in-an-action-method) 🏷️
 - [13. DI Mental Model](#13-di-mental-model)
 
 <br>
