@@ -4,6 +4,35 @@ Use this document as the reference dataset while testing the API in Postman.
 
 <br>
 
+## User Credentials
+Use these test credentials for **Signup**:
+
+```json
+{
+  "name": "Yash Test",
+  "emailId": "yash.test@gmail.com",
+  "password": "Yash@1234"
+}
+```
+
+Then **Login** with:
+
+```json
+{
+  "emailId": "yash.test@gmail.com",
+  "password": "Yash@1234"
+}
+```
+
+This password satisfies your current rules:
+
+- 9+ characters
+- Contains numbers: `1234`
+- Contains special character: `@`
+
+After login, copy the returned `accessToken`. We'll use that token to test all 5 `[Authorize]` controllers.
+
+<br>
 # 1. Producers
 
 ## Producer 1
