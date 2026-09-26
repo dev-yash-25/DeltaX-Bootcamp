@@ -254,6 +254,15 @@ or, depending on the application's version/setup:
 System.Data.SqlClient
 ```
 
+
+Search: 
+
+| Package | Version |
+|---|---:|
+| **Dapper** | **2.1.4** |
+| **Microsoft.Data.SqlClient** | **5.1.5** |
+
+
 The important point is:
 
 ```text
