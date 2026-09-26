@@ -259,8 +259,9 @@ Search:
 
 | Package | Version |
 |---|---:|
-| **Dapper** | **2.1.4** |
-| **Microsoft.Data.SqlClient** | **5.1.5** |
+| **Dapper** | Video given **2.0.90**, **2.1.4** can work too |
+| **Microsoft.Data.SqlClient** | Video given **4.8.2**, **5.1.0** |
+| **FirebaseStorage.net** | **1.0.3** |
 
 
 The important point is:
