@@ -3,7 +3,7 @@
 
 <br>
 
-## Basic of Joins - [Link](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/SQL/01_database_design_and_normalization/Notes/01_Designing/03_Joins.md)
+## Basic of Joins - [Link](https://github.com/Yash-Bandal/DeltaX-Bootcamp/blob/b663d4cef57eba0eb69b6b84ec05c2b3b5eb73d6/04_SQL/01_database_design_and_normalization/Notes/01_Designing/03_Joins.md)
 
 <br>
 

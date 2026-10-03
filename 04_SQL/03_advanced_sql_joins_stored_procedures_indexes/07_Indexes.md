@@ -2,6 +2,35 @@
 
 <br>
 
+## Index
+
+1. [Quick Overview](#quick-overview)
+2. [What is an Index?](#what-is-an-index)
+3. [Why Use Indexes?](#why-use-indexes)
+4. [Types of Indexes](#types-of-indexes)
+5. [Database Pages](#database-pages)
+6. [Heap](#heap)
+7. [B-Tree (Balanced Tree)](#b-tree-balanced-tree)
+8. [Clustered Index](#1-clustered-index)
+   - [How is a B-Tree formed?](#think-how-is-a-b-tree-formed)
+   - [Characteristics](#characteristics)
+9. [Non-Clustered Index](#2-non-clustered-index)
+   - [Comparison](#comparison)
+10. [Composite Index](#composite-index)
+11. [Leftmost Prefix Rule](#leftmost-prefix-rule)
+12. [Create Index](#create-index)
+   - [Clustered](#clustered)
+   - [Non-Clustered](#non-clustered)
+13. [Drop Index](#drop-index)
+14. [View Indexes](#view-indexes)
+15. [When to Create an Index](#when-to-create-an-index)
+16. [Avoid Indexes On](#avoid-indexes-on)
+17. [Clustered vs Non-Clustered](#clustered-vs-non-clustered)
+18. [Interview Tips](#interview-tips)
+
+
+<br>
+
 ---
 
 

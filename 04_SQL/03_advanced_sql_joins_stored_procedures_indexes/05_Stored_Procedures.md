@@ -2,14 +2,39 @@
 
 <br>
 
-**Index**:
-1. [XACT_STATE, XACT_ABORT](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/03_advanced_sql_joins_stored_procedures_indexes/05_Stored_Procedures.md#xact_abort--xact_state)
+## Index
+
+1. [What is a Stored Procedure?](#1-what-is-a-stored-procedure)
+2. [Creating Stored Procedures](#creating-stored-procedures)
+   - [Naming Convention](#naming-convention)
+   - [Create a Procedure](#create-a-procedure)
+   - [Procedure with Parameters](#2-procedure-with-parameters)
+   - [Multiple Parameters](#21-multiple-parameters)
+   - [Default Parameter](#22-default-parameter)
+3. [XACT_ABORT, XACT_STATE 🏷️](#xact_abort--xact_state)
+   - [Typical Stored Procedure Pattern](#typical-stored-procedure-pattern)
+   - [@@TRANCOUNT vs XACT_STATE()](#-trancount-vs-xact_state)
+4. [Output Parameter and Return Value](#3-output-paramter-and-return-value)
+5. [Managing Stored Procedures](#4-managing-stored-procedures)
+   - [View Procedure Definition](#view-procedure-definition)
+   - [Encryption](#encryption)
+6. [DROP Procedure](#5-drop-procedure)
+7. [Execution Plan](#execution-plan)
+8. [Difference between Ad-Hoc Queries & Stored Procedures](#difference-between-ad-hoc-queries-direct--sps)
+9. [Useful Options](#useful-options)
+   - [WITH ENCRYPTION](#with-encryption)
+   - [SET NOCOUNT ON](#set-nocount-on)
+10. [System Stored Procedures](#system-stored-procedures)
+11. [Quick Revision](#quick-revision)
+
 
 <br>
 
 # 1. What is a Stored Procedure?
 
 A **Stored Procedure (SP)** is a precompiled collection of one or more SQL statements stored in the database and executed as a single unit.
+
+Stored procedures are used to group SQL statements and business logic into a single reusable unit that runs inside the database
 
 ### Advantages
 
@@ -509,7 +534,19 @@ sp_depends usp_procedure_name
 | `WITH ENCRYPTION`  | Hide procedure definition        |
 | `SET NOCOUNT ON`   | Suppress row count messages      |
 
-### Interview Tip
 
-* **Stored Procedure** → Executes SQL statements and can return result sets, output parameters, or status codes.
-* Prefer **parameterized procedures** over hardcoded queries for better reusability and security.
+
+<br>
+
+
+> [!tip]
+> * **Stored Procedure** → Executes SQL statements and can return result sets, output parameters, or status codes.
+> * Prefer **parameterized procedures** over hardcoded queries for better reusability and security.
+
+
+
+<br>
+
+---
+
+<br>

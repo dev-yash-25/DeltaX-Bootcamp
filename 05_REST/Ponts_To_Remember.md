@@ -9,7 +9,10 @@
 3. [Parent, Child & Junction Table](#3-parent-child--junction-table)
 4. [Property vs Entity](#4-property-vs-entity)
 5. [Using `_async`](#using-_async)
-6. [`Task` in async]()
+6. [`Task` in async](#task-in-async-programming)
+7. [Captive Dependency](#di-lifetime-mismatch---captive-dependency)
+8. [Order of exceotion Catch block](#exception-catch-block-order)
+9. [IEnumerable vs List](#ienumerable-vs-list)
 
 <br>
 
@@ -295,3 +298,326 @@ IEnumerable<Actor>        Task<IEnumerable<Actor>>
 
 > [!Note]
 > `async void` does exist, but it is generally avoided for normal methods. It's mainly appropriate for event handlers.
+
+<br>
+
+---
+
+<br>
+
+
+## DI Lifetime Mismatch - Captive Dependency
+
+### Core Rule
+
+> **A longer-lived object should not hold a shorter-lived dependency.**
+
+Why? Because the longer-lived object can outlive the dependency it is holding.
+
+### Example 1 — ❌ Fails
+
+```csharp
+services.AddScoped<IUserRepository, UserRepository>();
+services.AddSingleton<IUserService, UserService>();
+```
+
+Dependency:
+
+```text
+UserService     →     UserRepository
+Singleton             Scoped
+```
+
+```text
+Application lifetime
+└── UserService (Singleton)
+        ↓
+    UserRepository (Scoped)
+        ↑
+   Request lifetime
+```
+
+`UserService` can live from application start to application shutdown, while `UserRepository` is supposed to live only for one request.
+
+So a **Singleton cannot depend directly on a Scoped service**.
+
+The application can build successfully because the C# code itself is valid, but DI validation can fail when the application starts or when the dependency is resolved.
+
+<br>
+
+### Example 2 — ✅ Successful
+
+```csharp
+services.AddSingleton<IUserRepository, UserRepository>();
+services.AddScoped<IUserService, UserService>();
+```
+
+Dependency:
+
+```text
+UserService     →     UserRepository
+Scoped                Singleton
+```
+
+```text
+Request lifetime
+└── UserService (Scoped)
+        ↓
+Application lifetime
+└── UserRepository (Singleton)
+```
+
+This is safe from a lifetime perspective because the `UserService` disappears at the end of the request, while the `UserRepository` continues to exist.
+
+### Easy way to remember
+
+```text
+❌ Singleton → Scoped
+   LONGER       SHORTER
+
+✅ Scoped → Singleton
+   SHORTER      LONGER
+```
+
+
+<br>
+
+---
+
+<br>
+
+
+## Exception Catch Block Order 
+
+### 1. Inheritance structure
+
+A custom exception is itself an `Exception` because it inherits from the base `Exception` class:
+
+```csharp
+class CustomException : Exception
+{
+}
+```
+
+So:
+
+```text
+Exception              ← Base / Parent
+    ↑
+CustomException        ← Derived / Child
+```
+
+Therefore:
+
+> **A `CustomException` IS an `Exception`.**
+
+<br>
+
+### 2. Why order matters
+
+C# checks `catch` blocks **from top to bottom** and stops at the first matching catch.
+
+### ✅ Correct
+
+```csharp
+try
+{
+    // code
+}
+catch (CustomException ex)
+{
+    // specifically handle custom exception
+}
+catch (Exception ex)
+{
+    // handle all other exceptions
+}
+```
+
+### ❌ Wrong
+
+```csharp
+try
+{
+    // code
+}
+catch (Exception ex)
+{
+    // catches CustomException too
+}
+catch (CustomException ex)
+{
+    // Never reached
+}
+```
+
+If:
+
+```csharp
+throw new CustomException();
+```
+
+then:
+
+```text
+CustomException thrown
+       ↓
+catch (Exception)
+       ↓
+MATCH ✅  <- program reads custom exception as a exception
+       ↓
+Handled
+       ↓
+CustomException catch is never reached
+```
+
+Because:
+
+```text
+CustomException IS-A Exception
+```
+
+<br>
+
+### 3. Catch priority
+
+> **Put the most specific/derived exception first, and the most general/base exception last.**
+
+```text
+Most specific
+     ↓
+CustomException
+     ↓
+More general exceptions
+     ↓
+Exception
+     ↓
+Most general
+```
+
+Example:
+
+```csharp
+catch (EntityNotFoundException)
+{
+}
+catch (ValidationException)
+{
+}
+catch (Exception)
+{
+}
+```
+
+The general `Exception` catch should be **last** because it can catch almost every exception derived from `Exception`.
+
+
+<br>
+
+---
+
+<br>
+
+
+## IEnumerable vs List
+
+<br>
+<div align  = "center">
+ <img width="500" alt="image" src="https://github.com/user-attachments/assets/066af8db-859a-4621-b2cd-24b7102a1081" />
+</div>
+<br>
+
+### 1. List implements multiple interfaces
+
+```text
+List<T>
+ ├── IEnumerable<T>
+ ├── IEnumerable
+ ├── ICollection<T>
+ ├── IList<T>
+ └── ...
+```
+
+So:
+
+> **`List<T>` is an `IEnumerable<T>`**, but `IEnumerable<T>` is not necessarily a `List<T>`.
+
+<br>
+
+### 2. List → IEnumerable ✅
+
+```csharp
+List<int> list = new List<int>();
+
+IEnumerable<int> items = list;
+```
+
+This works because `List<T>` implements `IEnumerable<T>`.
+
+```text
+List
+ ↓
+IEnumerable
+```
+
+A `List` can therefore be treated as the more general `IEnumerable`.
+
+<br>
+
+### 3. IEnumerable → List ❌ Direct assignment
+
+```csharp
+IEnumerable<int> items = ...;
+
+List<int> list = items; // ❌
+```
+
+Why?
+
+Because the actual object behind `IEnumerable` could be:
+
+```text
+IEnumerable
+ ├── List
+ ├── Array
+ ├── HashSet
+ └── Other collection
+```
+
+So C# cannot assume that it is a `List`.
+
+<br>
+
+### 4. IEnumerable → List using `.ToList()` ✅
+
+```csharp
+List<int> list = items.ToList();
+```
+
+`.ToList()` creates a **new `List<T>`** from the enumerable.
+
+```text
+IEnumerable
+     ↓
+  .ToList()
+     ↓
+ New List
+```
+
+### Core rule
+
+> **Specific → General: direct assignment works.**
+
+```text
+List → IEnumerable ✅
+```
+
+> **General → Specific: direct assignment does not work; conversion is needed.**
+
+```text
+IEnumerable → List ❌
+IEnumerable → ToList() → List ✅
+
+IEnumerable<int>  IEnum = new List<int>(); ✅
+List<int>  List = new IEnumerable<int>(); ❌
+```

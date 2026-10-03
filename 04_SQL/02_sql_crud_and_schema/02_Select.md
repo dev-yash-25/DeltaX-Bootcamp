@@ -1,5 +1,23 @@
 # SQL Server – SELECT Statement 
 
+<br>
+
+## Index
+
+1. [SELECT Foundation](#select)
+2. [DISTINCT](#distinct)
+3. [WHERE Clause](#where-clause)
+4. [Wildcards (LIKE)](#wildcards-like)
+5. [AND / OR Operators](#and--or-operators)
+6. [ORDER BY](#order-by)
+7. [TOP](#top)
+8. [TOP PERCENT](#top-percent)
+9. [SELECT Execution Order 🏷️](#select-execution-order-%EF%B8%8F)
+10. [Best Practices](#best-practices)
+11. [Quick Revision](#quick-revision)
+
+<br>
+
 ## SELECT
 
 Used to retrieve data from one or more tables.
@@ -249,7 +267,7 @@ FROM Foundation.Movie;
 
 <br>
 
-# SELECT Execution Order
+# SELECT Execution Order 🏷️
 
 > [!Tip]
 > Filtering and applying groupby is more efficient, and not filtering and applying condition after
@@ -267,12 +285,25 @@ WHERE Sex = 'Male'
 ORDER BY Name;
 ```
 
-SQL Server processes it as:
+SQL Server processes it as: 
 
 1. `FROM`
 2. `WHERE`
 3. `SELECT`
 4. `ORDER BY`
+
+## Order
+`FROM` executed first 🏷️
+
+1. `FROM`
+2. `JOIN`
+3. `WHERE`
+4. `GROUP BY`
+5. `HAVING`
+6. `SELECT`
+7. `DISTINCT`
+8. `ORDER BY`
+9. `TOP`
 
 <br>
 

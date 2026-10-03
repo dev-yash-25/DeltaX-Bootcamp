@@ -6,11 +6,11 @@
 
 <br>
 
-| Feature | UNION | UNION ALL |
+| Feature | UNION | UNION ALL (Understand as UNION Keep ALL)|
 |--|--|--|
-| Removes duplicate rows | ✅ Yes | ❌ No |
+| Removes duplicate rows | ✅ Yes | ❌ No  |
 | Keeps duplicate rows | ❌ No | ✅ Yes |
-| Performance | Slower (checks duplicates) | Faster |
+| Performance | Slower (checks duplicates) | Faster (Since no overhead to remove duplicates) |
 | Use when | Need unique results | Need all results, including duplicates |
 
 ## Example Tables

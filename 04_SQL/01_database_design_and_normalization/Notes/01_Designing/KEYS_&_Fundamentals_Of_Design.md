@@ -81,7 +81,47 @@ When building the database:
 </div>
 
 
+<br>
 
+> [!TIP]
+> ### Candidate Key vs Superkey
+>
+> **Candidate Key**
+> - A candidate key is a **column or combination of columns** that **guarantees uniqueness** of every row.
+> - It is **minimal** — no unnecessary column is included.
+> - Multiple candidate keys can exist, and we can **nominate/select one as the Primary Key**.
+>
+> ```text
+> MovieId                  → Candidate Key
+> (MovieId, ActorId)       → Composite Candidate Key
+> ```
+>
+> **Superkey**
+> - A superkey is also a **column or combination of columns that guarantees uniqueness**.
+> - But unlike a candidate key, it **can contain extra/non-key attributes**.
+>
+> ```text
+> MovieId                         → Superkey
+> MovieId + MovieName             → Superkey
+> MovieId + MovieName + Year      → Superkey
+> ```
+>
+> ### Simple difference
+>
+> **Candidate Key = Minimal combination guaranteeing uniqueness**
+>
+> **Superkey = Any combination guaranteeing uniqueness, even with extra columns**
+>
+> ```text
+> Superkey
+>    ↓
+> Candidate Key
+>    ↓
+> Primary Key (one candidate we nominate/select)
+> ```
+>
+
+<br>
 
 ## Candidate and Super Key
 

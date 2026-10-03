@@ -1,10 +1,26 @@
 # Database Normalization
 
+<br>
+
+## Index
+
+1. [What is Database Normalization?](#what-is-database-normalization)
+2. [Why Do We Need Normalization?](#why-do-we-need-normalization)
+3. [First Normal Form (1NF)](#first-normal-form-1nf)
+4. [Second Normal Form (2NF)](#second-normal-form-2nf)
+5. [Third Normal Form (3NF)](#third-normal-form-3nf)
+6. [Boyce-Codd Normal Form (BCNF)](#boyce-codd-normal-form-bcnf)
+7. [Overview](#summary)
+
+
+<br>
+
 ## What is Database Normalization?
 Database Normalization is the process of organizing data in a database to:
 
-- Minimize **data redundancy** (duplicate data)
+### &nbsp; &nbsp; C &uarr; &nbsp; &nbsp; R &darr; &nbsp; &nbsp; A &darr; &nbsp; &nbsp; M &uarr;
 - Improve **data consistency**
+- Minimize **data redundancy** (duplicate data)
 - Reduce **data anomalies**
 - Improve **database maintainability**
 
@@ -18,6 +34,28 @@ There are **six normal forms (1NF–6NF)**, but in real-world applications, most
 > ### `2NF` vs `3NF` major difference
 >  - In 2NF, the Primary key is a **Composite Primary Key**
 >  - In 3NF, the Primary key is perfectly fine, **Normal primary key**
+>
+> **Example:** (Cols may be same, just different constraints)\
+> In `2Nf` -> Conposite primary key (MovieId, ProducerId) -
+>
+> Note we have only 1 pkey in table,\
+> so we cant consider only 1 of both is pkey,\
+> or both are pkeys, both are together pkeys
+> 
+> ```
+> MovieId | ProducerId | MovieName | ProducerName
+> ```
+>
+> <br>
+> 
+> In `3Nf`, MovieId is only single Primary key,\
+> ProducerId is a FK only if it references another table.\
+>  (not in unnormalized bad table, there its just a nonkey attribute
+>
+> ```
+> MovieId | ProducerId | MovieName | ProducerName
+> ```
+> #### This is not something random! 🏷️
 > 
 
 <br>
@@ -158,7 +196,8 @@ Each cell should contain only one value.
 The Subjects column stores multiple values.
 
 > [!caution]
-> Now, if non-atomic, its not possible to apply SEELECT, DELETE, INSERT on just one subject
+> ### Why we need to ensure 1NF? Why Multiple subjects in 1 cell a problem?
+> Now, if non-atomic, its not possible to apply **SELECT**, **DELETE**, **INSERT** on just one subject
 
 <br>
 
@@ -216,6 +255,8 @@ EmployeeID
 ## 1NF Solution
 
 Split data into multiple tables and connect them using a **Foreign Key**.
+
+<br>
 
 ---
 
@@ -302,6 +343,54 @@ Department information is stored only once.
 - Easier updates
 - Smaller tables
 - Better consistency
+
+<br>
+
+
+> [!Tip]
+> ### Why Need to  remove Partial Dependency to establish 2NF?, Why 2NF?
+>
+> Suppose:
+>
+> ```text
+> MovieId | ProducerId | MovieName | ProducerName
+> ```
+>
+> Composite key: `(MovieId, ProducerId)`
+>
+> If one producer has multiple movies:
+>
+> ```text
+> 1 | P1 | Movie A | Producer X
+> 2 | P1 | Movie B | Producer X
+> 3 | P1 | Movie C | Producer X
+> ```
+>
+> `ProducerName` depends only on `ProducerId`, not on the **whole composite key** → **partial dependency**.
+>
+> This causes anomalies:
+> - **Update:** Change Producer X's name → update multiple rows.
+> - **Insert:** Can't store a producer easily without a movie.
+> - **Delete:** Deleting the producer's last movie may also delete producer information.
+>
+> ### Better design
+>
+> ```text
+> Movie
+> -------------------------
+> MovieId | MovieName | ProducerId
+>
+> Producer
+> -----------------
+> ProducerId | ProducerName
+> ```
+>
+> Now `ProducerName` depends only on `ProducerId`, where it belongs.
+> `Movie` stores only the `ProducerId` as the foreign key.
+>
+> **2NF = Remove partial dependency → every non-key attribute must depend on the whole key.**
+
+<br>
 
 ---
 
@@ -454,6 +543,60 @@ Departments
 +--------------+----------------+
 ```
 
+<br>
+
+> [!tip]
+> ### Why we need 3NF? Why Transitive Dependency can be a problem?
+>
+> Suppose we have:
+>
+> ```text
+> MovieId | MovieName | GenreId | GenreName | GenreType
+> ```
+>
+> **PK:** `MovieId`  
+> `GenreId` is **not a PK** here; it's a **FK**.
+>
+> Example:
+>
+> ```text
+> 1 | Inception | 10 | Sci-Fi | Fictional
+> 2 | Interstellar | 10 | Sci-Fi | Fictional
+> 3 | Titanic | 20 | Romance | Love Story
+> ```
+>
+> Dependency:
+>
+> ```text
+> MovieId → GenreId → GenreName, GenreType
+> ```
+>
+> `GenreName` and `GenreType` depend on `GenreId`, which is a **non-key attribute** → **transitive dependency**.
+>
+> This causes anomalies:
+> - **Update:** Change `Sci-Fi` → update multiple movie rows.
+> - **Insert:** Can't properly store a new genre without a movie.
+> - **Delete:** Deleting the last movie of a genre can delete the genre information.
+>
+> ### Better design
+>
+> ```text
+> Movie
+> --------------------------------
+> MovieId (PK) | MovieName | GenreId (FK)
+>
+> Genre
+> -------------------------------
+> GenreId (PK) | GenreName | GenreType
+> ```
+>
+> Now genre information belongs to `Genre`, not `Movie`.
+>
+> **3NF = Remove transitive dependency → non-key attributes should not depend on other non-key attributes.**
+>
+
+<br>
+
 ---
 
 <br>
@@ -469,7 +612,7 @@ Departments
 A table is in **BCNF** if:
 
 - It is already in **3NF**
-- **Every determinant must be a [Candidate Key](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/01_database_design_and_normalization/Notes/01_Designing/KEYS_&_Fundamentals_Of_Design.md#candidate-and-super-key)**
+- **Every determinant must be a [Candidate Key](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/01_database_design_and_normalization/Notes/01_Designing/KEYS_&_Fundamentals_Of_Design.md#candidate-and-super-key)** (More precisely a Super key)
 
 > **Determinant:** An attribute (or set of attributes) that determines another attribute.
 
@@ -479,7 +622,7 @@ If:
 X → Y
 ```
 
-Then **X** must be a **Candidate Key**.
+Then **X** must be a **Super Key**.
 
 <br>
 <div align = "center">
@@ -565,6 +708,72 @@ Now every determinant is a Candidate Key.
 <br>
 
 
+> [!TIP]
+> ### Why we need BCNF? Why 3NF may not be Complete fully?
+>
+> Suppose:
+>
+> ```text
+> MovieId | MovieName | GenreId | GenreName | GenreType | Language
+> ```
+>
+> **PK:** `MovieId`
+>
+> Suppose:
+>
+> ```text
+> GenreId → GenreName, GenreType
+> ```
+>
+> `GenreId` is **not a Superkey** because multiple movies can have the same `GenreId`.
+>
+> ```text
+> GenreId → GenreName
+>     ↓
+> GenreId is NOT a Superkey
+>     ↓
+> ❌ BCNF violation
+> ```
+>
+> ### Solution
+>
+> Separate the dependency:
+>
+> ```text
+> Movie
+> --------------------------------
+> MovieId (PK) | MovieName | GenreId (FK) | Language
+> ```
+>
+> ```text
+> Genre
+> -------------------------------
+> GenreId (PK) | GenreName | GenreType
+> ```
+>
+> Now:
+>
+> ```text
+> GenreId → GenreName, GenreType
+> ```
+>
+> `GenreId` **is the PK** of `Genre`, therefore it is a **Superkey**.
+>
+> ```text
+> GenreId → GenreName
+>     ↓
+> GenreId is Superkey
+>     ↓
+> ✅ BCNF
+> ```
+>
+>  >  Every determinant must be a `candidate key` (more precisely, a `superkey`).
+>
+
+<br>
+
+
+
 
 # Difference Between 3NF and BCNF
 
@@ -593,12 +802,4 @@ Now every determinant is a Candidate Key.
 
 <br>
 
-# Advantages of Normalization
-
-- Reduces data redundancy
-- Eliminates update anomalies
-- Improves data consistency
-- Saves storage space
-- Makes maintenance easier
-- Improves INSERT, UPDATE, and DELETE performance
-- Produces a clean and scalable database design
+**[YB Studios](https://github.com/Yash-Bandal)**
