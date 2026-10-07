@@ -1,4 +1,4 @@
-# IMDB API — Postman Test Data Referenc
+# IMDB API — Postman Test Data Reference
 
 Use this document as the reference dataset while testing the API in Postman.
 

@@ -13,11 +13,13 @@
 7. [Captive Dependency](#di-lifetime-mismatch---captive-dependency)
 8. [Order of exceotion Catch block](#exception-catch-block-order)
 9. [IEnumerable vs List](#ienumerable-vs-list)
+10. [Idempotency](#idempotency)
 
 <br>
 
 ## Insights
 1. Why we use `Scoped` instead of `Singleton` for db backed requests? Like we used singleton for repos where List was used
+
 ```
 Since we want our application to be stateless, we don't want the server/repository to keep information 
 from one HTTP request and use it in another request. Therefore, for a database-backed repository, we prefer Scoped.
@@ -32,6 +34,52 @@ In that case, the cache can be a Singleton because the cache itself needs to sha
 Stateless REST does not mean "the server cannot store any data."
 It means the server should not depend on previous HTTP request state to understand the current request.
 ```
+
+
+2. **A long-lived service should not hold a reference to a short-lived service.**
+   
+Eg:-  ❌ Problem
+```js
+services.AddSingleton<IMovieService, MovieService>();
+services.AddScoped<IActorRepository, ActorRepository>(); 
+```
+✅ Works
+```js
+services.AddScoped<IMovieService, MovieService>();
+services.AddSingleton<IActorRepository, ActorRepository>(); 
+```
+but, this is not a problem
+```js
+services.AddSingleton<IMovieService, MovieService>();
+services.AddTransient<IActorRepository, ActorRepository>();
+```
+The transient dependency effectively lives as long as the Singleton in this situation.
+
+> [!Important]
+> Transient has **no fixed** lifetime; a new instance is created each time the DI container is asked for that service.
+>
+> it lives **as long as** the object using it.
+> 
+> So:
+> - **Scoped** → normally one instance per request
+> - **Transient** → new instance each time the container is requested to provide it
+> - **Singleton** → one instance for the application's lifetime
+
+```
+Singleton → Scoped       ❌
+Singleton → Transient    ✅
+Singleton → Singleton    ✅
+
+Scoped    → Singleton    ✅
+Scoped    → Scoped       ✅
+Scoped    → Transient    ✅
+
+Transient → Singleton    ✅
+Transient → Scoped       ✅
+Transient → Transient    ✅
+```
+
+3. **Normal C# objects don't stay until app ends — they remain as long as they're referenced; once no references remain, they're eligible for Garbage Collection.**
 
 <br>
 
@@ -620,4 +668,147 @@ IEnumerable → ToList() → List ✅
 
 IEnumerable<int>  IEnum = new List<int>(); ✅
 List<int>  List = new IEnumerable<int>(); ❌
+```
+
+<br>
+
+---
+
+<br>
+
+### Idempotency
+
+A request is **idempotent** if sending the **same request multiple times has the same final effect as sending it once**.
+
+Think:
+
+> **1 request or 10 identical requests → same final state.**
+
+### HTTP methods
+
+| Method | Idempotent? | Example |
+|---|---|---|
+| **GET** | ✅ | `GET /movies/5` → just reads movie |
+| **PUT** | ✅ | `PUT /movies/5` with same data → movie ends up with same data |
+| **DELETE** | ✅ | `DELETE /movies/5` → first deletes it; repeating it doesn't delete another movie |
+| **POST** | ❌ generally | `POST /movies` → each request can create another movie |
+| **PATCH** | ⚠️ depends | `PATCH /movies/5` → depends on what the patch operation does |
+
+### Easy example
+
+```http
+PUT /users/10
+{
+    "name": "Yash"
+}
+```
+
+Send it once:
+
+```text
+User 10 → Yash
+```
+
+Send it 5 times:
+
+```text
+User 10 → Yash
+```
+
+Final state is the same → **idempotent**.
+
+But:
+
+```http
+POST /movies
+{
+    "name": "Inception"
+}
+```
+
+Send it 5 times:
+
+```text
+Movie 1 → Inception
+Movie 2 → Inception
+Movie 3 → Inception
+...
+```
+
+Different final state → **not idempotent**.
+
+
+<br>
+
+### PATCH can be either Idempotent or non Idempotent
+
+It depends on **what operation the PATCH performs**.
+
+#### ❌ Non-idempotent PATCH
+
+Suppose:
+
+```http
+PATCH /users/10
+{
+    "operation": "incrementAge"
+}
+```
+
+Initial:
+
+```text
+Age = 20
+```
+
+Send once:
+
+```text
+20 → 21
+```
+
+Send again:
+
+```text
+21 → 22
+```
+
+So repeated requests keep changing the state.
+
+ **Not idempotent**
+
+<br>
+
+#### ✅ Idempotent PATCH
+
+Suppose:
+
+```http
+PATCH /users/10
+{
+    "name": "Yash"
+}
+```
+
+Initial:
+
+```text
+Name = Rahul
+```
+
+Send once or multiple times:
+
+```text
+Rahul → Yash
+```
+
+The final state is the same.
+
+**Idempotent**
+
+### Easy way to remember
+
+```text
+PATCH "set this value"       → usually idempotent ✅
+PATCH "do this operation"   → can be non-idempotent ❌
 ```

@@ -134,6 +134,8 @@ INNER JOIN Foundation.Actors A2
     ON AM2.ActorId = A2.Id
 
 GROUP BY
+    A1.Id,
+    A2.Id,
     A1.Name,
     A2.Name
 
@@ -162,6 +164,8 @@ HAVING COUNT(*) >= 2
 
 ### Why `ActorId < ActorId`?
 
+To remove joining with same entries pairs
+
 Without it:
 
 ```text
@@ -176,10 +180,45 @@ With it:
 ```text
 A + B
 ```
+Duplicates not considered
+
+<br>
+
+### Why here Group by `Id`
+❌ Before — Grouping only by Name
+
+| Id | Name |
+|---:|---|
+| 1 | Raj |
+| 2 | Raj |
+| 3 | Amit |
+
+```sql
+GROUP BY
+    A1.Name,
+    A2.Name
+```
+
+| Actor1 | Actor2 | MoviesTogether |
+|---|---|---:|
+| Raj | Amit | **5** |
 
 
-Only one direction remains, and an actor cannot pair with themselves.
+✅ After — Grouping by ID + Name
+```sql
+GROUP BY
+    A1.Id,
+    A1.Name,
+    A2.Id,
+    A2.Name
+```
+| Actor1 ID | Actor1 | Actor2 ID | Actor2 | MoviesTogether |
+|---:|---|---:|---|---:|
+| 1 | Raj | 3 | Amit | **3** |
+| 2 | Raj | 3 | Amit | **2** |
 
+
+<br>
 
 ### Important GROUP BY + COUNT concept
 
@@ -322,6 +361,20 @@ GROUP BY
 
 HAVING COUNT(AM2.MovieId) = 0;
 ```
+
+### Logic
+```
+Join actors to get all pairs
+
+then get all movies of actor1
+
+then get movies of actor2 such that,
+actor1 movie = actor1 movie
+
+then gruup them such that actor2.movieid has null
+(having count(am2.mid) = 0
+```
+
 | A1.Name | AM1.MovieId | A2.Name | AM2.MovieId |
 | ------- | ----------: | ------- | ----------: |
 | A       |           1 | B       |           1 |
@@ -351,9 +404,9 @@ HAVING COUNT(AM2.MovieId) = 0;
         ↓
 
 3. LEFT JOIN Actor_Movies as AM2
-   Get movies of Actor2
+   Now Get movies of Actor2, such that Actor1 and Actor2 have same movie 
 
-   AND require:
+   that is:
    AM1.MovieId = AM2.MovieId
 
         ↓

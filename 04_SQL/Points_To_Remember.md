@@ -10,23 +10,23 @@
 <br>
 
 ## Index
-1. [Primary Key vs Unique](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#1-primary-key-vs-unique)
-2. [Where vs Having - No Aggregates with WHERE](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#2-where-vs-having)
-3. [UNION vs UNION ALL](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#3-union-vs-union-all)
-4. [UNION vs Join](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#4-union-vs-join)
-5. [With and Without Group BY](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#5-with-and-without-group-by)
-6. [Group by Primary Key + Display Columns](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#6-group-by-primary-key--display-columns)
-7. [Group By and Aggregate](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#7-dont-group-by-aggregating-column)
-8. [Functions vs Stored Procedures](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#8-stored-procedure-vs-function)
-9. [Anomalies](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#9-database-anomalies)
-10. [SQL Injection](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#10-sql-injection)
-11. [Transactions](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#11-transactions)
-12. [3NF and No junction table](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#12-3nf)
-13. [Candidate Vs Composite key](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#13-candidate-key-vs-composite-key)
-14. [Delete vs Truncate vs Drop](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#14-delete-vs-truncate-vs-drop)
-15. [`COUNT(column)` and `NULL`](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#15-countcolumn-and-null)
-16. [GROUP BY and SELECT](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#16-group-by-and-select)
-17. [DISTINCT vs GROUP BY - Think of 2 methods of Finding Unique](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/Points_To_Remember.md#17-distinct-vs-group-by)
+1. [Primary Key vs Unique](#1-primary-key-vs-unique)
+2. [Where vs Having - No Aggregates with WHERE](#2-where-vs-having)
+3. [UNION vs UNION ALL](#3-union-vs-union-all)
+4. [UNION vs Join](#4-union-vs-join)
+5. [With and Without Group BY](#5-with-and-without-group-by)
+6. [Group by Primary Key + Display Columns](#6-group-by-primary-key--display-columns)
+7. [Group By and Aggregate](#7-dont-group-by-aggregating-column)
+8. [Functions vs Stored Procedures](#8-stored-procedure-vs-function)
+9. [Anomalies](#9-database-anomalies)
+10. [SQL Injection](#10-sql-injection)
+11. [Transactions](#11-transactions)
+12. [3NF and No junction table](#12-3nf)
+13. [Candidate Vs Composite key](#13-candidate-key-vs-composite-key)
+14. [Delete vs Truncate vs Drop](#14-delete-vs-truncate-vs-drop)
+15. [`COUNT(column)` and `NULL`](#15-countcolumn-and-null)
+16. [GROUP BY and SELECT](#16-group-by-and-select)
+17. [DISTINCT vs GROUP BY - Think of 2 methods of Finding Unique](#17-distinct-vs-group-by)
 
 <br>
 
@@ -74,7 +74,7 @@ that automatically updates or deletes dependent child table rows when a parent t
 4. Like what you need in `SELECT` must be in `GROUP BY`, similarly, dont forget,\
    **What you need in `HAVING` (Non aggregate - Like here M.Profit) should also be in `GROUP BY`**
    ```sql
-      SELECT
+   SELECT
        M.Name AS MovieName,
        M.Profit,
        COUNT(AM.ActorId) AS ActorCount
@@ -91,7 +91,7 @@ that automatically updates or deletes dependent child table rows when a parent t
               SELECT AVG(Profit)
               FROM Foundation.Movies
           );
-       ```
+    ```
 5. WHen I need to compare a row to another row from the same table → consider a self join
    ```
    Producers who produced movies released in consecutive years 
@@ -142,7 +142,27 @@ that automatically updates or deletes dependent child table rows when a parent t
       FROM Employees E;
       ```
 
-7. Avoid Over Normalization, Creating Too many tables, Create tables / Normalize only to reduce redundancy and anomalies 
+7. Avoid Over Normalization, Creating Too many tables, Create tables / Normalize only to reduce redundancy and anomalies
+8. Trap question, note select is executed last in sql order,
+```sql
+SELECT
+    Department,
+    SUM(Salary) AS TotalSalary,
+    AVG(Salary) AS AvgSalary,
+    TotalSalary - AvgSalary AS Difference  -- ❌
+FROM Employee
+GROUP BY Department;
+```
+correct
+```sql
+SELECT
+    Department,
+    SUM(Salary) AS TotalSalary,
+    AVG(Salary) AS AvgSalary,
+    SUM(Salary) - AVG(Salary) AS Difference  
+FROM Employee
+GROUP BY Department;
+```
 
 <br>
 
@@ -288,7 +308,7 @@ duplicate Bob not removed
 
 | Feature | UNION | JOIN |
 |---------|-------|------|
-|Direction | Horizontal (makes table wider) | Vertical (makes table taller)|
+|Direction | Vertical (makes table taller)| Horizontal (makes table wider) |
 | Purpose | Combines rows from two or more `SELECT` queries | Combines columns from two or more tables |
 | Combines 🏷️ | Rows | Columns |
 | Number of Columns | Must be the same in both queries | Can be different |
