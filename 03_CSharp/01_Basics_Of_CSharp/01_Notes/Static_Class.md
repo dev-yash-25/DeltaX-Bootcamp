@@ -35,7 +35,19 @@ class A
     }
 }
 ```
+```csharp
+class A
+{
+    int x = 10;
 
+    static void Show()
+    {
+        A obj = new A();
+
+        Console.WriteLine(obj.x);  // 10
+    }
+}
+```
 <br>
 
 # Step 1 — What Exists Before Any Object Is Created?

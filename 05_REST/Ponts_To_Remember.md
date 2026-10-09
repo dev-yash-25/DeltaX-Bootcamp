@@ -689,7 +689,7 @@ Think:
 | Method | Idempotent? | Example |
 |---|---|---|
 | **GET** | ✅ | `GET /movies/5` → just reads movie |
-| **PUT** | ✅ | `PUT /movies/5` with same data → movie ends up with same data |
+| **PUT** | ⚠️ depends | `PUT /movies/5` with same data → movie ends up with same data |
 | **DELETE** | ✅ | `DELETE /movies/5` → first deletes it; repeating it doesn't delete another movie |
 | **POST** | ❌ generally | `POST /movies` → each request can create another movie |
 | **PATCH** | ⚠️ depends | `PATCH /movies/5` → depends on what the patch operation does |

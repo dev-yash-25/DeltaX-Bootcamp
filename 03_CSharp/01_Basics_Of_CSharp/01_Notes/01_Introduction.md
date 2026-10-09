@@ -21,8 +21,6 @@
    * 2.7 [Modern .NET](#27-modern-net)
    * 2.8 [Popular Technologies Built on .NET](#28-popular-technologies-built-on-net)
    * 2.9 [Real Industry Example](#29-real-industry-example)
-   * 2.10 [Interview Quick Revision](#210-interview-quick-revision)
-   * 2.11 [Key Takeaways](#211-key-takeaways)
 3. [Common Language Runtime (CLR)](#3-common-language-runtime-clr)
    * 3.1 [What is CLR?](#31-what-is-clr)
    * 3.2 [Why Do We Need CLR?](#32-why-do-we-need-clr)
@@ -34,7 +32,6 @@
    * 3.8 [Exception Handling](#38-exception-handling)
    * 3.9 [Security](#39-security)
    * 3.10 [Benefits of CLR](#310-benefits-of-clr)
-   * 3.11 [Interview Quick Revision](#311-interview-quick-revision)
 4. [.NET Architecture](#4-net-architecture)
    * 4.1 [What is .NET Architecture?](#41-what-is-net-architecture)
    * 4.2 [Big Picture (Full Execution Flow)](#42-big-picture-full-execution-flow)
@@ -503,7 +500,7 @@ Together they create the complete application.
 
 <br>
 
-## 2.10 Interview Quick Revision
+## Quick Revision
 
 ### What is C#?
 
@@ -526,16 +523,6 @@ No.
 
 C# code requires .NET to compile and execute.
 
-<br>
-
-## 2.11 Key Takeaways
-
-* C# is a programming language.
-* .NET is a development platform.
-* C# is used to write code.
-* .NET provides runtime, libraries, and tools.
-* Most modern C# applications run on .NET.
-* C# and .NET work together to build real-world software.
 
 <br>
 
@@ -853,7 +840,7 @@ Additional protection during execution.
 
 <br>
 
-## 3.11 Interview Quick Revision
+##  Quick Revision
 
 ### What is CLR?
 

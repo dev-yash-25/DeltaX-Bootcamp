@@ -3,7 +3,7 @@
 
 <br>
 
-[Static vs Non Static](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/03_Basics_Of_CSharp/01_Notes/Static_Class.md) 🏷️
+[Static vs Non Static](https://github.com/Yash-Bandal/DeltaX-Bootcamp/blob/main/03_CSharp/01_Basics_Of_CSharp/01_Notes/Static_Class.md) 🏷️
 
 <br>
 

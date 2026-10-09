@@ -23,11 +23,11 @@
 # YouTube SQL Practice - Part 1 (Questions 1–20)
 
 **Some Imp**
-1. [Channals Subscribed by Alice](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/01_database_design_and_normalization/Notes/01_Designing/Practise_Designs/02_Youtube_db.md#2-which-channels-does-alice-subscribe-to)
-2.  [Mutual Subscription](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/01_database_design_and_normalization/Notes/01_Designing/Practise_Designs/02_Youtube_db.md#53-find-channels-that-both-subscribed-to-each-other-mutual-subscription)
-3.  [Top 5 Channal with highest subs](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/01_database_design_and_normalization/Notes/01_Designing/Practise_Designs/02_Youtube_db.md#4-top-5-channels-with-the-highest-subscribers)
-4.  [Channals with no subs](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/01_database_design_and_normalization/Notes/01_Designing/Practise_Designs/02_Youtube_db.md#6-find-channels-with-no-subscribers)
-5.  [Channals with no uploaded video](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/04_SQL/01_database_design_and_normalization/Notes/01_Designing/Practise_Designs/02_Youtube_db.md#7-users-with-no-uploaded-videos)
+1. [Channals Subscribed by Alice](#2-which-channels-does-alice-subscribe-to)
+2.  [Mutual Subscription](#53-find-channels-that-both-subscribed-to-each-other-mutual-subscription)
+3.  [Top 5 Channal with highest subs](#4-top-5-channels-with-the-highest-subscribers)
+4.  [Channals with no subs](#6-find-channels-with-no-subscribers)
+5.  [Channals with no uploaded video](#7-users-with-no-uploaded-videos)
 
 <br>
 

@@ -1,5 +1,42 @@
 # 3. Programming Logic
 
+<br>
+
+## Index
+
+1. [Operators](#31-operators)
+   - [Arithmetic Operators](#arithmetic-operators)
+   - [Comparison Operators](#comparison-operators)
+   - [Logical Operators](#logical-operators)
+   - [Assignment Operators](#assignment-operators)
+   - [Increment and Decrement](#increment-and-decrement)
+2. [Comments](#32-comments)
+   - [Single-Line Comment](#single-line-comment)
+   - [Multi-Line Comment](#multi-line-comment)
+   - [Best Practice](#best-practice)
+3. [Conditional Statements](#33-conditional-statements)
+   - [Real-World Example](#real-world-example)
+   - [if Statement](#if-statement)
+   - [if-else Statement](#if-else-statement)
+   - [else if Statement](#else-if-statement)
+   - [Nested if](#nested-if)
+   - [switch Statement](#switch-statement)
+   - [Ternary Operator](#ternary-operator)
+4. [Loops](#34-loops)
+   - [For Loop](#341-for-loop)
+   - [Loop Breakdown](#loop-breakdown)
+   - [Reverse Loop](#reverse-loop)
+   - [While Loop](#342-while-loop)
+   - [Real-World Example](#real-world-example)
+   - [Infinite Loop](#infinite-loop)
+   - [For vs While](#for-vs-while)
+5. [Common Mistakes](#common-mistakes)
+   - [Using = Instead of ==](#using--instead-of-)
+   - [Forgetting Increment](#forgetting-increment)
+   - [Missing Break in Switch](#missing-break-in-switch)
+
+<br>
+
 Programming logic is what makes applications intelligent.
 
 Using programming logic, a program can:

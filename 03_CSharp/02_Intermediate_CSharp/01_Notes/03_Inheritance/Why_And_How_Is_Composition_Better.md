@@ -1,5 +1,20 @@
 # Composition vs Inheritance (Why Composition Provides Loose Coupling)
 
+<br>
+
+---
+
+| Approach | Coupling |
+|---|---|
+| **Inheritance** | **Strong/tight coupling** between child and parent |
+| **Composition + concrete class** | **Tight coupling**, but not inheritance coupling |
+| **Composition + interface + DI** | **Loose coupling** |
+
+---
+
+<br>
+
+
 One of the most common OOP interview questions is:
 
 > **Why is Composition preferred over Inheritance?**

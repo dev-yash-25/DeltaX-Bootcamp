@@ -4,19 +4,19 @@
 
 **Index:**
 
-1. [5.1 Arrays](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/03_Basics_Of_CSharp/01_Notes/05_Data_Structures.md#51-arrays)
-2. [5.2 Strings](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/03_Basics_Of_CSharp/01_Notes/05_Data_Structures.md#52-strings)
-3. [5.3 Enums](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/03_Basics_Of_CSharp/01_Notes/05_Data_Structures.md#53-enums)
-4. [5.4 Reference vs Value Types](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/03_Basics_Of_CSharp/01_Notes/05_Data_Structures.md#54-reference-types-vs-value-types)
-5. [5.5 Collections (Lists)](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/03_Basics_Of_CSharp/01_Notes/05_Data_Structures.md#55-collections-list)
-6. [5.6 Random Class](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/03_Basics_Of_CSharp/01_Notes/05_Data_Structures.md#56-random-class)
+1. [5.1 Arrays](#51-arrays)
+2. [5.2 Strings](#52-strings)
+3. [5.3 Enums](#53-enums)
+4. [5.4 Reference vs Value Types](#54-reference-types-vs-value-types)
+5. [5.5 Collections (Lists)](#55-collections-list)
+6. [5.6 Random Class](#56-random-class)
 
 
 <br>
 
 ## 5.1 Arrays
 
-#### [Arrays in Depth](https://github.com/dev-yash-25/DeltaX-Bootcamp/blob/main/03_Basics_Of_CSharp/01_Notes/Concepts/Arrays_In_Depth.md)
+#### [Arrays in Depth](https://github.com/Yash-Bandal/DeltaX-Bootcamp/blob/main/03_CSharp/01_Basics_Of_CSharp/01_Notes/Concepts/Arrays_In_Depth.md)
 
 ### What is an Array?
 
